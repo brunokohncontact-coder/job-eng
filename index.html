@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JOB Engenharia — Wireframe Home</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'job-black':  '#1d1d1b',
+            'job-green':  '#00662f',
+            'job-green2': '#199738',
+          },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"', '"Arial Narrow"', 'Arial', 'sans-serif'],
+            body: ['"Franklin Gothic Book"', 'Arial', 'sans-serif'],
+          },
+          maxWidth: {
+            grid: '1200px',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; }
+
+    /* ── Annotation overlay (wireframe notation) ── */
+    .wf-label { display: none; }
+    .wf-label-oculto {
+      font-size: 10px;
+      font-family: monospace;
+      color: #00662f;
+      background: rgba(0,102,47,0.08);
+      border: 1px dashed #00662f;
+      padding: 1px 6px;
+      border-radius: 3px;
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── Icon box ── */
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box img { width: 100%; height: 100%; object-fit: contain; }
+    .icon-box-lg {
+      width: 72px;
+      height: 72px;
+    }
+
+    /* ── Image placeholder ── */
+    .img-ph {
+      background: repeating-linear-gradient(
+        45deg,
+        #e0e0e0,
+        #e0e0e0 6px,
+        #f0f0f0 6px,
+        #f0f0f0 12px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 13px;
+      font-family: monospace;
+    }
+
+    /* dropdown */
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+
+    /* ── Section rule (Swiss hairline + index) ── */
+    .section-rule {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5b6b62;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-top: 1px solid rgba(29,29,27,0.12);
+      border-bottom: 1px solid rgba(29,29,27,0.06);
+      background: #fafaf7;
+    }
+    .section-rule .accent { color: #00662f; }
+    .section-rule .bar { height: 1px; background: rgba(29,29,27,0.18); width: 100%; }
+    .section-rule.dark {
+      background: #1d1d1b;
+      border-top-color: rgba(255,255,255,0.10);
+      border-bottom-color: rgba(255,255,255,0.04);
+      color: #8a9a90;
+    }
+    .section-rule.dark .accent { color: #199738; }
+    .section-rule.dark .bar { background: rgba(255,255,255,0.18); }
+    .section-rule.green {
+      background: #00662f;
+      border-top-color: rgba(255,255,255,0.18);
+      border-bottom-color: rgba(255,255,255,0.08);
+      color: #d8f5e3;
+    }
+    .section-rule.green .accent { color: #ffffff; }
+    .section-rule.green .bar { background: rgba(255,255,255,0.28); }
+
+    /* ── Swiss section index (used inside section headers) ── */
+    .swiss-index {
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #00662f;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .swiss-index::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: #00662f;
+    }
+
+    /* ── Stats rail ── */
+    .stat-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 28px 24px;
+      border-right: 1px solid rgba(29,29,27,0.10);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell .num {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1;
+      color: #1d1d1b;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-cell .num em { color: #00662f; font-style: normal; }
+    .stat-cell .num sup {
+      font-size: 0.5em; vertical-align: super; color: #199738; font-weight: normal;
+      margin-left: 2px; letter-spacing: 0;
+    }
+    .stat-cell .label {
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5b6b62;
+    }
+    @media (max-width: 900px) {
+      .stat-cell { padding: 20px 16px; border-right: none; border-bottom: 1px solid rgba(29,29,27,0.10); }
+      .stat-cell:last-child { border-bottom: none; }
+    }
+
+    /* ── Service row (Swiss indexed list) ── */
+    .svc-row {
+      display: grid;
+      grid-template-columns: 64px 1fr 2fr auto;
+      gap: 28px;
+      align-items: start;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(29,29,27,0.10);
+      transition: padding 0.3s ease;
+    }
+    .svc-row:first-of-type { border-top: 1px solid rgba(29,29,27,0.18); }
+    .svc-row:hover { padding-left: 12px; }
+    .svc-row:hover .svc-cta { color: #1d1d1b; border-color: #1d1d1b; }
+    .svc-num {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .svc-tile {
+      width: 48px;
+      height: 48px;
+      background: #00662f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .svc-tile img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .svc-tile-num {
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: #00662f;
+      transition: color 0.2s;
+    }
+    .svc-row:hover .svc-tile { background: #199738; }
+    .svc-row:hover .svc-tile-num { color: #199738; }
+    .svc-title {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.05;
+      color: #1d1d1b;
+      letter-spacing: -0.01em;
+    }
+    .svc-meta {
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #5b6b62;
+      margin-top: 8px;
+    }
+    .svc-list { color: #4a5550; font-size: 14px; line-height: 1.55; }
+    .svc-list li { display: flex; align-items: baseline; gap: 8px; padding: 3px 0; }
+    .svc-list li::before {
+      content: "—"; color: #199738; flex-shrink: 0;
+    }
+    .svc-cta {
+      align-self: start;
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5b6b62;
+      border: 1px solid rgba(29,29,27,0.20);
+      padding: 10px 16px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      .svc-row {
+        grid-template-columns: 48px 1fr;
+        gap: 16px 20px;
+        padding: 24px 0;
+      }
+      .svc-row > .svc-list-cell { grid-column: 2 / -1; }
+      .svc-row > .svc-cta { grid-column: 2 / -1; justify-self: start; }
+    }
+
+    /* ── EJ index list (sobre verde da marca) ── */
+    .ej-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1.4fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      color: #d8f5e3;
+      transition: padding 0.25s, color 0.25s;
+    }
+    .ej-row:first-of-type { border-top: 1px solid rgba(255,255,255,0.28); }
+    .ej-row:hover { padding-left: 10px; color: #fff; }
+    .ej-row:hover .ej-num { color: #fff; }
+    .ej-num {
+      font-family: monospace;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #a8f0c4;
+      transition: color 0.2s;
+    }
+    .ej-title {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: -0.005em;
+    }
+    .ej-desc { font-family: 'Franklin Gothic Book', Arial, sans-serif; font-size: 13px; color: #d8f5e3; }
+    .ej-arrow {
+      color: #a8f0c4;
+      font-family: monospace;
+      font-size: 14px;
+      transition: transform 0.25s, color 0.25s;
+    }
+    .ej-row:hover .ej-arrow { color: #fff; transform: translateX(4px); }
+    @media (max-width: 900px) {
+      .ej-row {
+        grid-template-columns: 56px 1fr;
+        gap: 6px 16px;
+        padding: 18px 0;
+      }
+      .ej-row .ej-desc, .ej-row .ej-arrow { grid-column: 2 / -1; }
+    }
+
+    /* Image plate (Swiss framed media) */
+    .img-plate {
+      position: relative;
+      overflow: hidden;
+      background: #1d1d1b;
+    }
+    .img-plate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .img-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.45);
+      padding: 6px 10px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* ── Mobile menu ── */
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+    }
+    .mobile-drawer {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(29,29,27,0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      padding: 96px 32px 32px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+      overflow-y: auto;
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a {
+      color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif;
+      text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px;
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: block; transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer .group-label {
+      color: #199738; font-family: monospace; font-size: 10px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-top: 18px; margin-bottom: 4px;
+    }
+    .mobile-drawer .sublink {
+      font-size: 13px; color: #c0c0c0; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .mobile-close:hover { border-color: #199738; }
+
+    /* ── Reveal on scroll — estado inicial; GSAP anima via ScrollTrigger ── */
+    .reveal { opacity: 0; transform: translateY(24px); }
+
+    /* ── Container global — garante 1200px independente do CDN ── */
+    .max-w-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+    /* ── Responsive overrides (mobile-first refinements) ── */
+    @media (max-width: 900px) {
+      /* Padding lateral mais enxuto e padding vertical reduzido */
+      .max-w-grid { padding-left: 20px; padding-right: 20px; }
+      section.py-24 { padding-top: 64px; padding-bottom: 64px; }
+      section.py-20 { padding-top: 56px; padding-bottom: 56px; }
+      footer.py-16 { padding-top: 48px; padding-bottom: 48px; }
+    }
+    @media (max-width: 640px) {
+      .max-w-grid { padding-left: 16px; padding-right: 16px; }
+      h2.section-title { font-size: 28px !important; line-height: 1.15; }
+    }
+
+    /* Sobre — badge "1981" responsivo */
+    @media (max-width: 640px) {
+      .sobre-badge {
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        margin-top: -12px;
+      }
+    }
+
+    /* CTA Hero — botões 100% em telas muito pequenas */
+    @media (max-width: 480px) {
+      .hero-cta a { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER — fixo, 80px, z-50
+═══════════════════════════════════════════════════ -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <span class="wf-label">HEADER · sticky · h-80px</span>
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <a href="index.html">
+        <img id="header-logo" src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;transition:opacity 0.3s;">
+      </a>
+    </div>
+
+    <!-- Hamburger Mobile -->
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg id="mobile-toggle-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Nav -->
+    <nav id="header-nav" class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+
+      <!-- Serviços com dropdown -->
+      <div class="nav-item relative">
+        <a href="servicos.html" class="hover:text-job-green2 transition-colors flex items-center gap-1 cursor-pointer">
+          Serviços
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </a>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="servicos.html#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
+          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
+          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="servicos.html#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
+        </div>
+      </div>
+
+      <!-- Tecnologias com dropdown -->
+      <div class="nav-item relative">
+        <button class="hover:text-job-green2 transition-colors flex items-center gap-1">
+          Tecnologias
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-64 shadow-xl py-2 z-50 text-white">
+          <a href="ecojob.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors">
+            <span class="text-job-green2 font-mono mr-2">01</span>Ecojob
+            <span class="block text-[10px] text-gray-500 mt-0.5 ml-7 normal-case tracking-normal font-body">Tecnologia Ambiental</span>
+          </a>
+          <a href="tecnologias/rck-3000.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors">
+            <span class="text-job-green2 font-mono mr-2">02</span>RCK 3000
+            <span class="block text-[10px] text-gray-500 mt-0.5 ml-7 normal-case tracking-normal font-body">Equipamento Reciclador</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     MOBILE DRAWER
+═══════════════════════════════════════════════════ -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="carreiras.html">Carreiras</a>
+    <p class="group-label">Áreas</p>
+    <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
+    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria Urbana</a>
+    <a href="servicos.html#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="servicos.html#ambiental" class="sublink">› Tecnologia Ambiental</a>
+    <p class="group-label">Tecnologias</p>
+    <a href="ecojob.html" class="sublink">01 · Ecojob</a>
+    <a href="tecnologias/rck-3000.html" class="sublink">02 · RCK 3000</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;">Contato</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTION — split poster (Swiss System)
+═══════════════════════════════════════════════════ -->
+<section id="hero" class="relative bg-white" style="min-height:calc(100dvh - 80px);">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10" style="min-height:calc(100dvh - 80px);">
+
+    <!-- Coluna texto (7 cols) -->
+    <div class="col-span-12 lg:col-span-7 flex flex-col justify-between py-8 lg:py-12 relative">
+
+      <!-- Top metadata: índice + coordenadas -->
+      <div id="hero-eyebrow" class="flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] font-mono uppercase tracking-[0.22em] text-gray-500">
+        <span class="flex items-center gap-2"><span class="w-2 h-2 bg-job-green2 inline-block"></span> ed. 2026 / 01 — Home</span>
+        <span class="hidden sm:inline text-gray-300">·</span>
+        <span>Santana de Parnaíba — SP</span>
+        <span class="hidden sm:inline text-gray-300">·</span>
+        <span class="text-job-green">Fundação 1981</span>
+      </div>
+
+      <!-- Título H1 -->
+      <div class="py-8 lg:py-10">
+        <p class="swiss-index mb-6">01 · Manifesto</p>
+        <h1 id="hero-h1" class="text-job-black font-sans" style="font-size:clamp(2.4rem,5vw,4.6rem);line-height:0.96;letter-spacing:-0.025em;font-weight:500;">
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Engenharia</span><br>
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">que move</span><br>
+          <span class="text-job-green" style="font-weight:800;letter-spacing:-0.03em;">o futuro.</span>
+        </h1>
+      </div>
+
+      <!-- Bottom: subtítulo + CTAs num grid -->
+      <div id="hero-sub-block" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-200">
+        <p id="hero-sub" class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:42ch;">
+          Soluções integradas em infraestrutura urbana, zeladoria, manutenção predial
+          e tecnologia ambiental para municípios e empresas brasileiras.
+        </p>
+        <div id="hero-ctas" class="hero-cta flex flex-col gap-3">
+          <a href="servicos.html"
+             class="group inline-flex items-center justify-between bg-job-green2 hover:bg-job-green text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+            <span>Conheça os serviços</span>
+            <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→ 04</span>
+          </a>
+          <a href="contato.html"
+             class="group inline-flex items-center justify-between border border-job-green text-job-green hover:bg-job-green hover:text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+            <span>Solicitar proposta</span>
+            <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna imagem (5 cols) — image plate Swiss -->
+    <div class="col-span-12 lg:col-span-5 relative">
+      <div class="img-plate img-duotone w-full h-full relative" style="min-height:380px;">
+        <div id="hero-slide-1" class="absolute inset-0" style="background-image:url('img/home-banner-1.webp');background-size:cover;background-position:center;z-index:0;filter:grayscale(1) contrast(1.05);"></div>
+        <!-- Duotone verde — overlay multiply -->
+        <div class="absolute inset-0" style="background:#00662f;mix-blend-mode:multiply;z-index:1;"></div>
+        <!-- Realce verde — overlay screen -->
+        <div class="absolute inset-0" style="background:#199738;mix-blend-mode:screen;opacity:0.35;z-index:2;"></div>
+        <!-- Tonal scrim para legibilidade da legenda -->
+        <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,40,18,0) 50%, rgba(0,40,18,0.55) 100%);z-index:3;"></div>
+
+        <!-- Top-left frame coordinates -->
+        <div class="absolute top-4 left-4 right-4 flex justify-between text-[10px] font-mono uppercase tracking-[0.18em] text-white/85" style="z-index:4;">
+          <span>fig. 01</span>
+          <span>operação · campo</span>
+        </div>
+
+        <!-- Bottom-left caption block -->
+        <div class="absolute left-0 right-0 bottom-0 p-6 lg:p-8 text-white" style="z-index:4;">
+          <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-2" style="color:#a8f0c4;">Operação em campo</p>
+          <p class="font-sans text-lg lg:text-xl leading-tight" style="max-width:360px;">
+            Equipes próprias em obras de pavimentação, drenagem e zeladoria urbana.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicador de scroll lateral -->
+  <div class="hidden lg:flex absolute right-6 bottom-8 flex-col items-center gap-2 text-gray-400" style="z-index:4;">
+    <span class="text-[10px] font-mono uppercase tracking-[0.22em]" style="writing-mode:vertical-rl;transform:rotate(180deg);">scroll · 02</span>
+    <span class="w-px h-12 bg-gray-300 block animate-pulse"></span>
+  </div>
+
+  <!-- Barra de acento verde — assinatura visual da marca -->
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:6px;background:#00662f;z-index:5;"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STATS RAIL — proof Swiss, sem cards
+═══════════════════════════════════════════════════ -->
+<section id="stats" class="bg-white border-t border-b border-gray-200">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4">
+      <div class="stat-cell reveal">
+        <span class="num"><em>1981</em></span>
+        <span class="label">Ano de fundação</span>
+      </div>
+      <div class="stat-cell reveal">
+        <span class="num">40<sup>+</sup><span class="text-gray-400 text-base font-mono ml-2">anos</span></span>
+        <span class="label">Em campo, sem interrupção</span>
+      </div>
+      <div class="stat-cell reveal">
+        <span class="num">04<span class="text-gray-400 text-base font-mono ml-2">áreas</span></span>
+        <span class="label">Infra · Zeladoria · Predial · Ambiental</span>
+      </div>
+      <div class="stat-cell reveal">
+        <span class="num">05<span class="text-gray-400 text-base font-mono ml-2">tec.</span></span>
+        <span class="label">Equipamento próprio + 4 metodologias EJ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SERVIÇOS — Swiss indexed list
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">02 / Serviços</span>
+  <span class="bar"></span>
+  <span>04 áreas operacionais</span>
+</div>
+
+<section id="servicos" class="bg-white py-20 lg:py-28 relative">
+  <div class="max-w-grid mx-auto px-8">
+
+    <!-- Cabeçalho da seção -->
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-16 lg:mb-20">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">02 · O que fazemos</p>
+        <h2 class="section-title text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.75rem);line-height:1;letter-spacing:-0.02em;">
+          Áreas de <span class="text-job-green">serviço</span>,<br>
+          uma engenharia<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">para a cidade.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-12 flex flex-col justify-end">
+        <p class="text-gray-600 font-body mb-6" style="font-size:15px;line-height:1.55;max-width:48ch;">
+          Atuação integrada em quatro frentes operacionais, com equipes próprias,
+          equipamentos exclusivos e metodologias de engenharia auditáveis.
+        </p>
+        <a href="servicos.html" class="self-start inline-flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-job-black border-b border-job-black pb-1 hover:text-job-green hover:border-job-green transition-colors">
+          Índice completo de serviços
+          <span class="text-job-green">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Linhas indexadas — sem cards -->
+    <div>
+
+      <a href="servicos.html#infraestrutura" id="infraestrutura" class="svc-row group">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/road.svg" alt=""></span>
+          <span class="svc-tile-num">01</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Infraestrutura</h3>
+          <p class="svc-meta">Obra · Recuperação · Pavimentação</p>
+        </div>
+        <ul class="svc-list svc-list-cell font-body">
+          <li>Obras e recuperação estrutural</li>
+          <li>Rodovias, túneis e viadutos</li>
+          <li>Pavimentação — Usina Móvel RAP</li>
+          <li>Saneamento e drenagem</li>
+        </ul>
+        <span class="svc-cta">Ver área →</span>
+      </a>
+
+      <a href="servicos.html#zeladoria" id="zeladoria" class="svc-row group">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/clean-city.svg" alt=""></span>
+          <span class="svc-tile-num">02</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Zeladoria Urbana</h3>
+          <p class="svc-meta">Limpeza · Resíduos · Áreas verdes</p>
+        </div>
+        <ul class="svc-list svc-list-cell font-body">
+          <li>Varrição e limpeza urbana</li>
+          <li>Coleta e tratamento de resíduos</li>
+          <li>Desobstrução de galerias e córregos</li>
+          <li>Manutenção de vias públicas</li>
+          <li>Conservação de áreas verdes</li>
+        </ul>
+        <span class="svc-cta">Ver área →</span>
+      </a>
+
+      <a href="servicos.html#predial" id="predial" class="svc-row group">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/maintenance.svg" alt=""></span>
+          <span class="svc-tile-num">03</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Manutenção de Prédios Públicos e Privados</h3>
+          <p class="svc-meta">Reforma · Sistemas · Automação</p>
+        </div>
+        <ul class="svc-list svc-list-cell font-body">
+          <li>Reformas e ampliações</li>
+          <li>Sistemas elétricos e hidráulicos</li>
+          <li>Automação predial</li>
+          <li>Manutenção geral programada</li>
+        </ul>
+        <span class="svc-cta">Ver área →</span>
+      </a>
+
+      <a href="servicos.html#ambiental" id="ambiental" class="svc-row group">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/water-system.svg" alt=""></span>
+          <span class="svc-tile-num">04</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Tecnologia Ambiental <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;color:#199738;font-size:0.6em;letter-spacing:0;margin-left:8px;vertical-align:middle;">/ Ecojob</span></h3>
+          <p class="svc-meta">Monitoramento · ETA / ETE · Diagnóstico</p>
+        </div>
+        <ul class="svc-list svc-list-cell font-body">
+          <li>Monitoramento de córregos, rios e canais</li>
+          <li>Monitoramento de sistemas de drenagem</li>
+          <li>Sistemas de esgotamento sanitário</li>
+          <li>Operação assistida de ETAs e ETEs</li>
+        </ul>
+        <span class="svc-cta">Ver área →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SOBRE — split editorial
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">03 / Empresa</span>
+  <span class="bar"></span>
+  <span>Histórico · Valores · Atuação</span>
+</div>
+
+<section id="sobre" class="bg-[#fafaf7] py-20 lg:py-28 relative">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+
+      <!-- Foto-placa (5 cols) -->
+      <div id="sobre-foto" class="col-span-12 lg:col-span-5">
+        <div class="img-plate img-duotone relative overflow-hidden">
+          <img src="img/home-banner-2.webp" alt="JOB Engenharia em campo" class="w-full object-cover h-72 lg:h-[520px] relative" style="object-position:top;filter:grayscale(1) contrast(1.05);z-index:0;">
+          <div class="absolute inset-0" style="background:#00662f;mix-blend-mode:multiply;z-index:1;pointer-events:none;"></div>
+          <div class="absolute inset-0" style="background:#199738;mix-blend-mode:screen;opacity:0.35;z-index:2;pointer-events:none;"></div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between text-[10px] font-mono uppercase tracking-[0.18em] text-white/90" style="z-index:3;">
+            <span>fig. 02</span>
+            <span>arquivo · operações</span>
+          </div>
+          <div class="img-caption" style="z-index:3;">JOB Engenharia · 2024</div>
+        </div>
+
+        <!-- Faixa de dados sob a foto -->
+        <div class="grid grid-cols-3 mt-px">
+          <div class="bg-job-black text-white px-4 py-5 border-r border-white/10">
+            <p id="badge-ano" class="font-sans text-3xl lg:text-4xl" style="letter-spacing:-0.02em;font-variant-numeric:tabular-nums;">1981</p>
+            <p class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-400 mt-1">Fundação</p>
+          </div>
+          <div class="bg-job-black text-white px-4 py-5 border-r border-white/10">
+            <p class="font-sans text-3xl lg:text-4xl" style="letter-spacing:-0.02em;">SP</p>
+            <p class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-400 mt-1">Sede · Tamboré</p>
+          </div>
+          <div class="bg-job-green text-white px-4 py-5">
+            <p class="font-sans text-3xl lg:text-4xl" style="letter-spacing:-0.02em;">PNQS</p>
+            <p class="text-[10px] font-mono uppercase tracking-[0.18em] text-white/70 mt-1">Reconhecimento 2024</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto (7 cols, indentado) -->
+      <div id="sobre-texto" class="col-span-12 lg:col-span-7 lg:pl-8">
+        <p class="swiss-index mb-6">03 · Quem somos</p>
+        <h2 class="section-title text-job-black font-sans mb-10" style="font-size:clamp(2rem,4.4vw,3.75rem);line-height:1;letter-spacing:-0.02em;">
+          Histórico, técnica<br>
+          e <span class="text-job-green">compromisso</span><br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">com a cidade.</span>
+        </h2>
+
+        <!-- Texto em duas colunas com lead -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 mb-10">
+          <p class="text-job-black font-sans text-lg leading-snug" style="max-width:34ch;">
+            Desde 1981, a JOB Engenharia constrói soluções robustas para a infraestrutura
+            urbana brasileira — com responsabilidade técnica, inovação e compromisso
+            com as comunidades que servimos.
+          </p>
+          <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:42ch;">
+            Nossa missão é entregar obras e serviços de alta qualidade, com tecnologia
+            própria e metodologias exclusivas desenvolvidas ao longo de décadas
+            de operação direta em campo.
+          </p>
+        </div>
+
+        <!-- Specs / chips em hairlines -->
+        <dl class="border-t border-gray-300 grid grid-cols-1 sm:grid-cols-3 mb-10">
+          <div class="border-b border-gray-300 py-4 sm:border-b-0 sm:border-r sm:pr-6">
+            <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-1">Atuação</dt>
+            <dd class="text-job-black font-sans">Municípios · Empresas</dd>
+          </div>
+          <div class="border-b border-gray-300 py-4 sm:border-b-0 sm:border-r sm:px-6">
+            <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-1">Equipamento próprio</dt>
+            <dd class="text-job-black font-sans">RCK 3000</dd>
+          </div>
+          <div class="py-4 sm:pl-6">
+            <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-1">Metodologias</dt>
+            <dd class="text-job-black font-sans">EJ 01 — 04</dd>
+          </div>
+        </dl>
+
+        <a href="sobre.html" class="group inline-flex items-center justify-between bg-job-green2 hover:bg-job-green text-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors" style="min-width:280px;">
+          <span>Conheça nossa história</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→ 03</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TECNOLOGIAS — split poster (dark)
+═══════════════════════════════════════════════════ -->
+<div class="section-rule green">
+  <span class="accent">04 / Tecnologia</span>
+  <span class="bar"></span>
+  <span>Equipamento próprio · Metodologias auditáveis</span>
+</div>
+
+<section id="tecnologias" class="bg-job-green py-20 lg:py-28 relative">
+  <div class="max-w-grid mx-auto px-8 relative" style="z-index:2;">
+
+    <!-- Cabeçalho -->
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-16 lg:mb-20">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6" style="color:#a8f0c4;">04 · Inovação própria</p>
+        <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.6vw,3.75rem);line-height:0.98;letter-spacing:-0.025em;font-weight:500;">
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Tecnologias</span><br>
+          <span style="color:#fff;font-weight:800;letter-spacing:-0.03em;">exclusivas.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-12 flex items-end">
+        <p class="font-body" style="color:#d8f5e3;font-size:15px;line-height:1.6;max-width:42ch;">
+          Equipamento próprio para zeladoria de redes e quatro metodologias EJ
+          de análise ambiental — desenvolvidas pela engenharia interna ao longo
+          de décadas de operação.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1. RCK 3000 — Featured plate (split largo) -->
+    <div class="reveal grid grid-cols-12 gap-0 mb-12 lg:mb-20" style="border-top:1px solid rgba(255,255,255,0.22);">
+
+      <!-- Imagem (8 cols) — duotone verde -->
+      <div class="col-span-12 lg:col-span-8 img-plate img-duotone relative overflow-hidden" style="min-height:380px;">
+        <img src="img/tecnologias/reciclador01.webp" alt="Equipamento RCK 3000" class="w-full h-full object-cover absolute inset-0" style="filter:grayscale(1) contrast(1.05);z-index:0;">
+        <div class="absolute inset-0" style="background:#00662f;mix-blend-mode:multiply;z-index:1;"></div>
+        <div class="absolute inset-0" style="background:#199738;mix-blend-mode:screen;opacity:0.35;z-index:2;"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,40,18,0) 50%, rgba(0,40,18,0.5) 100%);z-index:3;"></div>
+        <div class="absolute top-4 left-4 right-4 flex justify-between text-[10px] font-mono uppercase tracking-[0.18em] text-white/90" style="z-index:4;">
+          <span>fig. 03 · RCK 3000</span>
+          <span>capacidade · 12.000 L</span>
+        </div>
+      </div>
+
+      <!-- Texto (4 cols) — dentro do mesmo bloco -->
+      <div class="col-span-12 lg:col-span-4 p-8 lg:p-10 flex flex-col justify-between" style="background:#004d22;border-left:1px solid rgba(255,255,255,0.10);">
+        <div>
+          <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">01 · Equipamento próprio</p>
+          <h3 class="text-white font-sans mb-6" style="font-size:clamp(28px,3vw,40px);line-height:0.95;letter-spacing:-0.02em;">
+            RCK 3000
+          </h3>
+          <p class="font-body mb-8" style="color:#d8f5e3;font-size:14px;line-height:1.55;">
+            Reciclador multifuncional para sucção, esgotamento, desentupimento
+            e hidrojateamento de alta pressão.
+          </p>
+
+          <!-- Spec table -->
+          <dl class="space-y-3 text-sm font-body">
+            <div class="flex justify-between border-b border-white/20 pb-2">
+              <dt class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">Capacidade</dt>
+              <dd class="text-white font-sans tabular-nums">12.000 L</dd>
+            </div>
+            <div class="flex justify-between border-b border-white/20 pb-2">
+              <dt class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">Sucção</dt>
+              <dd class="text-white font-sans tabular-nums">8" vácuo</dd>
+            </div>
+            <div class="flex justify-between border-b border-white/20 pb-2">
+              <dt class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">Reciclagem</dt>
+              <dd class="text-white font-sans">Integrada</dd>
+            </div>
+          </dl>
+        </div>
+
+        <a href="tecnologias/rck-3000.html" class="group mt-10 inline-flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-white border-t border-white/30 hover:border-white pt-4 transition-colors">
+          <span>Ficha técnica</span>
+          <span style="color:#a8f0c4;" class="transition-transform group-hover:translate-x-1">→ 01</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 2. Ecojob — Featured plate (split invertido em relação ao RCK) -->
+    <div class="reveal grid grid-cols-12 gap-0" style="border-top:1px solid rgba(255,255,255,0.22);">
+
+      <!-- Texto (4 cols) -->
+      <div class="col-span-12 lg:col-span-4 p-8 lg:p-10 flex flex-col justify-between" style="background:#004d22;border-right:1px solid rgba(255,255,255,0.10);">
+        <div>
+          <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">02 · Plataforma de engenharia</p>
+          <div class="inline-flex items-center bg-white px-4 py-2 mb-6" style="box-shadow:0 4px 16px rgba(0,0,0,0.10);">
+            <img src="img/logo-ecojob.jpg" alt="Ecojob" style="height:34px;width:auto;display:block;">
+          </div>
+          <h3 class="text-white font-sans mb-6" style="font-size:clamp(28px,3vw,38px);line-height:0.95;letter-spacing:-0.02em;">
+            Tecnologia Ambiental
+          </h3>
+          <p class="font-body mb-8" style="color:#d8f5e3;font-size:14px;line-height:1.55;">
+            Engenharia de alta performance para gestão de infraestrutura urbana e
+            saneamento — diagnóstico, monitoramento e operação em ciclo único.
+          </p>
+
+          <!-- Pillars list -->
+          <ul class="space-y-3 text-sm font-body">
+            <li class="flex items-baseline gap-3 border-b border-white/20 pb-2">
+              <span class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">01</span>
+              <span class="text-white font-sans">Engenharia diagnóstica</span>
+            </li>
+            <li class="flex items-baseline gap-3 border-b border-white/20 pb-2">
+              <span class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">02</span>
+              <span class="text-white font-sans">Ecossistema tecnológico</span>
+            </li>
+            <li class="flex items-baseline gap-3 border-b border-white/20 pb-2">
+              <span class="text-[10px] font-mono uppercase tracking-[0.18em]" style="color:#a8f0c4;">03</span>
+              <span class="text-white font-sans">04 domínios de atuação</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="ecojob.html" class="group mt-10 inline-flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-white border-t border-white/30 hover:border-white pt-4 transition-colors">
+          <span>Conhecer Ecojob</span>
+          <span style="color:#a8f0c4;" class="transition-transform group-hover:translate-x-1">→ 02</span>
+        </a>
+      </div>
+
+      <!-- Painel verde com domínios (8 cols) -->
+      <div class="col-span-12 lg:col-span-8 p-8 lg:p-10 flex flex-col justify-between" style="background:#00662f;min-height:380px;">
+        <div>
+          <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-6" style="color:#a8f0c4;">Domínios cobertos · 04 áreas técnicas</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="ecojob.html#cursos-dagua" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
+              <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">3.1</p>
+              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Monitoramento de córregos, rios e canais</p>
+              <p class="font-body text-[12px] mt-2" style="color:#d8f5e3;">CONAMA 357/05</p>
+            </a>
+            <a href="ecojob.html#drenagem" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
+              <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">3.2</p>
+              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Monitoramento de sistemas de drenagem</p>
+              <p class="font-body text-[12px] mt-2" style="color:#d8f5e3;">Sensores IoT · CCTV</p>
+            </a>
+            <a href="ecojob.html#esgoto" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
+              <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">3.3</p>
+              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Sistemas de esgotamento sanitário</p>
+              <p class="font-body text-[12px] mt-2" style="color:#d8f5e3;">CONAMA 430/11</p>
+            </a>
+            <a href="ecojob.html#etas-etes" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
+              <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">3.4</p>
+              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Operação assistida de ETAs e ETEs</p>
+              <p class="font-body text-[12px] mt-2" style="color:#d8f5e3;">Operação · Otimização</p>
+            </a>
+          </div>
+        </div>
+        <p class="font-body mt-8" style="color:#d8f5e3;font-size:12px;line-height:1.5;font-style:italic;">
+          Complementado por Gestão e Planejamento (Novo Marco do Saneamento) + Diagnóstico e Prognóstico estratégico.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA CONTATO — banner verde full-width
+═══════════════════════════════════════════════════ -->
+<style>
+  .form-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: 1.5px solid #e2e8e4;
+    background: #fff;
+    font-family: 'Franklin Gothic Book', Arial, sans-serif;
+    font-size: 14px;
+    color: #1d1d1b;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: #aab5ae; }
+  .form-input:focus {
+    border-color: #199738;
+    box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+  }
+  .form-select {
+    width: 100%;
+    height: 44px;
+    padding: 0 36px 0 14px;
+    border: 1.5px solid #e2e8e4;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23199738' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center;
+    font-family: 'Franklin Gothic Book', Arial, sans-serif;
+    font-size: 14px;
+    color: #1d1d1b;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+  .form-select:focus {
+    border-color: #199738;
+    box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+  }
+  .form-select option[value=""] { color: #aab5ae; }
+  .form-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8e4;
+    background: #fff;
+    font-family: 'Franklin Gothic Book', Arial, sans-serif;
+    font-size: 14px;
+    color: #1d1d1b;
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-textarea::placeholder { color: #aab5ae; }
+  .form-textarea:focus {
+    border-color: #199738;
+    box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+  }
+  .form-label {
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4a5550;
+    margin-bottom: 6px;
+  }
+  .form-label span { color: #199738; }
+  .btn-enviar {
+    width: 100%;
+    background: #199738;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .btn-enviar:hover { background: #00662f; }
+  .btn-enviar:active { transform: scale(0.99); }
+  .contato-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .contato-item:last-child { border-bottom: none; }
+  .contato-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .contato-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .contato-form { padding: 36px 40px 40px; }
+  @media (max-width: 640px) {
+    .contato-form { padding: 24px 20px 28px; }
+    .contato-form-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<div class="section-rule dark">
+  <span class="accent">05 / Contato</span>
+  <span class="bar"></span>
+  <span>Resposta em até 1 dia útil</span>
+</div>
+
+<section id="contato" class="bg-job-green py-20 relative overflow-hidden">
+  <!-- Marca d'água do logo (echo da contracapa da pasta) -->
+  <img src="img/logo-job-eng-branco.svg" alt="" aria-hidden="true" class="hidden md:block" style="position:absolute;right:48px;top:50%;transform:translateY(-50%);width:min(360px,30vw);height:auto;opacity:0.08;pointer-events:none;z-index:0;">
+  <div class="max-w-grid mx-auto px-8 relative" style="z-index:1;">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
+
+      <!-- Texto CTA -->
+      <div class="lg:pt-6">
+        <p class="swiss-index mb-6" style="color:#7fd99e;">05 · Fale com a JOB</p>
+        <h2 class="text-white font-sans mb-6" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
+          Solicite<br>sua proposta<br>
+          <span class="italic font-light" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;color:#7fd99e;">técnica.</span>
+        </h2>
+        <p class="font-body mb-10" style="color:#c8e8d3;font-size:15px;line-height:1.65;max-width:380px;">
+          Nossa equipe está pronta para apresentar a solução ideal
+          para o seu município ou empreendimento.
+        </p>
+
+        <!-- Dados de contato -->
+        <div>
+          <div class="contato-item">
+            <div class="contato-icon">
+              <img src="icones/phone-call.svg" alt="Telefone">
+            </div>
+            <div>
+              <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">Telefone / WhatsApp</div>
+              <a href="tel:+551126351673" class="text-white font-body hover:underline transition-colors" style="font-size:14px;">+55 (11) 2635-1673</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-icon">
+              <img src="icones/email.svg" alt="E-mail">
+            </div>
+            <div>
+              <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">E-mail comercial</div>
+              <a href="mailto:contato@job.eng.br" class="text-white font-body hover:underline transition-colors" style="font-size:14px;">contato@job.eng.br</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-icon">
+              <img src="icones/placeholder.svg" alt="Endereço">
+            </div>
+            <div>
+              <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">Localização</div>
+              <span class="text-white font-body" style="font-size:14px;">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP · 06460-040</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-icon">
+              <img src="icones/clock.svg" alt="Horário de atendimento">
+            </div>
+            <div>
+              <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">Horário de atendimento</div>
+              <span class="text-white font-body" style="font-size:14px;">Segunda a sexta · 9h às 18h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulário -->
+      <form action="obrigado.html" method="POST" class="contato-form" style="background:#fff;box-shadow:0 24px 64px rgba(0,0,0,0.18);">
+        <h3 class="font-sans" style="font-size:17px;color:#1d1d1b;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid #00662f;">
+          Formulário de proposta
+        </h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div>
+            <label class="form-label" for="home-nome">Nome completo <span>*</span></label>
+            <input id="home-nome" name="nome" type="text" class="form-input" placeholder="Seu nome completo" required />
+          </div>
+
+          <div>
+            <label class="form-label" for="home-empresa">Município / Empresa <span>*</span></label>
+            <input id="home-empresa" name="empresa" type="text" class="form-input" placeholder="Nome do município ou empresa" required />
+          </div>
+
+          <div class="contato-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <label class="form-label" for="home-telefone">Telefone <span>*</span></label>
+              <input id="home-telefone" name="telefone" type="tel" class="form-input" placeholder="(00) 00000-0000" required />
+            </div>
+            <div>
+              <label class="form-label" for="home-email">E-mail <span>*</span></label>
+              <input id="home-email" name="email" type="email" class="form-input" placeholder="seu@email.com.br" required />
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="home-area">Área de interesse</label>
+            <select id="home-area" name="area" class="form-select">
+              <option value="">Selecione uma área</option>
+              <option value="infraestrutura">Infraestrutura Urbana</option>
+              <option value="zeladoria">Zeladoria Urbana</option>
+              <option value="predial">Manutenção Predial</option>
+              <option value="ambiental">Serviços Ambientais</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="home-mensagem">Mensagem</label>
+            <textarea id="home-mensagem" name="mensagem" class="form-textarea" rows="3" placeholder="Descreva brevemente sua necessidade ou projeto"></textarea>
+          </div>
+
+          <label style="display:flex;align-items:flex-start;gap:10px;font-size:12px;color:#4a5550;line-height:1.5;">
+            <input type="checkbox" required style="margin-top:3px;accent-color:#199738;">
+            <span>Li e concordo com a <a href="politica-privacidade.html" class="text-job-green2 hover:underline">Política de Privacidade</a> e autorizo o tratamento dos meus dados para retorno desta solicitação.</span>
+          </label>
+
+          <button type="submit" class="btn-enviar">Enviar proposta</button>
+
+          <p style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-size:11px;color:#9aada4;text-align:center;margin-top:-4px;">
+            Campos com <span style="color:#199738;">*</span> são obrigatórios. Retornamos em até 1 dia útil.
+          </p>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- Faixa verde de assinatura (eco da papelaria aprovada) -->
+<div aria-hidden="true" style="height:6px;background:#00662f;"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="bg-job-black py-16 relative">
+  <div class="wf-label" style="color:#199738;background:rgba(25,151,56,0.12);border-color:#199738;">FOOTER · 4 colunas + barra copyright</div>
+  <div class="max-w-grid mx-auto px-8">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+
+      <!-- Col 1: Logo + tagline -->
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;height:auto;">
+        <p class="text-gray-300 text-sm font-sans leading-snug" style="letter-spacing:-0.005em;">
+          Engenharia que move<br><span class="text-job-green2" style="font-weight:700;">o futuro.</span>
+        </p>
+      </div>
+
+      <!-- Col 2: Navegação -->
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a></li>
+          <li><a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a></li>
+          <li><a href="carreiras.html" class="hover:text-job-green2 transition-colors">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Serviços -->
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Serviços</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
+          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
+          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Manutenção de Prédios Públicos e Privados</a></li>
+          <li><a href="servicos.html#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contato rápido -->
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li>
+            <a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a>
+          </li>
+          <li>
+            <a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a>
+          </li>
+          <li class="leading-relaxed">
+            Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>
+            Tamboré, Santana de Parnaíba — SP<br>
+            06460-040
+          </li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Barra verde + copyright + legal -->
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+        <span>© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Política de Privacidade</a>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  const header     = document.getElementById('site-header');
+  const headerLogo = document.getElementById('header-logo');
+  const headerNav  = document.getElementById('header-nav');
+  const mobileIcon = document.getElementById('mobile-toggle-icon');
+
+  function updateHeader() {
+    headerLogo.src        = 'img/logo-job-eng.svg';
+    headerNav.style.color = '#1d1d1b';
+    if (mobileIcon) mobileIcon.style.color = '#1d1d1b';
+    if (window.scrollY > 60) {
+      header.style.background           = 'rgba(255,255,255,0.78)';
+      header.style.backdropFilter       = 'saturate(160%) blur(14px)';
+      header.style.webkitBackdropFilter = 'saturate(160%) blur(14px)';
+      header.style.boxShadow            = '0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)';
+    } else {
+      header.style.background           = '#ffffff';
+      header.style.backdropFilter       = 'none';
+      header.style.webkitBackdropFilter = 'none';
+      header.style.boxShadow            = 'none';
+    }
+  }
+
+  window.addEventListener('scroll', updateHeader);
+  updateHeader();
+
+
+  // Mobile drawer
+  (function() {
+    var btn    = document.getElementById('mobile-toggle');
+    var close  = document.getElementById('mobile-close');
+    var drawer = document.getElementById('mobile-drawer');
+    if (!btn || !drawer) return;
+    function open() { drawer.classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function shut() { drawer.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+
+  // Ano dinâmico no footer
+  (function() {
+    var y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+</script>
+
+<!-- ── GSAP + ScrollTrigger ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  if (typeof gsap === 'undefined') {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── 1. Hero: parallax na imagem de fundo ── */
+  gsap.to('#hero-slide-1', {
+    yPercent: 28,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  /* ── 2. Hero: entrada em cascata dos textos (on load) ── */
+  gsap.timeline({ delay: 0.2 })
+    .from('#hero-eyebrow', { y: 28, opacity: 0, duration: 0.8, ease: 'power3.out' })
+    .from('#hero-h1',      { y: 44, opacity: 0, duration: 0.9, ease: 'power3.out' }, '-=0.5')
+    .from('#hero-sub',     { y: 28, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+    .from('#hero-ctas',    { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+
+  /* ── 3. Section rules: hairline cresce da esquerda ── */
+  gsap.utils.toArray('.section-rule .bar').forEach(function (bar) {
+    gsap.from(bar, {
+      scaleX: 0,
+      transformOrigin: 'left center',
+      duration: 1.0,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: bar, start: 'top 95%' }
+    });
+  });
+
+  /* ── 3b. Stats rail: contador + entrada Swiss ── */
+  gsap.fromTo('#stats .stat-cell',
+    { opacity: 0, y: 24 },
+    {
+      opacity: 1, y: 0,
+      stagger: 0.10,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#stats', start: 'top 80%' }
+    }
+  );
+
+  /* ── 4. Serviços: linhas indexadas em cascata + draw da hairline ── */
+  gsap.fromTo('#servicos .svc-row',
+    { opacity: 0, y: 24 },
+    {
+      opacity: 1, y: 0,
+      stagger: 0.08,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#servicos', start: 'top 75%' }
+    }
+  );
+
+  /* ── 5. Sobre: foto da esquerda, texto da direita ── */
+  gsap.fromTo('#sobre-foto',
+    { opacity: 0, x: -72 },
+    { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#sobre', start: 'top 68%' } }
+  );
+  gsap.fromTo('#sobre-texto',
+    { opacity: 0, x: 72 },
+    { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#sobre', start: 'top 68%' } }
+  );
+
+  /* ── 6. Badge "1981" — contador animado ── */
+  var badgeEl = document.getElementById('badge-ano');
+  if (badgeEl) {
+    var counter = { val: 1971 };
+    gsap.to(counter, {
+      val: 1981,
+      duration: 1.6,
+      ease: 'power2.out',
+      onUpdate: function () { badgeEl.textContent = Math.floor(counter.val); },
+      scrollTrigger: { trigger: '#sobre', start: 'top 68%' }
+    });
+  }
+
+  /* ── 7. Tecnologias: bloco RCK + linhas EJ em cascata ── */
+  gsap.fromTo('#tecnologias .reveal',
+    { opacity: 0, y: 36 },
+    {
+      opacity: 1, y: 0,
+      stagger: 0.15,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#tecnologias', start: 'top 78%' }
+    }
+  );
+  gsap.fromTo('#tecnologias .ej-row',
+    { opacity: 0, x: -16 },
+    {
+      opacity: 1, x: 0,
+      stagger: 0.07,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#tecnologias .ej-row', start: 'top 85%' }
+    }
+  );
+
+  /* ── 8. Contato: texto e formulário ── */
+  gsap.fromTo('#contato .grid > div',
+    { opacity: 0, y: 44 },
+    {
+      opacity: 1, y: 0,
+      stagger: 0.18,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#contato', start: 'top 75%' }
+    }
+  );
+
+  ScrollTrigger.refresh();
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página não encontrada — JOB Engenharia</title>
+  <meta name="description" content="A página que você procura não foi encontrada. Volte ao início da JOB Engenharia." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #1d1d1b; overflow-x: hidden; overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column; color: #fff; }
+    main { flex: 1; }
+
+    .ghost-404 {
+      position: absolute; right: -2vw; top: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: flex-end;
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', sans-serif;
+      font-weight: 600;
+      color: rgba(255,255,255,0.04);
+      font-size: clamp(280px, 42vw, 620px);
+      line-height: 0.85; letter-spacing: -0.06em;
+      pointer-events: none; user-select: none;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+      .ghost-404 { font-size: 60vw; right: -10vw; opacity: 0.6; }
+    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+    .mobile-close:hover { border-color: #199738; }
+
+    /* 404 redirect row (Swiss list) */
+    .redir-row {
+      display: grid; grid-template-columns: 64px 1fr auto;
+      gap: 24px; align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: padding 0.25s ease;
+    }
+    .redir-row:first-of-type { border-top: 1px solid rgba(255,255,255,0.18); }
+    .redir-row:hover { padding-left: 8px; }
+    .redir-row:hover .redir-cta { color: #fff; }
+    .redir-num { font-family: monospace; font-size: 11px; letter-spacing: 0.18em; color: #199738; }
+    .redir-title { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: 17px; color: #fff; letter-spacing: -0.005em; }
+    .redir-cta { font-family: monospace; font-size: 12px; letter-spacing: 0.18em; color: #8a9a90; transition: color 0.2s, transform 0.2s; }
+    .redir-row:hover .redir-cta { transform: translateX(4px); }
+    @media (max-width: 700px) {
+      .redir-row { grid-template-columns: 48px 1fr auto; gap: 16px; padding: 14px 0; }
+    }
+
+    @media (max-width: 900px) { .max-w-grid { padding-left: 20px; padding-right: 20px; } }
+    @media (max-width: 640px) { .max-w-grid { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body class="font-sans">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50" style="height:80px;background:#1d1d1b;border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="nav-desktop flex items-center gap-8 text-white text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a>
+      <a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a>
+      <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="tecnologias/rck-3000.html">Tecnologias</a>
+    <a href="carreiras.html">Carreiras</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;color:#fff;">Contato</a>
+  </nav>
+</div>
+
+<!-- CONTEÚDO -->
+<main class="relative overflow-hidden flex items-center" style="min-height:calc(100vh - 80px - 80px);">
+  <span class="ghost-404">404</span>
+
+  <div class="relative z-10 max-w-grid mx-auto px-8 w-full grid grid-cols-12 gap-6 lg:gap-10 py-16 lg:py-24">
+
+    <!-- Coluna texto (7 cols) -->
+    <div class="col-span-12 lg:col-span-7">
+      <p class="text-[11px] font-mono uppercase tracking-[0.22em] inline-flex items-center gap-3 mb-6" style="color:#199738;">
+        <span style="display:inline-block;width:28px;height:1px;background:#199738;"></span>
+        Status · 404 Not Found
+      </p>
+      <h1 class="text-white font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
+        Página não<br>
+        <span style="color:#199738;">encontrada.</span><br>
+        <span class="italic font-light text-gray-500" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">Vamos voltar.</span>
+      </h1>
+
+      <p class="text-gray-400 font-body mt-10 mb-10" style="font-size:16px;line-height:1.6;max-width:54ch;">
+        A página que você tentou acessar pode ter sido movida ou não existe.
+        Use os atalhos ao lado para retomar a navegação.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md">
+        <a href="index.html" class="group inline-flex items-center justify-between bg-job-green2 hover:bg-job-green text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+          <span>Voltar à home</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+        </a>
+        <a href="contato.html" class="group inline-flex items-center justify-between border border-white/40 text-white hover:bg-white hover:text-job-black px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+          <span>Falar com a JOB</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Coluna lateral (5 cols) — Swiss redirect list -->
+    <div class="col-span-12 lg:col-span-5 lg:pt-2">
+      <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-6">/ Talvez você procurasse</p>
+      <div>
+        <a href="servicos.html#infraestrutura" class="redir-row">
+          <span class="redir-num">01</span>
+          <span class="redir-title">Infraestrutura</span>
+          <span class="redir-cta">→</span>
+        </a>
+        <a href="servicos.html#zeladoria" class="redir-row">
+          <span class="redir-num">02</span>
+          <span class="redir-title">Zeladoria Urbana</span>
+          <span class="redir-cta">→</span>
+        </a>
+        <a href="servicos.html#predial" class="redir-row">
+          <span class="redir-num">03</span>
+          <span class="redir-title">Manutenção Predial</span>
+          <span class="redir-cta">→</span>
+        </a>
+        <a href="servicos.html#ambiental" class="redir-row">
+          <span class="redir-num">04</span>
+          <span class="redir-title">Tecnologia Ambiental</span>
+          <span class="redir-cta">→</span>
+        </a>
+        <a href="tecnologias/rck-3000.html" class="redir-row">
+          <span class="redir-num">05</span>
+          <span class="redir-title">Tecnologias · RCK 3000</span>
+          <span class="redir-cta">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER COMPACTO -->
+<footer class="bg-black py-8" style="border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-grid mx-auto px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+      <span>© <span id="footer-year">2026</span> JOB Engenharia.</span>
+      <span class="hidden sm:inline text-gray-700">·</span>
+      <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Privacidade</a>
+      <span class="hidden sm:inline text-gray-700">·</span>
+      <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos</a>
+    </div>
+    <div class="flex gap-3">
+      <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var btn=document.getElementById('mobile-toggle'); var close=document.getElementById('mobile-close'); var drawer=document.getElementById('mobile-drawer');
+    if (!btn||!drawer) return;
+    function open(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+    function shut(){ drawer.classList.remove('open'); document.body.style.overflow=''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+</script>
+
+</body>
+</html>

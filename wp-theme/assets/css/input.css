@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+body { background: #f5f5f5; }
+
+/* ── Ícones ── */
+.icon-box {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icon-box img { width: 100%; height: 100%; object-fit: contain; }
+.icon-box-lg { width: 72px; height: 72px; }
+
+/* ── Separador de seção ── */
+.section-bar {
+  height: 6px;
+  background: linear-gradient(90deg, #00662f 60%, #199738 100%);
+}
+
+/* ── Dropdown de navegação ── */
+.nav-item:hover .dropdown { display: block; }
+.dropdown { display: none; }
+
+/* ── Mobile: nav oculta abaixo de 900px ── */
+.menu-mobile-btn { display: none; }
+@media (max-width: 900px) {
+  .nav-desktop { display: none !important; }
+  .menu-mobile-btn { display: inline-flex; }
+}
+
+/* ── Mobile drawer ── */
+.mobile-drawer {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(29,29,27,0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex; flex-direction: column;
+  padding: 96px 32px 32px;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+  overflow-y: auto;
+}
+.mobile-drawer.open { transform: translateX(0); }
+.mobile-drawer a {
+  color: #fff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px;
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: block; transition: color 0.2s, padding-left 0.2s;
+}
+.mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+.mobile-drawer .group-label {
+  color: #199738; font-family: monospace; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-top: 18px; margin-bottom: 4px;
+}
+.mobile-drawer .sublink {
+  font-size: 13px; color: #c0c0c0; padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mobile-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer; transition: border-color 0.2s;
+}
+.mobile-close:hover { border-color: #199738; }
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity   0.7s cubic-bezier(0.2,0.8,0.2,1),
+    transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+/* ── Cards de serviço (servicos.php) ── */
+.service-card {
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border: 1px solid #e5e7eb;
+}
+.service-card:hover {
+  border-color: #199738;
+  box-shadow: 0 4px 20px rgba(25,151,56,0.12);
+}
+.card-destaque {
+  border: 3px solid #00662f !important;
+  box-shadow: 0 4px 24px rgba(0,102,47,0.18);
+}
+.card-destaque:hover {
+  border-color: #199738 !important;
+  box-shadow: 0 6px 28px rgba(25,151,56,0.22);
+}
+
+/* ── Tab bar (servicos.php) ── */
+.tab-btn { transition: background 0.2s, color 0.2s; }
+.tab-btn.active { background: #00662f; color: #fff; }
+.tab-btn:not(.active):hover { background: rgba(0,102,47,0.08); color: #00662f; }
+
+/* ── Formulário de contato ── */
+.form-input {
+  width: 100%; height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid #e2e8e4;
+  background: #fff;
+  font-family: 'Franklin Gothic Book', Arial, sans-serif;
+  font-size: 14px; color: #1d1d1b;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none; -webkit-appearance: none;
+}
+.form-input::placeholder { color: #aab5ae; }
+.form-input:focus {
+  border-color: #199738;
+  box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+}
+
+.form-select {
+  width: 100%; height: 44px;
+  padding: 0 36px 0 14px;
+  border: 1.5px solid #e2e8e4;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23199738' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center;
+  font-family: 'Franklin Gothic Book', Arial, sans-serif;
+  font-size: 14px; color: #1d1d1b;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+}
+.form-select:focus {
+  border-color: #199738;
+  box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+}
+.form-select option[value=""] { color: #aab5ae; }
+
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e2e8e4;
+  background: #fff;
+  font-family: 'Franklin Gothic Book', Arial, sans-serif;
+  font-size: 14px; color: #1d1d1b;
+  outline: none; resize: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-textarea::placeholder { color: #aab5ae; }
+.form-textarea:focus {
+  border-color: #199738;
+  box-shadow: 0 0 0 3px rgba(25,151,56,0.12);
+}
+
+.form-label {
+  display: block;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #4a5550; margin-bottom: 6px;
+}
+.form-label span { color: #199738; }
+
+.btn-enviar {
+  width: 100%;
+  background: #199738; color: #fff; border: none;
+  padding: 14px 24px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+.btn-enviar:hover  { background: #00662f; }
+.btn-enviar:active { transform: scale(0.99); }
+
+/* ── Itens de contato ── */
+.contato-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.contato-item:last-child { border-bottom: none; }
+.contato-icon {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contato-icon img { width: 18px; height: 18px; object-fit: contain; }

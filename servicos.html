@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços — JOB Engenharia</title>
+  <meta name="description" content="Quatro áreas de atuação integradas: Infraestrutura, Zeladoria Urbana, Manutenção Predial e Tecnologia Ambiental." />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; }
+
+    /* ── Swiss section index ── */
+    .swiss-index {
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #00662f;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .swiss-index::before {
+      content: ""; display: inline-block;
+      width: 28px; height: 1px; background: #00662f;
+    }
+
+    /* ── Section rule ── */
+    .section-rule {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5b6b62;
+      border-top: 1px solid rgba(29,29,27,0.12);
+      border-bottom: 1px solid rgba(29,29,27,0.06);
+      background: #fafaf7;
+    }
+    .section-rule .accent { color: #00662f; }
+    .section-rule .bar { height: 1px; background: rgba(29,29,27,0.18); width: 100%; }
+    .section-rule.dark {
+      background: #1d1d1b;
+      border-top-color: rgba(255,255,255,0.10);
+      border-bottom-color: rgba(255,255,255,0.04);
+      color: #8a9a90;
+    }
+    .section-rule.dark .accent { color: #199738; }
+    .section-rule.dark .bar { background: rgba(255,255,255,0.18); }
+
+    /* ── Swiss service-row (indexed list) ── */
+    .svc-row {
+      display: grid;
+      grid-template-columns: 72px 1fr 2fr;
+      gap: 28px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(29,29,27,0.10);
+      transition: padding 0.3s ease;
+    }
+    .svc-row:first-of-type { border-top: 1px solid rgba(29,29,27,0.18); }
+    .svc-row:hover { padding-left: 12px; }
+    .svc-num {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      padding-top: 4px;
+    }
+    .svc-tile {
+      width: 48px; height: 48px; background: #00662f;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .svc-tile img {
+      width: 26px; height: 26px; object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .svc-tile-num {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.16em;
+      color: #00662f; transition: color 0.2s;
+    }
+    .svc-row:hover .svc-tile { background: #199738; }
+    .svc-row:hover .svc-tile-num { color: #199738; }
+    .svc-row.dark .svc-tile { background: #199738; }
+    .svc-row.dark:hover .svc-tile { background: #fff; }
+    .svc-row.dark:hover .svc-tile img { filter: brightness(0); }
+    .svc-row.dark .svc-tile-num { color: #199738; }
+    .svc-title {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(20px, 2.0vw, 26px);
+      line-height: 1.05; color: #1d1d1b; letter-spacing: -0.005em;
+    }
+    .svc-meta {
+      font-family: monospace; font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #5b6b62; margin-top: 8px;
+    }
+    .svc-list { color: #4a5550; font-size: 13.5px; line-height: 1.5; }
+    .svc-list li { display: flex; align-items: baseline; gap: 8px; padding: 2px 0; }
+    .svc-list li::before { content: "—"; color: #199738; flex-shrink: 0; }
+    .svc-cta {
+      align-self: start; font-family: monospace; font-size: 11px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #5b6b62;
+      border: 1px solid rgba(29,29,27,0.20); padding: 9px 14px;
+      transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+    }
+    .svc-row.dark { border-bottom-color: rgba(255,255,255,0.10); }
+    .svc-row.dark:first-of-type { border-top-color: rgba(255,255,255,0.18); }
+    .svc-row.dark .svc-title { color: #fff; }
+    .svc-row.dark .svc-list { color: #8a9a90; }
+    .svc-row.dark .svc-meta { color: #8a9a90; }
+    .svc-row.dark .svc-cta { color: #c8d3cc; border-color: rgba(255,255,255,0.20); }
+    .svc-row.dark:hover .svc-cta { color: #fff; border-color: #fff; }
+
+    @media (max-width: 900px) {
+      .svc-row { grid-template-columns: 56px 1fr; gap: 14px 18px; padding: 22px 0; }
+      .svc-row > .svc-list-cell { grid-column: 2 / -1; }
+      .svc-row > .svc-cta { grid-column: 2 / -1; justify-self: start; }
+      .svc-tile { width: 40px; height: 40px; }
+      .svc-tile img { width: 22px; height: 22px; }
+    }
+
+    /* ── Image plate ── */
+    .img-plate { position: relative; overflow: hidden; background: #1d1d1b; }
+    .img-plate::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* ── Tab bar (sticky chapter index) ── */
+    .tab-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 18px 18px;
+      font-family: monospace; font-size: 11px;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: #5b6b62; white-space: nowrap;
+      border-right: 1px solid rgba(29,29,27,0.10);
+      transition: color 0.2s, background 0.2s;
+    }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn .tab-num { color: #00662f; font-weight: bold; }
+    .tab-btn:hover { color: #1d1d1b; background: rgba(29,29,27,0.03); }
+    .tab-btn.active { color: #1d1d1b; background: #fff; }
+    .tab-btn.active .tab-num { color: #199738; }
+    .tab-btn.active::after {
+      content: ""; display: block; width: 100%; height: 2px;
+      background: #00662f; position: absolute; left: 0; bottom: -1px;
+    }
+    .tab-btn { position: relative; }
+
+    /* ── Mobile menu (idêntico) ── */
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+    }
+    .mobile-drawer {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(29,29,27,0.97);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      padding: 96px 32px 32px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+      overflow-y: auto;
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a {
+      color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif;
+      text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px;
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: block; transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer .group-label {
+      color: #199738; font-family: monospace; font-size: 10px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-top: 18px; margin-bottom: 4px;
+    }
+    .mobile-drawer .sublink {
+      font-size: 13px; color: #c0c0c0; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .mobile-close:hover { border-color: #199738; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .max-w-grid { padding-left: 20px; padding-right: 20px; }
+      section.py-24 { padding-top: 64px; padding-bottom: 64px; }
+      section.py-20 { padding-top: 56px; padding-bottom: 56px; }
+      footer.py-16 { padding-top: 48px; padding-bottom: 48px; }
+    }
+    @media (max-width: 640px) {
+      .max-w-grid { padding-left: 16px; padding-right: 16px; }
+    }
+
+    #tab-bar .flex.overflow-x-auto { scrollbar-width: none; -ms-overflow-style: none; }
+    #tab-bar .flex.overflow-x-auto::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img id="header-logo" src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg id="mobile-toggle-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav id="header-nav" class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <div class="nav-item relative">
+        <a href="servicos.html" class="text-job-green2 flex items-center gap-1 border-b border-job-green2 pb-0.5 cursor-pointer">
+          Serviços
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </a>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
+          <a href="#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
+          <a href="#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
+        </div>
+      </div>
+      <div class="nav-item relative">
+        <button class="hover:text-job-green2 transition-colors flex items-center gap-1">
+          Tecnologias
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="ecojob.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">01</span>Ecojob</a>
+          <a href="tecnologias/rck-3000.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">02</span>RCK 3000</a>
+        </div>
+      </div>
+      <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html" style="color:#199738;">Serviços</a>
+    <a href="carreiras.html">Carreiras</a>
+    <p class="group-label">Áreas</p>
+    <a href="#infraestrutura" class="sublink">› Infraestrutura</a>
+    <a href="#zeladoria" class="sublink">› Zeladoria Urbana</a>
+    <a href="#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="#ambiental" class="sublink">› Tecnologia Ambiental</a>
+    <p class="group-label">Tecnologias</p>
+    <a href="ecojob.html" class="sublink">01 · Ecojob</a>
+    <a href="tecnologias/rck-3000.html" class="sublink">02 · RCK 3000</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;">Contato</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HERO — split editorial Swiss
+═══════════════════════════════════════════════════ -->
+<section id="page-hero" class="bg-white">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 py-14 lg:py-20">
+
+    <!-- Texto (8 cols) -->
+    <div class="col-span-12 lg:col-span-8">
+      <nav class="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-10">
+        <a href="index.html" class="hover:text-job-green2 transition-colors">Home</a>
+        <span class="text-gray-300">/</span>
+        <span class="text-job-green">Serviços</span>
+      </nav>
+
+      <p class="swiss-index mb-6">02 · Áreas de atuação</p>
+      <h1 class="text-job-black font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
+        Quatro frentes,<br>
+        uma <span class="text-job-green">engenharia</span>,<br>
+        <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">para a cidade.</span>
+      </h1>
+    </div>
+
+    <!-- Meta lateral (4 cols) -->
+    <div class="col-span-12 lg:col-span-4 flex flex-col justify-end pt-6 lg:pt-0">
+      <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:38ch;">
+        Soluções integradas em infraestrutura, zeladoria, manutenção predial
+        e tecnologia ambiental — com equipes próprias e métodos auditáveis.
+      </p>
+      <dl class="border-t border-gray-300 mt-8 pt-4 grid grid-cols-2 gap-y-3 text-sm">
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Áreas</dt>
+        <dd class="font-sans text-job-black tabular-nums">04</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Tecnologias</dt>
+        <dd class="font-sans text-job-black tabular-nums">05</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Atuação</dt>
+        <dd class="font-sans text-job-black">Brasil</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- TAB BAR (chapter index) -->
+<div id="tab-bar" class="sticky z-40 bg-[#fafaf7] border-y border-gray-200" style="top:80px;">
+  <div class="relative max-w-grid mx-auto">
+    <div class="flex overflow-x-auto">
+      <a href="#infraestrutura" data-tab="infraestrutura" class="tab-btn active">
+        <span class="tab-num">01</span> Infraestrutura
+      </a>
+      <a href="#zeladoria" data-tab="zeladoria" class="tab-btn">
+        <span class="tab-num">02</span> Zeladoria Urbana
+      </a>
+      <a href="#predial" data-tab="predial" class="tab-btn">
+        <span class="tab-num">03</span> Manutenção de Prédios
+      </a>
+      <a href="#ambiental" data-tab="ambiental" class="tab-btn">
+        <span class="tab-num">04</span> Tecnologia Ambiental
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     01 · INFRAESTRUTURA
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">01 / Infraestrutura</span>
+  <span class="bar"></span>
+  <span>07 frentes</span>
+</div>
+
+<section id="infraestrutura" class="bg-white py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">01 · Área de serviço</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Infraestrutura<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">urbana e rodoviária.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
+          Entregamos soluções completas em infraestrutura, desde a implantação até
+          a recuperação e manutenção de ativos, garantindo durabilidade, segurança
+          e eficiência ao longo de todo o ciclo de vida das obras.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/road.svg" alt=""></span>
+          <span class="svc-tile-num">01</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Rodovias</h3>
+          <p class="svc-meta">Mobilidade · Segurança</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Atuamos em rodovias, promovendo mobilidade com qualidade e segurança para usuários.</p>
+      </div>
+
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/road-2.svg" alt=""></span>
+          <span class="svc-tile-num">02</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Vias vicinais</h3>
+          <p class="svc-meta">Estradas rurais · Acesso municipal</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Atuamos em vias vicinais, promovendo mobilidade com qualidade e segurança para usuários.</p>
+      </div>
+
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/pipe.svg" alt=""></span>
+          <span class="svc-tile-num">03</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Túneis</h3>
+          <p class="svc-meta">Obras · Intervenções</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Executamos obras e intervenções em túneis, com soluções técnicas que asseguram desempenho e confiabilidade operacional.</p>
+      </div>
+
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/bridge.svg" alt=""></span>
+          <span class="svc-tile-num">04</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Pontes e viadutos</h3>
+          <p class="svc-meta">Construção · Recuperação estrutural</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Realizamos desde a construção até a recuperação estrutural, aumentando a vida útil e garantindo a integridade das estruturas.</p>
+      </div>
+
+      <!-- Linha em destaque (RAP) — preenche a coluna inteira -->
+      <div class="grid grid-cols-12 gap-0 mt-2 mb-2 border-y-2 border-job-green">
+        <div class="col-span-12 lg:col-span-7 bg-job-black text-white p-8 lg:p-10">
+          <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#199738;">05 · Diferencial exclusivo</p>
+          <h3 class="font-sans mb-4" style="font-size:clamp(28px,3vw,40px);line-height:0.98;letter-spacing:-0.02em;">
+            Pavimentação<br>com Usina Móvel <span style="color:#199738;">RAP</span>
+          </h3>
+          <p class="text-gray-400 font-body mb-6" style="font-size:14px;line-height:1.55;max-width:48ch;">
+            Nosso grande diferencial é a utilização de usina móvel de RAP
+            (Reclaimed Asphalt Pavement), que permite a reutilização de materiais,
+            reduz custos, acelera prazos e reforça nosso compromisso com a sustentabilidade.
+          </p>
+          <a href="contato.html" class="group inline-flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-white border-b border-white/40 pb-1 hover:border-job-green2 transition-colors">
+            <span>Solicitar viabilidade</span>
+            <span style="color:#199738;" class="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+        <div class="col-span-12 lg:col-span-5 bg-[#f0efe9] p-8 lg:p-10 grid grid-cols-2 gap-6 content-center">
+          <div>
+            <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-2">Reaproveitamento</p>
+            <p class="font-sans text-job-black" style="font-size:32px;line-height:1;letter-spacing:-0.02em;">100<span class="text-base font-mono ml-1">%</span></p>
+          </div>
+          <div>
+            <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-2">Redução de prazo</p>
+            <p class="font-sans text-job-black" style="font-size:32px;line-height:1;letter-spacing:-0.02em;">~40<span class="text-base font-mono ml-1">%</span></p>
+          </div>
+          <div class="col-span-2 border-t border-gray-300 pt-4">
+            <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-2">Operação</p>
+            <p class="font-sans text-job-black" style="font-size:18px;line-height:1.2;">Reciclagem in situ — sem transporte de fresado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/water-system.svg" alt=""></span>
+          <span class="svc-tile-num">06</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Saneamento</h3>
+          <p class="svc-meta">Redes de água · Esgoto</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Contribuímos diretamente para a saúde pública por meio da implantação de redes de água e esgoto.</p>
+      </div>
+
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/hydroelectric.svg" alt=""></span>
+          <span class="svc-tile-num">07</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Drenagem</h3>
+          <p class="svc-meta">Águas pluviais · Prevenção de alagamentos</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Desenvolvemos soluções eficientes para o escoamento de águas pluviais, prevenindo alagamentos e protegendo a infraestrutura urbana.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     02 · ZELADORIA URBANA
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">02 / Zeladoria Urbana</span>
+  <span class="bar"></span>
+  <span>05 frentes</span>
+</div>
+
+<section id="zeladoria" class="bg-[#fafaf7] py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">02 · Área de serviço</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Zeladoria<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">para a cidade limpa.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
+          Cuidar da cidade é cuidar das pessoas. Nossos serviços de zeladoria urbana
+          garantem ambientes mais limpos, organizados e seguros, promovendo qualidade
+          de vida e valorização dos espaços públicos.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/clean-city.svg" alt=""></span>
+          <span class="svc-tile-num">01</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Varrição e limpeza urbana</h3>
+          <p class="svc-meta">Alto padrão de eficiência</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Realizamos varrição e limpeza urbana com alto padrão de eficiência.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/trash-compactor.svg" alt=""></span>
+          <span class="svc-tile-num">02</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Coleta e tratamento de resíduos</h3>
+          <p class="svc-meta">Melhores práticas ambientais</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Atuamos na coleta e tratamento de resíduos, sempre alinhados às melhores práticas ambientais.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/pipe.svg" alt=""></span>
+          <span class="svc-tile-num">03</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Desobstrução de galerias e córregos</h3>
+          <p class="svc-meta">Prevenção de alagamentos</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Executamos a desobstrução de galerias e córregos, prevenindo alagamentos e mantendo o funcionamento adequado dos sistemas.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/road-roller.svg" alt=""></span>
+          <span class="svc-tile-num">04</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Manutenção de vias públicas</h3>
+          <p class="svc-meta">Mobilidade · Segurança</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Também realizamos a manutenção de vias públicas, contribuindo para a mobilidade e segurança.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/clean-window.svg" alt=""></span>
+          <span class="svc-tile-num">05</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Áreas verdes</h3>
+          <p class="svc-meta">Conservação · Preservação ambiental</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Na conservação de áreas verdes, promovemos cuidado contínuo, preservação ambiental e bem-estar para a população.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     03 · MANUTENÇÃO DE PRÉDIOS PÚBLICOS E PRIVADOS
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">03 / Manutenção de Prédios</span>
+  <span class="bar"></span>
+  <span>05 frentes</span>
+</div>
+
+<section id="predial" class="bg-white py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">03 · Área de serviço</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(1.8rem,3.6vw,3rem);line-height:1;letter-spacing:-0.02em;">
+          Manutenção de<br>
+          Prédios <span class="text-job-green">Públicos</span><br>
+          e <span class="text-job-green">Privados.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
+          Mais do que manter, nós valorizamos patrimônios. Oferecemos soluções
+          completas para conservação, modernização e melhoria contínua de edificações.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/maintenance.svg" alt=""></span>
+          <span class="svc-tile-num">01</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Reformas</h3>
+          <p class="svc-meta">Adaptação · Eficiência</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Realizamos reformas, adaptando espaços com eficiência e qualidade.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/ruler.svg" alt=""></span>
+          <span class="svc-tile-num">02</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Ampliações</h3>
+          <p class="svc-meta">Projeto · Execução</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Executamos ampliações com planejamento técnico, garantindo qualidade e integração com a estrutura existente.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/setting.svg" alt=""></span>
+          <span class="svc-tile-num">03</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Modernização de sistemas elétricos e hidráulicos</h3>
+          <p class="svc-meta">Segurança · Economia · Normas técnicas</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Executamos a modernização de sistemas elétricos e hidráulicos, garantindo segurança, economia e conformidade com normas técnicas.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/facial.svg" alt=""></span>
+          <span class="svc-tile-num">04</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Automação predial</h3>
+          <p class="svc-meta">Inteligência · Controle · Eficiência</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Com automação predial, levamos mais inteligência e controle às operações, aumentando a eficiência e reduzindo custos.</p>
+      </div>
+      <div class="svc-row">
+        <span class="svc-num">
+          <span class="svc-tile"><img src="icones/maintenance-2.svg" alt=""></span>
+          <span class="svc-tile-num">05</span>
+        </span>
+        <div>
+          <h3 class="svc-title">Manutenção predial geral</h3>
+          <p class="svc-meta">Preventiva · Corretiva</p>
+        </div>
+        <p class="svc-list svc-list-cell font-body">Atuamos de forma preventiva e corretiva, assegurando o pleno funcionamento das instalações e prolongando a vida útil das estruturas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     04 · TECNOLOGIA AMBIENTAL — Ecojob (resumo + CTA)
+═══════════════════════════════════════════════════ -->
+<div class="section-rule green">
+  <span class="accent">04 / Tecnologia Ambiental · Ecojob</span>
+  <span class="bar"></span>
+  <span>Engenharia de ciclo completo</span>
+</div>
+
+<section id="ambiental" class="bg-job-green py-20 lg:py-28 relative overflow-hidden">
+  <!-- Marca d'água do logo JOB ao fundo -->
+  <img src="img/logo-job-eng-branco.svg" alt="" aria-hidden="true" class="hidden md:block" style="position:absolute;right:48px;top:80px;width:min(360px,32vw);height:auto;opacity:0.07;pointer-events:none;z-index:0;">
+
+  <div class="max-w-grid mx-auto px-8 relative" style="z-index:1;">
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start mb-14 lg:mb-16">
+      <!-- Logo + título Ecojob -->
+      <div class="col-span-12 lg:col-span-5">
+        <div class="inline-flex items-center bg-white px-5 py-3 mb-8" style="box-shadow:0 6px 24px rgba(0,0,0,0.08);">
+          <img src="img/logo-ecojob.jpg" alt="Ecojob — Tecnologia Ambiental JOB" style="height:38px;width:auto;display:block;">
+        </div>
+        <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-6" style="color:#a8f0c4;">04 · Área de serviço</p>
+        <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:0.98;letter-spacing:-0.025em;font-weight:500;">
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Tecnologia</span><br>
+          <span style="font-weight:800;letter-spacing:-0.03em;">ambiental.</span>
+        </h2>
+      </div>
+
+      <!-- Texto institucional -->
+      <div class="col-span-12 lg:col-span-7 lg:pt-2">
+        <p class="font-body" style="color:#fff;font-size:17px;line-height:1.6;max-width:60ch;">
+          A <strong style="font-weight:700;">Ecojob</strong> é especializada em engenharia de alta performance
+          para a gestão de infraestrutura urbana e saneamento. Nosso diferencial é
+          a entrega de uma solução de ciclo completo: unimos o diagnóstico técnico,
+          o monitoramento tecnológico de última geração e a zeladoria operacional
+          para garantir máxima eficiência, resiliência urbana e conformidade legal.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid das 5 frentes -->
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.18);">
+      <a href="ecojob.html#cursos-dagua" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">/ 01</p>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Monitoramento de córregos, rios e canais</h3>
+        <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">CONAMA 357/05 · Sondas multiparamétricas</p>
+      </a>
+      <a href="ecojob.html#drenagem" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">/ 02</p>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Monitoramento de sistemas de drenagem</h3>
+        <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">Sensores IoT · CCTV · Engenharia investigativa</p>
+      </a>
+      <a href="ecojob.html#esgoto" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">/ 03</p>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Sistemas de esgotamento sanitário</h3>
+        <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">CONAMA 430/11 · Separação absoluta</p>
+      </a>
+      <a href="ecojob.html#etas-etes" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">/ 04</p>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Operação assistida de ETAs e ETEs</h3>
+        <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">Operação · Conservação · Otimização</p>
+      </a>
+      <a href="ecojob.html#gestao" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-3" style="color:#a8f0c4;">/ 05</p>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Gestão, Diagnóstico e Prognóstico</h3>
+        <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">Novo Marco do Saneamento · CID · CCTV robotizado</p>
+      </a>
+    </div>
+
+    <!-- CTA principal -->
+    <div class="mt-12 lg:mt-16 grid grid-cols-12 gap-6 lg:gap-10 items-center">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="font-sans text-white" style="font-size:clamp(20px,2.2vw,26px);line-height:1.2;letter-spacing:-0.01em;max-width:42ch;">
+          Conheça a plataforma completa de engenharia ambiental Ecojob —
+          <span style="color:#a8f0c4;font-weight:500;">sensoriamento, diagnóstico e operação</span> em ciclo único.
+        </p>
+      </div>
+      <div class="col-span-12 lg:col-span-5 flex flex-col lg:flex-row gap-3 lg:justify-end">
+        <a href="ecojob.html" class="group inline-flex items-center justify-between bg-white text-job-green hover:bg-job-black hover:text-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors" style="min-width:240px;">
+          <span>Conhecer Ecojob</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA FINAL — split poster verde
+═══════════════════════════════════════════════════ -->
+<div class="section-rule dark">
+  <span class="accent">05 / Próximo passo</span>
+  <span class="bar"></span>
+  <span>Resposta em até 1 dia útil</span>
+</div>
+
+<section id="cta-final" class="bg-job-green py-20 lg:py-24 relative">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 items-end">
+    <div class="col-span-12 lg:col-span-8">
+      <p class="swiss-index mb-6" style="color:#7fd99e;">05 · Vamos conversar</p>
+      <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
+        Solicite proposta<br>
+        ou fale com um<br>
+        <span class="italic font-light" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;color:#7fd99e;">especialista.</span>
+      </h2>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col gap-3">
+      <a href="contato.html" class="group inline-flex items-center justify-between bg-white text-job-green hover:bg-job-black hover:text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>Solicitar proposta</span>
+        <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <a href="tel:+551126351673" class="group inline-flex items-center justify-between border border-white/60 text-white hover:bg-white hover:text-job-green px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>+55 (11) 2635-1673</span>
+        <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-job-black py-16 relative">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;height:auto;">
+        <p class="text-gray-300 text-sm font-sans leading-snug" style="letter-spacing:-0.005em;">
+          Engenharia que move<br><span class="text-job-green2" style="font-weight:700;">o futuro.</span>
+        </p>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="text-job-green2">Serviços</a></li>
+          <li><a href="ecojob.html" class="hover:text-job-green2 transition-colors">Ecojob</a></li>
+          <li><a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">RCK 3000</a></li>
+          <li><a href="carreiras.html" class="hover:text-job-green2 transition-colors">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Serviços</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
+          <li><a href="#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
+          <li><a href="#predial" class="hover:text-job-green2 transition-colors">Manutenção de Prédios Públicos e Privados</a></li>
+          <li><a href="#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li><a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a></li>
+          <li><a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a></li>
+          <li class="leading-relaxed">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP<br>06460-040</li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+        <span>© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Política de Privacidade</a>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Header scroll */
+  const header = document.getElementById('site-header');
+  const headerLogo = document.getElementById('header-logo');
+  const headerNav = document.getElementById('header-nav');
+  const mobileIcon = document.getElementById('mobile-toggle-icon');
+  function updateHeader() {
+    headerLogo.src = 'img/logo-job-eng.svg';
+    headerNav.style.color = '#1d1d1b';
+    if (mobileIcon) mobileIcon.style.color = '#1d1d1b';
+    if (window.scrollY > 60) {
+      header.style.background = 'rgba(255,255,255,0.78)';
+      header.style.backdropFilter = 'saturate(160%) blur(14px)';
+      header.style.webkitBackdropFilter = 'saturate(160%) blur(14px)';
+      header.style.boxShadow = '0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)';
+    } else {
+      header.style.background = '#ffffff';
+      header.style.backdropFilter = 'none';
+      header.style.webkitBackdropFilter = 'none';
+      header.style.boxShadow = 'none';
+    }
+  }
+  window.addEventListener('scroll', updateHeader); updateHeader();
+
+  /* Mobile drawer */
+  (function() {
+    var btn = document.getElementById('mobile-toggle');
+    var close = document.getElementById('mobile-close');
+    var drawer = document.getElementById('mobile-drawer');
+    if (!btn || !drawer) return;
+    function open() { drawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function shut() { drawer.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+
+  /* Footer year */
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+
+  /* Reveal */
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(function(el){ el.classList.add('is-visible'); }); return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ obs.observe(el); });
+  })();
+
+  /* Tab bar active state */
+  const sections = ['infraestrutura','zeladoria','predial','ambiental'];
+  const tabBtns = document.querySelectorAll('[data-tab]');
+  function setActiveTab(id) {
+    tabBtns.forEach(function(btn){
+      if (btn.dataset.tab === id) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) setActiveTab(entry.target.id);
+    });
+  }, { root: null, rootMargin: '-140px 0px -60% 0px', threshold: 0 });
+  sections.forEach(function(id){ var el = document.getElementById(id); if (el) observer.observe(el); });
+
+  /* Smooth scroll com offset */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var targetId = this.getAttribute('href').slice(1);
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      var offset = 80 + 56;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

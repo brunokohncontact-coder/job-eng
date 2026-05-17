@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carreiras — JOB Engenharia</title>
+  <meta name="description" content="Faça parte do time JOB Engenharia. Vagas e oportunidades em uma empresa de engenharia com mais de 40 anos de história." />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; }
+
+    .swiss-index {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #00662f;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .swiss-index::before { content: ""; display: inline-block; width: 28px; height: 1px; background: #00662f; }
+
+    .section-rule {
+      max-width: 1200px; margin: 0 auto; padding: 16px 32px;
+      display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center;
+      font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #5b6b62;
+      border-top: 1px solid rgba(29,29,27,0.12);
+      border-bottom: 1px solid rgba(29,29,27,0.06);
+      background: #fafaf7;
+    }
+    .section-rule .accent { color: #00662f; }
+    .section-rule .bar { height: 1px; background: rgba(29,29,27,0.18); width: 100%; }
+    .section-rule.dark { background: #1d1d1b; border-top-color: rgba(255,255,255,0.10); border-bottom-color: rgba(255,255,255,0.04); color: #8a9a90; }
+    .section-rule.dark .accent { color: #199738; }
+    .section-rule.dark .bar { background: rgba(255,255,255,0.18); }
+
+    /* Pillar (por que JOB) */
+    .pillar {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 24px; align-items: start;
+      padding: 30px 0; border-top: 1px solid rgba(29,29,27,0.12);
+    }
+    .pillar:last-of-type { border-bottom: 1px solid rgba(29,29,27,0.12); }
+    .pillar-num { font-family: monospace; font-size: 11px; letter-spacing: 0.22em; color: #00662f; padding-top: 6px; }
+    .pillar h3 { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.005em; color: #1d1d1b; margin-bottom: 10px; }
+    .pillar p { color: #4a5550; font-size: 15px; line-height: 1.55; max-width: 60ch; }
+
+    /* Vaga row */
+    .vaga-row {
+      display: grid; grid-template-columns: 64px 1fr auto;
+      gap: 28px; align-items: center;
+      padding: 26px 0; border-bottom: 1px solid rgba(29,29,27,0.10);
+      transition: padding 0.25s ease;
+    }
+    .vaga-row:first-of-type { border-top: 1px solid rgba(29,29,27,0.18); }
+    .vaga-row:hover { padding-left: 10px; }
+    .vaga-row:hover .vaga-cta { color: #1d1d1b; border-color: #1d1d1b; }
+    .vaga-num { font-family: monospace; font-size: 12px; letter-spacing: 0.18em; color: #00662f; padding-top: 4px; }
+    .vaga-title { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: 20px; color: #1d1d1b; letter-spacing: -0.005em; margin-bottom: 8px; }
+    .vaga-tags {
+      display: flex; flex-wrap: wrap; gap: 4px 16px;
+      font-family: monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #5b6b62; margin-bottom: 8px;
+    }
+    .vaga-tags span { display: inline-flex; align-items: center; gap: 6px; }
+    .vaga-tags span::before { content: "·"; color: #199738; }
+    .vaga-tags span:first-child::before { content: ""; }
+    .vaga-desc { color: #4a5550; font-size: 14px; line-height: 1.5; max-width: 60ch; }
+    .vaga-cta {
+      align-self: center; font-family: monospace; font-size: 11px;
+      letter-spacing: 0.20em; text-transform: uppercase; color: #5b6b62;
+      border: 1px solid rgba(29,29,27,0.20); padding: 10px 16px;
+      transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+      .vaga-row { grid-template-columns: 48px 1fr; gap: 14px 18px; padding: 22px 0; }
+      .vaga-cta { grid-column: 2 / -1; justify-self: start; margin-top: 4px; }
+    }
+
+    /* Mobile menu */
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) { .nav-desktop { display: none !important; } .menu-mobile-btn { display: inline-flex; } }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer .group-label { color: #199738; font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 18px; margin-bottom: 4px; }
+    .mobile-drawer .sublink { font-size: 13px; color: #c0c0c0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+    .mobile-close:hover { border-color: #199738; }
+
+    @media (max-width: 900px) { .max-w-grid { padding-left: 20px; padding-right: 20px; } section.py-24 { padding-top: 64px; padding-bottom: 64px; } footer.py-16 { padding-top: 48px; padding-bottom: 48px; } }
+    @media (max-width: 640px) { .max-w-grid { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <div class="nav-item relative">
+        <a href="servicos.html" class="hover:text-job-green2 transition-colors flex items-center gap-1 cursor-pointer">
+          Serviços
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </a>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-52 shadow-xl py-2 z-50 text-white">
+          <a href="servicos.html#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
+          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
+          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="servicos.html#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
+        </div>
+      </div>
+      <div class="nav-item relative">
+        <button class="hover:text-job-green2 transition-colors flex items-center gap-1">
+          Tecnologias
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="ecojob.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">01</span>Ecojob</a>
+          <a href="tecnologias/rck-3000.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">02</span>RCK 3000</a>
+        </div>
+      </div>
+      <a href="contato.html" class="bg-job-black hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="carreiras.html" style="color:#199738;">Carreiras</a>
+    <p class="group-label">Áreas</p>
+    <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
+    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria Urbana</a>
+    <a href="servicos.html#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="servicos.html#ambiental" class="sublink">› Tecnologia Ambiental</a>
+    <p class="group-label">Tecnologias</p>
+    <a href="ecojob.html" class="sublink">01 · Ecojob</a>
+    <a href="tecnologias/rck-3000.html" class="sublink">02 · RCK 3000</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;color:#fff;">Contato</a>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<section class="bg-white">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 py-14 lg:py-20">
+    <div class="col-span-12 lg:col-span-8">
+      <nav class="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-10">
+        <a href="index.html" class="hover:text-job-green2 transition-colors">Home</a>
+        <span class="text-gray-300">/</span>
+        <span class="text-job-green">Carreiras</span>
+      </nav>
+      <p class="swiss-index mb-6">06 · Time JOB</p>
+      <h1 class="text-job-black font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
+        Construa sua<br>
+        carreira <span class="text-job-green">na JOB</span>,<br>
+        <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">com engenharia de campo.</span>
+      </h1>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col justify-end pt-6 lg:pt-0">
+      <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:38ch;">
+        Buscamos profissionais que querem fazer engenharia que transforma cidades —
+        com cultura técnica, equipe própria e projetos relevantes.
+      </p>
+      <dl class="border-t border-gray-300 mt-8 pt-4 grid grid-cols-2 gap-y-3 text-sm">
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Vagas abertas</dt>
+        <dd class="font-sans text-job-black tabular-nums">03</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Modelo</dt>
+        <dd class="font-sans text-job-black">CLT · Presencial</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Banco talentos</dt>
+        <dd class="font-sans text-job-black">Aberto</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     01 · POR QUE JOB
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">01 / Por que JOB</span>
+  <span class="bar"></span>
+  <span>03 razões</span>
+</div>
+
+<section class="bg-white py-20 lg:py-24">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">01 · O que você encontra</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Engenharia,<br>
+          equipe <span class="text-job-green">própria</span><br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">e cultura técnica.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:42ch;">
+          Mais de quatro décadas operando em campo. Trabalho técnico relevante,
+          sem terceirização, com investimento contínuo no desenvolvimento das equipes.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="pillar">
+        <span class="pillar-num">01 / História</span>
+        <div>
+          <h3>Mais de 40 anos em campo</h3>
+          <p>Empresa consolidada, com cultura técnica forte e projetos que fazem diferença no dia a dia das cidades brasileiras.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02 / Escopo</span>
+        <div>
+          <h3>Atuação multidisciplinar</h3>
+          <p>Quatro grandes áreas de serviço e tecnologias próprias — oportunidade de aprender e crescer em diferentes frentes.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03 / Pessoas</span>
+        <div>
+          <h3>Compromisso com pessoas</h3>
+          <p>Equipe própria, valorização técnica, ambiente colaborativo e oportunidades reais de desenvolvimento profissional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     02 · VAGAS ABERTAS
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">02 / Vagas em aberto</span>
+  <span class="bar"></span>
+  <span>03 oportunidades · estrutura para validação</span>
+</div>
+
+<section class="bg-[#fafaf7] py-20 lg:py-24">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">02 · Oportunidades atuais</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Vagas<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">em aberto.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:42ch;">
+          Posições atuais em campo e operação técnica. Para candidatura, envie e-mail
+          com currículo e referência da vaga no assunto.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <a href="mailto:contato@job.eng.br?subject=Candidatura — Engenheiro Civil Pleno" class="vaga-row">
+        <span class="vaga-num">01</span>
+        <div>
+          <h3 class="vaga-title">Engenheiro(a) Civil — Pleno</h3>
+          <div class="vaga-tags">
+            <span>Infraestrutura</span>
+            <span>Santana de Parnaíba · SP</span>
+            <span>CLT</span>
+            <span>Presencial</span>
+          </div>
+          <p class="vaga-desc">Acompanhamento de obras de pavimentação e recuperação estrutural, em equipe técnica multidisciplinar.</p>
+        </div>
+        <span class="vaga-cta">Candidatar →</span>
+      </a>
+
+      <a href="mailto:contato@job.eng.br?subject=Candidatura — Técnico em Saneamento" class="vaga-row">
+        <span class="vaga-num">02</span>
+        <div>
+          <h3 class="vaga-title">Técnico(a) em Saneamento</h3>
+          <div class="vaga-tags">
+            <span>Tecnologia Ambiental</span>
+            <span>Santana de Parnaíba · SP</span>
+            <span>CLT</span>
+            <span>Presencial</span>
+          </div>
+          <p class="vaga-desc">Operação assistida de ETAs e ETEs e suporte às metodologias EJ de monitoramento.</p>
+        </div>
+        <span class="vaga-cta">Candidatar →</span>
+      </a>
+
+      <a href="mailto:contato@job.eng.br?subject=Candidatura — Operador RCK 3000" class="vaga-row">
+        <span class="vaga-num">03</span>
+        <div>
+          <h3 class="vaga-title">Operador(a) de Equipamento RCK 3000</h3>
+          <div class="vaga-tags">
+            <span>Operação</span>
+            <span>São Paulo · SP</span>
+            <span>CLT</span>
+            <span>CNH D ou E</span>
+          </div>
+          <p class="vaga-desc">Operação do equipamento reciclador em campo. Treinamento técnico interno fornecido.</p>
+        </div>
+        <span class="vaga-cta">Candidatar →</span>
+      </a>
+    </div>
+
+    <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mt-10">
+      / lista de vagas para validação · estrutura ilustrativa para aprovação do cliente
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     03 · BANCO DE TALENTOS — split poster verde
+═══════════════════════════════════════════════════ -->
+<div class="section-rule dark">
+  <span class="accent">03 / Banco de Talentos</span>
+  <span class="bar"></span>
+  <span>contato@job.eng.br</span>
+</div>
+
+<section class="bg-job-green py-20 lg:py-24 relative">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 items-end">
+    <div class="col-span-12 lg:col-span-8">
+      <p class="swiss-index mb-6" style="color:#7fd99e;">03 · Banco de talentos</p>
+      <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
+        Não encontrou<br>
+        uma vaga <span class="italic font-light" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;color:#7fd99e;">compatível?</span>
+      </h2>
+      <p class="text-white/80 font-body mt-6" style="font-size:15px;line-height:1.6;max-width:48ch;">
+        Envie seu currículo. Quando uma vaga compatível com seu perfil abrir,
+        entraremos em contato.
+      </p>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col gap-3">
+      <a href="mailto:contato@job.eng.br?subject=Banco de talentos JOB" class="group inline-flex items-center justify-between bg-white text-job-green hover:bg-job-black hover:text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>Enviar currículo</span>
+        <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <p class="text-[11px] font-mono uppercase tracking-[0.22em] text-white/70 px-5">
+        contato@job.eng.br
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-job-black py-16 relative">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;">
+        <p class="text-gray-400 text-xs font-body leading-relaxed">Infraestrutura, sustentabilidade e tecnologia a serviço das cidades brasileiras.</p>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a></li>
+          <li><a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a></li>
+          <li><a href="carreiras.html" class="text-job-green2">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Serviços</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
+          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
+          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Manutenção Predial</a></li>
+          <li><a href="servicos.html#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li><a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a></li>
+          <li><a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a></li>
+          <li class="leading-relaxed">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP<br>06460-040</li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+        <span>© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Política de Privacidade</a>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var header = document.getElementById('site-header');
+    function update() {
+      if (window.scrollY > 60) {
+        header.style.background='rgba(255,255,255,0.78)';
+        header.style.backdropFilter='saturate(160%) blur(14px)';
+        header.style.webkitBackdropFilter='saturate(160%) blur(14px)';
+        header.style.boxShadow='0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)';
+      } else { header.style.background='#ffffff'; header.style.backdropFilter='none'; header.style.webkitBackdropFilter='none'; header.style.boxShadow='none'; }
+    }
+    window.addEventListener('scroll', update); update();
+  })();
+  (function() {
+    var btn=document.getElementById('mobile-toggle'); var close=document.getElementById('mobile-close'); var drawer=document.getElementById('mobile-drawer');
+    if (!btn||!drawer) return;
+    function open(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+    function shut(){ drawer.classList.remove('open'); document.body.style.overflow=''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade — JOB Engenharia</title>
+  <meta name="description" content="Política de Privacidade da JOB Engenharia em conformidade com a LGPD (Lei nº 13.709/2018)." />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafafa; overflow-x: hidden; overflow-x: clip; }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+
+    .nav-link { transition: color .3s ease, padding .3s ease; position: relative; display: block; }
+    .nav-link.active { color: #00662f; padding-left: 14px; }
+    .nav-link.active::before { content:''; position:absolute; left:0; top:50%; width:8px; height:1px; background:#00662f; }
+
+    .legal-content h2 { font-family: '"Franklin Gothic Medium"', sans-serif; color: #1d1d1b; font-size: clamp(22px,2.6vw,30px); letter-spacing: -0.01em; margin-bottom: 16px; }
+    .legal-content p, .legal-content li { font-family: 'Franklin Gothic Book', Arial, sans-serif; color: #4a5550; font-size: 15px; line-height: 1.7; }
+    .legal-content p { margin-bottom: 16px; }
+    .legal-content ul { margin: 0 0 18px 22px; }
+    .legal-content li { margin-bottom: 8px; list-style: disc; }
+    .legal-content strong { color: #1d1d1b; }
+    .legal-content a { color: #199738; }
+    .legal-content a:hover { color: #00662f; text-decoration: underline; }
+
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+    .mobile-close:hover { border-color: #199738; }
+
+    @media (max-width: 900px) { .max-w-grid { padding-left: 20px; padding-right: 20px; } }
+    @media (max-width: 640px) { .max-w-grid { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body class="font-sans">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a>
+      <a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a>
+      <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="tecnologias/rck-3000.html">Tecnologias</a>
+    <a href="carreiras.html">Carreiras</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;color:#fff;">Contato</a>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<section class="bg-white border-b border-gray-200">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 py-12 lg:py-16">
+    <div class="col-span-12 lg:col-span-8">
+      <nav class="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-8">
+        <a href="index.html" class="hover:text-job-green2 transition-colors">Home</a>
+        <span class="text-gray-300">/</span>
+        <span class="text-job-green">Política de Privacidade</span>
+      </nav>
+      <p class="text-[11px] font-mono uppercase tracking-[0.22em] text-job-green inline-flex items-center gap-3 mb-5">
+        <span style="display:inline-block;width:28px;height:1px;background:#00662f;"></span>
+        Documento legal · LGPD
+      </p>
+      <h1 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
+        Política de<br>
+        <span class="text-job-green">Privacidade.</span>
+      </h1>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col justify-end pt-4 lg:pt-0">
+      <dl class="border-t border-gray-300 pt-4 grid grid-cols-2 gap-y-3 text-sm">
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Atualização</dt>
+        <dd class="font-sans text-job-black"><span id="last-update">a confirmar</span></dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Conformidade</dt>
+        <dd class="font-sans text-job-black">LGPD · Lei 13.709/18</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Seções</dt>
+        <dd class="font-sans text-job-black tabular-nums">11</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO LEGAL -->
+<section class="bg-white py-20">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+
+      <!-- Sticky side index -->
+      <aside class="hidden md:block col-span-3 sticky top-32 self-start">
+        <p class="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-6">// índice</p>
+        <ul id="side-index" class="space-y-3 text-sm">
+          <li><a href="#s1" class="nav-link text-gray-500 hover:text-job-green">1. Apresentação</a></li>
+          <li><a href="#s2" class="nav-link text-gray-500 hover:text-job-green">2. Dados coletados</a></li>
+          <li><a href="#s3" class="nav-link text-gray-500 hover:text-job-green">3. Finalidade</a></li>
+          <li><a href="#s4" class="nav-link text-gray-500 hover:text-job-green">4. Base legal</a></li>
+          <li><a href="#s5" class="nav-link text-gray-500 hover:text-job-green">5. Compartilhamento</a></li>
+          <li><a href="#s6" class="nav-link text-gray-500 hover:text-job-green">6. Cookies</a></li>
+          <li><a href="#s7" class="nav-link text-gray-500 hover:text-job-green">7. Direitos do titular</a></li>
+          <li><a href="#s8" class="nav-link text-gray-500 hover:text-job-green">8. Segurança</a></li>
+          <li><a href="#s9" class="nav-link text-gray-500 hover:text-job-green">9. Retenção</a></li>
+          <li><a href="#s10" class="nav-link text-gray-500 hover:text-job-green">10. Encarregado (DPO)</a></li>
+          <li><a href="#s11" class="nav-link text-gray-500 hover:text-job-green">11. Alterações</a></li>
+        </ul>
+      </aside>
+
+      <!-- Conteúdo -->
+      <article class="col-span-12 md:col-span-9 legal-content space-y-10" style="max-width:760px;">
+
+        <div id="s1">
+          <h2>1. Apresentação</h2>
+          <p>
+            A <strong>JOB Engenharia</strong>, inscrita no CNPJ sob nº [a ser confirmado], com sede na
+            Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812, Tamboré, Santana de Parnaíba — SP,
+            CEP 06460-040, é responsável pelo tratamento dos dados pessoais coletados por meio deste site,
+            atuando em conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018)</strong>.
+          </p>
+          <p>
+            Esta Política descreve como coletamos, usamos, compartilhamos e protegemos os dados pessoais
+            de visitantes, clientes, fornecedores e candidatos a vagas. Ao utilizar nosso site, você
+            declara estar ciente desta Política.
+          </p>
+        </div>
+
+        <div id="s2">
+          <h2>2. Dados que coletamos</h2>
+          <p>Coletamos apenas os dados estritamente necessários para as finalidades descritas:</p>
+          <ul>
+            <li><strong>Dados de identificação:</strong> nome completo, e-mail, telefone, município ou empresa.</li>
+            <li><strong>Dados de comunicação:</strong> mensagem enviada nos formulários de contato e proposta.</li>
+            <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador, sistema operacional, páginas visitadas e tempo de permanência (coletados via cookies e ferramentas de análise).</li>
+            <li><strong>Dados profissionais:</strong> currículo e informações fornecidas voluntariamente em candidaturas para vagas.</li>
+          </ul>
+        </div>
+
+        <div id="s3">
+          <h2>3. Finalidade do tratamento</h2>
+          <p>Utilizamos seus dados pessoais para:</p>
+          <ul>
+            <li>Responder a solicitações de proposta, dúvidas e contatos comerciais;</li>
+            <li>Avaliar candidaturas para vagas de emprego;</li>
+            <li>Melhorar a navegação e a experiência do site;</li>
+            <li>Cumprir obrigações legais e regulatórias;</li>
+            <li>Prevenir fraudes e proteger nossa segurança e a de nossos visitantes.</li>
+          </ul>
+        </div>
+
+        <div id="s4">
+          <h2>4. Base legal</h2>
+          <p>O tratamento de dados pessoais pela JOB Engenharia ocorre sob as seguintes bases legais previstas na LGPD:</p>
+          <ul>
+            <li><strong>Consentimento</strong> do titular (art. 7º, I);</li>
+            <li><strong>Execução de contrato</strong> ou procedimentos preliminares relacionados (art. 7º, V);</li>
+            <li><strong>Legítimo interesse</strong> da empresa, respeitados os direitos e liberdades do titular (art. 7º, IX);</li>
+            <li><strong>Cumprimento de obrigação legal ou regulatória</strong> (art. 7º, II).</li>
+          </ul>
+        </div>
+
+        <div id="s5">
+          <h2>5. Compartilhamento de dados</h2>
+          <p>
+            A JOB Engenharia <strong>não comercializa</strong> dados pessoais. Eventual compartilhamento
+            ocorre apenas com:
+          </p>
+          <ul>
+            <li>Fornecedores de tecnologia que operam sob contrato de confidencialidade (hospedagem, e-mail, análise de site);</li>
+            <li>Autoridades públicas, mediante requisição legal;</li>
+            <li>Empresas parceiras envolvidas na execução de serviços, quando estritamente necessário.</li>
+          </ul>
+        </div>
+
+        <div id="s6">
+          <h2>6. Cookies e tecnologias similares</h2>
+          <p>
+            Utilizamos cookies para garantir o funcionamento adequado do site, lembrar preferências e
+            coletar estatísticas anônimas de uso. Você pode gerenciar ou desativar cookies nas
+            configurações do seu navegador, ciente de que algumas funcionalidades poderão ficar limitadas.
+          </p>
+        </div>
+
+        <div id="s7">
+          <h2>7. Direitos do titular</h2>
+          <p>De acordo com o art. 18 da LGPD, você tem direito a:</p>
+          <ul>
+            <li>Confirmar a existência de tratamento dos seus dados;</li>
+            <li>Acessar, corrigir, atualizar ou complementar seus dados;</li>
+            <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade;</li>
+            <li>Solicitar portabilidade a outro fornecedor de serviço;</li>
+            <li>Revogar consentimento a qualquer tempo;</li>
+            <li>Apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</li>
+          </ul>
+          <p>
+            Para exercer qualquer desses direitos, entre em contato pelo e-mail
+            <a href="mailto:contato@job.eng.br">contato@job.eng.br</a>.
+          </p>
+        </div>
+
+        <div id="s8">
+          <h2>8. Segurança da informação</h2>
+          <p>
+            Adotamos medidas técnicas e organizacionais para proteger os dados pessoais contra acesso
+            não autorizado, alteração, divulgação ou destruição. Apesar dos esforços, nenhum sistema
+            é totalmente imune a falhas; em caso de incidente, comunicaremos os titulares afetados e
+            a ANPD nos termos da legislação.
+          </p>
+        </div>
+
+        <div id="s9">
+          <h2>9. Retenção dos dados</h2>
+          <p>
+            Os dados pessoais são mantidos pelo tempo estritamente necessário ao cumprimento das
+            finalidades para as quais foram coletados ou pelo prazo determinado por obrigação legal.
+            Após esse período, os dados são eliminados ou anonimizados de forma segura.
+          </p>
+        </div>
+
+        <div id="s10">
+          <h2>10. Encarregado pelo Tratamento de Dados (DPO)</h2>
+          <p>
+            Em conformidade com o art. 41 da LGPD, a JOB Engenharia disponibiliza canal direto para
+            comunicação com o Encarregado pelo Tratamento de Dados Pessoais:
+          </p>
+          <ul>
+            <li><strong>E-mail:</strong> <a href="mailto:contato@job.eng.br">contato@job.eng.br</a></li>
+            <li><strong>Endereço:</strong> Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812, Tamboré, Santana de Parnaíba — SP, 06460-040</li>
+            <li><strong>Telefone:</strong> +55 (11) 2635-1673</li>
+          </ul>
+          <p style="font-size:12px;color:#9aada4;">/ nome e contato direto do DPO a definir com a empresa</p>
+        </div>
+
+        <div id="s11">
+          <h2>11. Alterações desta Política</h2>
+          <p>
+            Esta Política de Privacidade pode ser atualizada periodicamente. Recomendamos a consulta
+            regular a esta página. A data da última atualização está indicada no topo. Alterações
+            relevantes serão comunicadas pelos canais oficiais da empresa.
+          </p>
+          <p style="margin-top:24px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:13px;">
+            <strong>Termos relacionados:</strong>
+            <a href="termos.html">Termos de Uso</a>.
+          </p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-job-black py-16">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;">
+        <p class="text-gray-400 text-xs font-body leading-relaxed">Infraestrutura, sustentabilidade e tecnologia a serviço das cidades brasileiras.</p>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a></li>
+          <li><a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a></li>
+          <li><a href="carreiras.html" class="hover:text-job-green2 transition-colors">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Legal</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="politica-privacidade.html" class="text-job-green2">Política de Privacidade</a></li>
+          <li><a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li><a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a></li>
+          <li><a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a></li>
+          <li class="leading-relaxed">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP<br>06460-040</li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-gray-600 text-xs font-body">© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</p>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var btn=document.getElementById('mobile-toggle'); var close=document.getElementById('mobile-close'); var drawer=document.getElementById('mobile-drawer');
+    if (!btn||!drawer) return;
+    function open(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+    function shut(){ drawer.classList.remove('open'); document.body.style.overflow=''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+
+  // Active section highlight
+  (function(){
+    var links = document.querySelectorAll('#side-index .nav-link');
+    var sections = document.querySelectorAll('article > div[id]');
+    if (!links.length || !sections.length || !('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var link = document.querySelector('#side-index a[href="#' + e.target.id + '"]');
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(function(s){ obs.observe(s); });
+  })();
+</script>
+
+</body>
+</html>

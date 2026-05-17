@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecojob — Tecnologia Ambiental | JOB Engenharia</title>
+  <meta name="description" content="Ecojob: engenharia de alta performance para gestão de infraestrutura urbana e saneamento. Diagnóstico, monitoramento e operação em ciclo completo." />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; }
+
+    /* ── Swiss section index ── */
+    .swiss-index {
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #00662f;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .swiss-index::before {
+      content: ""; display: inline-block;
+      width: 28px; height: 1px; background: #00662f;
+    }
+
+    /* ── Section rule ── */
+    .section-rule {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5b6b62;
+      border-top: 1px solid rgba(29,29,27,0.12);
+      border-bottom: 1px solid rgba(29,29,27,0.06);
+      background: #fafaf7;
+    }
+    .section-rule .accent { color: #00662f; }
+    .section-rule .bar { height: 1px; background: rgba(29,29,27,0.18); width: 100%; }
+    .section-rule.dark {
+      background: #1d1d1b;
+      border-top-color: rgba(255,255,255,0.10);
+      border-bottom-color: rgba(255,255,255,0.04);
+      color: #8a9a90;
+    }
+    .section-rule.dark .accent { color: #199738; }
+    .section-rule.dark .bar { background: rgba(255,255,255,0.18); }
+    .section-rule.green {
+      background: #00662f;
+      border-top-color: rgba(255,255,255,0.18);
+      border-bottom-color: rgba(255,255,255,0.08);
+      color: #d8f5e3;
+    }
+    .section-rule.green .accent { color: #ffffff; }
+    .section-rule.green .bar { background: rgba(255,255,255,0.28); }
+
+    /* Tile card for items */
+    .eco-tile {
+      width: 56px; height: 56px; background: #00662f;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .eco-tile img {
+      width: 30px; height: 30px; object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .eco-card {
+      border: 1px solid rgba(29,29,27,0.10);
+      padding: 28px 28px 32px;
+      background: #fff;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .eco-card:hover { border-color: #00662f; }
+    .eco-card .eco-num {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.16em;
+      color: #00662f; text-transform: uppercase;
+    }
+    .eco-card h3 {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: 19px; line-height: 1.15; color: #1d1d1b; letter-spacing: -0.005em;
+    }
+    .eco-card p {
+      font-family: 'Franklin Gothic Book', Arial, sans-serif;
+      color: #4a5550; font-size: 14px; line-height: 1.55;
+    }
+
+    /* Dark variant for ecosystem pillars */
+    .eco-card.dark { background: #0f0f0e; border-color: rgba(255,255,255,0.10); }
+    .eco-card.dark:hover { border-color: #199738; }
+    .eco-card.dark h3 { color: #fff; }
+    .eco-card.dark p { color: #c8d3cc; }
+    .eco-card.dark .eco-num { color: #199738; }
+    .eco-card.dark .eco-tile { background: #199738; }
+
+    /* Domain block (large sub-section) */
+    .domain-block {
+      border-top: 1px solid rgba(29,29,27,0.18);
+      padding: 36px 0;
+    }
+    .domain-block .dom-tag {
+      font-family: monospace; font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #00662f;
+    }
+    .domain-block h3 {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(24px, 3vw, 36px); line-height: 1.05;
+      color: #1d1d1b; letter-spacing: -0.015em;
+    }
+    .domain-block .dom-norma {
+      display: inline-block; font-family: monospace; font-size: 10px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #199738;
+      border: 1px solid #199738; padding: 3px 8px; margin-top: 8px;
+    }
+    .domain-block .dom-intro {
+      font-family: 'Franklin Gothic Book', Arial, sans-serif;
+      font-size: 15px; line-height: 1.55; color: #4a5550;
+    }
+    .domain-block dl { display: grid; gap: 20px; }
+    .domain-block dl dt {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: 15px; color: #1d1d1b; letter-spacing: -0.005em;
+      padding-bottom: 4px;
+    }
+    .domain-block dl dd {
+      font-family: 'Franklin Gothic Book', Arial, sans-serif;
+      font-size: 13.5px; line-height: 1.55; color: #4a5550;
+    }
+    .domain-block dl > div {
+      padding-left: 18px; border-left: 2px solid #00662f;
+    }
+
+    /* ── Mobile menu (idêntico) ── */
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+    }
+    .mobile-drawer {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(29,29,27,0.97);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      padding: 96px 32px 32px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+      overflow-y: auto;
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a {
+      color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif;
+      text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px;
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: block; transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer .group-label {
+      color: #199738; font-family: monospace; font-size: 10px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-top: 18px; margin-bottom: 4px;
+    }
+    .mobile-drawer .sublink {
+      font-size: 13px; color: #c0c0c0; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .mobile-close:hover { border-color: #199738; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .max-w-grid { padding-left: 20px; padding-right: 20px; }
+      section.py-24 { padding-top: 64px; padding-bottom: 64px; }
+      section.py-20 { padding-top: 56px; padding-bottom: 56px; }
+      footer.py-16 { padding-top: 48px; padding-bottom: 48px; }
+    }
+    @media (max-width: 640px) {
+      .max-w-grid { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img id="header-logo" src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg id="mobile-toggle-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav id="header-nav" class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <div class="nav-item relative">
+        <a href="servicos.html" class="hover:text-job-green2 transition-colors flex items-center gap-1 cursor-pointer">
+          Serviços
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </a>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="servicos.html#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
+          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
+          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="servicos.html#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
+        </div>
+      </div>
+      <div class="nav-item relative">
+        <button class="text-job-green2 flex items-center gap-1 border-b border-job-green2 pb-0.5">
+          Tecnologias
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
+          <a href="ecojob.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">01</span>Ecojob</a>
+          <a href="tecnologias/rck-3000.html" class="block px-4 py-2.5 text-xs hover:bg-job-green transition-colors"><span class="text-job-green2 font-mono mr-2">02</span>RCK 3000</a>
+        </div>
+      </div>
+      <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="carreiras.html">Carreiras</a>
+    <p class="group-label">Áreas</p>
+    <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
+    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria Urbana</a>
+    <a href="servicos.html#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="servicos.html#ambiental" class="sublink">› Tecnologia Ambiental</a>
+    <p class="group-label">Tecnologias</p>
+    <a href="ecojob.html" class="sublink" style="color:#199738;">› Ecojob</a>
+    <a href="tecnologias/rck-3000.html" class="sublink">› RCK 3000</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;">Contato</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO — Ecojob
+═══════════════════════════════════════════════════ -->
+<section id="hero" class="bg-job-green py-16 lg:py-24 relative overflow-hidden">
+  <img src="img/logo-job-eng-branco.svg" alt="" aria-hidden="true" class="hidden md:block" style="position:absolute;right:48px;top:50%;transform:translateY(-50%);width:min(420px,38vw);height:auto;opacity:0.07;pointer-events:none;z-index:0;">
+
+  <div class="max-w-grid mx-auto px-8 relative" style="z-index:1;">
+    <nav class="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] mb-10" style="color:#a8f0c4;">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <span style="color:rgba(255,255,255,0.4);">/</span>
+      <a href="servicos.html#ambiental" class="hover:text-white transition-colors">Tecnologia Ambiental</a>
+      <span style="color:rgba(255,255,255,0.4);">/</span>
+      <span class="text-white">Ecojob</span>
+    </nav>
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-end">
+      <div class="col-span-12 lg:col-span-7">
+        <div class="inline-flex items-center bg-white px-6 py-4 mb-10" style="box-shadow:0 8px 32px rgba(0,0,0,0.10);">
+          <img src="img/logo-ecojob.jpg" alt="Ecojob" style="height:50px;width:auto;display:block;">
+        </div>
+        <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-6" style="color:#a8f0c4;">04 · Tecnologia Ambiental</p>
+        <h1 class="text-white font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.025em;font-weight:500;">
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Engenharia ambiental</span><br>
+          <span style="font-weight:800;letter-spacing:-0.03em;">de ciclo completo.</span>
+        </h1>
+      </div>
+      <div class="col-span-12 lg:col-span-5">
+        <p class="font-body" style="color:#fff;font-size:16px;line-height:1.65;max-width:46ch;">
+          A <strong style="font-weight:700;">Ecojob</strong> é especializada em engenharia de alta performance
+          para a gestão de infraestrutura urbana e saneamento. Nosso diferencial é
+          a entrega de uma solução de ciclo completo: unimos o diagnóstico técnico,
+          o monitoramento tecnológico de última geração e a zeladoria operacional
+          para garantir máxima eficiência, resiliência urbana e conformidade legal.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats / ancoras -->
+    <div class="mt-14 lg:mt-20 grid grid-cols-2 md:grid-cols-5 gap-px" style="background:rgba(255,255,255,0.18);">
+      <a href="#diagnostica" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">01</p>
+        <p class="text-white text-sm font-sans mt-2">Engenharia diagnóstica</p>
+      </a>
+      <a href="#ecossistema" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">02</p>
+        <p class="text-white text-sm font-sans mt-2">Ecossistema tecnológico</p>
+      </a>
+      <a href="#dominios" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">03</p>
+        <p class="text-white text-sm font-sans mt-2">Domínios de atuação</p>
+      </a>
+      <a href="#gestao" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">04</p>
+        <p class="text-white text-sm font-sans mt-2">Gestão e Planejamento</p>
+      </a>
+      <a href="#prognostico" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em]" style="color:#a8f0c4;">05</p>
+        <p class="text-white text-sm font-sans mt-2">Diagnóstico e Prognóstico</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     01 · ENGENHARIA DIAGNÓSTICA
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">01 / Engenharia diagnóstica</span>
+  <span class="bar"></span>
+  <span>03 metodologias</span>
+</div>
+
+<section id="diagnostica" class="bg-white py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">01 · Validação técnica</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Engenharia<br>
+          <span class="text-job-green">diagnóstica.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
+          A tecnologia é validada por um trabalho rigoroso de engenharia diagnóstica,
+          essencial para a identificação de irregularidades e a saúde do sistema.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(29,29,27,0.10);">
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/magnifying-glass.svg" alt=""></div>
+        <span class="eco-num">/ 01</span>
+        <h3>Varredura e Rastreamento Operacional</h3>
+        <p>Realizamos inspeções técnicas detalhadas para mapear a funcionalidade da rede, identificando gargalos estruturais e pontos de atenção que o monitoramento remoto sinaliza.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/pipe.svg" alt=""></div>
+        <span class="eco-num">/ 02</span>
+        <h3>Ensaios de Fumaça e Corante</h3>
+        <p>Metodologias precisas para a detecção de ligações clandestinas, descartes ilegais e interconexões indevidas (redes cruzadas). O Teste de Fumaça revela falhas de estanqueidade e conexões irregulares, enquanto o Rastreamento com Corantes confirma o nexo hidráulico e o destino final de efluentes.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/drone.svg" alt=""></div>
+        <span class="eco-num">/ 03</span>
+        <h3>Mapeamento Complementar com Drones</h3>
+        <p>Utilizamos drones para vistorias técnicas em locais de difícil acesso, identificação de patologias em canais e suporte à fiscalização, garantindo uma visão 360º de toda a infraestrutura monitorada.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     02 · ECOSSISTEMA TECNOLÓGICO
+═══════════════════════════════════════════════════ -->
+<div class="section-rule dark">
+  <span class="accent">02 / Ecossistema tecnológico</span>
+  <span class="bar"></span>
+  <span>03 pilares principais</span>
+</div>
+
+<section id="ecossistema" class="bg-job-black py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-6" style="color:#199738;">02 · Inteligência integrada</p>
+        <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Soluções inteligentes<br>
+          para <span style="color:#199738;">gestão</span> e monitoramento.
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="font-body" style="color:#c8d3cc;font-size:15px;line-height:1.6;max-width:46ch;">
+          Nossas decisões de engenharia são fundamentadas por um ecossistema
+          tecnológico robusto, estruturado em três pilares principais.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(255,255,255,0.10);">
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/chart.svg" alt=""></div>
+        <span class="eco-num">/ 01</span>
+        <h3>Sensoriamento Avançado e Especializado</h3>
+        <p>Implementamos sensores de alta precisão (nível, qualidade e vazão) para operar em ambientes desafiadores. Além do monitoramento da rede, integramos estações meteorológicas que fornecem dados para correlacionar o clima ao comportamento dos ativos.</p>
+      </article>
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/bars.svg" alt=""></div>
+        <span class="eco-num">/ 02</span>
+        <h3>Conectividade e Comunicação Multicanal</h3>
+        <p>Garantimos a transmissão de dados em tempo real via LoRaWAN, NB-IoT e 5G. Para assegurar a soberania da informação em pontos críticos ou remotos, utilizamos comunicação via satélite, eliminando zonas cegas de monitoramento.</p>
+      </article>
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/business-report.svg" alt=""></div>
+        <span class="eco-num">/ 03</span>
+        <h3>Plataforma de Inteligência (Dashboard)</h3>
+        <p>Nossa interface processa os dados coletados, transformando-os em indicadores de performance (KPIs) e relatórios estratégicos. A plataforma permite uma gestão preditiva, facilitando a tomada de decisão rápida para fiscais e gestores.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     03 · DOMÍNIOS DE ATUAÇÃO
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">03 / Domínios de atuação</span>
+  <span class="bar"></span>
+  <span>04 áreas técnicas</span>
+</div>
+
+<section id="dominios" class="bg-[#fafaf7] py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">03 · Aplicações</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Domínios de<br>
+          <span class="text-job-green">atuação técnica.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
+          Quatro áreas operacionais cobertas com tecnologia, metodologia e
+          conformidade legal — do diagnóstico ao prognóstico.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3.1 Córregos, rios e canais -->
+    <div id="cursos-dagua" class="domain-block">
+      <div class="grid grid-cols-12 gap-6 lg:gap-10">
+        <div class="col-span-12 lg:col-span-4">
+          <p class="dom-tag">3.1</p>
+          <h3 class="mt-3">Monitoramento de córregos, rios e canais</h3>
+          <span class="dom-norma">CONAMA 357/05</span>
+          <p class="dom-intro mt-5">Foco na preservação de ecossistemas e segurança jurídica ambiental.</p>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <dl class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6">
+            <div>
+              <dt>Sondas Multiparamétricas</dt>
+              <dd>Medição em tempo real de parâmetros qualitativos para identificar a "assinatura" da água e detectar descartes irregulares.</dd>
+            </div>
+            <div>
+              <dt>Rastreamento de Origem</dt>
+              <dd>Algoritmos de engenharia para localizar pontos exatos de contaminação em bacias complexas.</dd>
+            </div>
+            <div>
+              <dt>Gestão de Alertas</dt>
+              <dd>Monitoramento de níveis para prevenção de problemas ambientais e suporte a planos de contingência.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 Sistemas de drenagem -->
+    <div id="drenagem" class="domain-block">
+      <div class="grid grid-cols-12 gap-6 lg:gap-10">
+        <div class="col-span-12 lg:col-span-4">
+          <p class="dom-tag">3.2</p>
+          <h3 class="mt-3">Monitoramento de sistemas de drenagem</h3>
+          <p class="dom-intro mt-5">Engenharia de alta performance focada na resiliência urbana, na manutenção da capacidade hidráulica e no combate proativo a pontos de alagamento.</p>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+            <div>
+              <dt>Sensores de Nível IoT</dt>
+              <dd>Monitoramento contínuo e em tempo real da capacidade de vazão em galerias e canais. Através de telemetria avançada, o sistema identifica subidas anômalas de nível, permitindo a mobilização de equipes antes mesmo do início de eventos críticos.</dd>
+            </div>
+            <div>
+              <dt>Engenharia Investigativa</dt>
+              <dd>Aplicação de metodologias de campo para sanar o uso indevido da rede pluvial: Varredura Operacional e Técnica, Testes de Fumaça e Corante, Televisionamento (CCTV Robotizado) para inspeção visual interna de alta definição.</dd>
+            </div>
+            <div class="md:col-span-2">
+              <dt>Gestão Preditiva e Fiscalizatória</dt>
+              <dd>Uso de inteligência de dados para identificar gargalos antes da saturação do sistema. A integração dos testes de campo com o monitoramento IoT gera a materialidade necessária para ações fiscalizatórias e garante que a rede de drenagem seja utilizada exclusivamente para sua finalidade de projeto.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 Sistemas de esgotamento sanitário -->
+    <div id="esgoto" class="domain-block">
+      <div class="grid grid-cols-12 gap-6 lg:gap-10">
+        <div class="col-span-12 lg:col-span-4">
+          <p class="dom-tag">3.3</p>
+          <h3 class="mt-3">Sistemas de esgotamento sanitário</h3>
+          <span class="dom-norma">CONAMA 430/11</span>
+          <p class="dom-intro mt-5">Engenharia aplicada à Separação Absoluta, eficiência operacional e proteção rigorosa da saúde pública e do meio ambiente.</p>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+            <div>
+              <dt>Operação 4.0 e Automação de Limpeza</dt>
+              <dd>Implementação de inteligência de dados para a gestão de ativos. O sistema identifica automaticamente a perda de capacidade de transporte e aciona protocolos de limpeza mecanizada preventiva, garantindo a desobstrução de coletores e elevatórias antes que ocorram extravasamentos ou refluxos.</dd>
+            </div>
+            <div>
+              <dt>Monitoramento de Elevatórias</dt>
+              <dd>Controle contínuo e em tempo real dos níveis em Estações Elevatórias de Esgoto (EEE). Esta tecnologia permite a atuação preditiva para evitar transbordamentos que contaminam as redes pluviais e comprometem diretamente a balneabilidade em regiões costeiras.</dd>
+            </div>
+            <div>
+              <dt>Gestão de Infiltração e Águas Parasitárias</dt>
+              <dd>Diagnóstico especializado para identificar a entrada indevida de águas pluviais ou do lençol freático na rede coletora. O combate a essas águas parasitárias reduz a sobrecarga do sistema e evita o custo desnecessário de bombear e tratar água limpa.</dd>
+            </div>
+            <div>
+              <dt>Eficiência Energética e Operacional</dt>
+              <dd>Monitoramento de performance dos conjuntos motobombas. Através da análise de dados de nível e vazão, otimizamos o ciclo de operação das elevatórias, reduzindo o consumo de energia e evitando falhas críticas por esforço excessivo do equipamento.</dd>
+            </div>
+            <div>
+              <dt>Detecção de I&I (Influxo e Infiltração)</dt>
+              <dd>Utilização de metodologias investigativas (testes de fumaça, corantes e sensores) para localizar conexões cruzadas e pontos de ruptura na estanqueidade da rede.</dd>
+            </div>
+            <div>
+              <dt>Varredura Operacional e Integridade</dt>
+              <dd>Mapeamento funcional e avaliação técnica de coletores e interceptores. Garantimos que o sistema opere conforme os coeficientes de projeto, evitando a contaminação do solo e assegurando que o efluente chegue à estação de tratamento com total segurança.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.4 Operação assistida de ETAs e ETEs -->
+    <div id="etas-etes" class="domain-block" style="border-bottom:1px solid rgba(29,29,27,0.18);">
+      <div class="grid grid-cols-12 gap-6 lg:gap-10">
+        <div class="col-span-12 lg:col-span-4">
+          <p class="dom-tag">3.4</p>
+          <h3 class="mt-3">Operação assistida de ETAs e ETEs</h3>
+          <p class="dom-intro mt-5">Elevamos o desempenho de estações de tratamento através de gestão especializada.</p>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+            <div>
+              <dt>Operação e Conservação</dt>
+              <dd>Gestão direta da rotina operacional, zeladoria das instalações e manutenção preventiva dos ativos para garantir a vida útil dos equipamentos.</dd>
+            </div>
+            <div>
+              <dt>Otimização de Processos</dt>
+              <dd>Ajuste dinâmico da operação conforme a carga real de entrada, assegurando eficiência energética e conformidade com a Resolução CONAMA 430/11.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     04 · GESTÃO E PLANEJAMENTO
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">04 / Gestão e Planejamento</span>
+  <span class="bar"></span>
+  <span>Novo Marco do Saneamento</span>
+</div>
+
+<section id="gestao" class="bg-white py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">04 · Engenharia consultiva</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Gestão e<br>
+          <span class="text-job-green">Planejamento.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
+          Engenharia consultiva para o cumprimento do Novo Marco do Saneamento.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-px" style="background:rgba(29,29,27,0.10);">
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/business-report.svg" alt=""></div>
+        <span class="eco-num">/ 01</span>
+        <h3>Centro de Inteligência da Drenagem (CID)</h3>
+        <p>Plataforma unificada para suporte à tomada de decisão e gestão estratégica de ativos municipais.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/contract.svg" alt=""></div>
+        <span class="eco-num">/ 02</span>
+        <h3>Justiça Fiscal e Ambiental</h3>
+        <p>Materialidade técnica baseada em dados reais para identificação de grandes infratores, auxiliando órgãos municipais na fiscalização e arrecadação.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     05 · DIAGNÓSTICO E PROGNÓSTICO
+═══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="accent">05 / Diagnóstico e Prognóstico</span>
+  <span class="bar"></span>
+  <span>Radiografia técnica</span>
+</div>
+
+<section id="prognostico" class="bg-[#fafaf7] py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="swiss-index mb-6">05 · Otimização operacional</p>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Diagnóstico de sistemas<br>
+          e <span class="text-job-green">prognóstico.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
+          A "radiografia" técnica necessária para investimentos precisos e seguros.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(29,29,27,0.10);">
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/magnifying-glass.svg" alt=""></div>
+        <span class="eco-num">/ 01</span>
+        <h3>Ensaios de Campo Especializados</h3>
+        <p>Realização de Testes de Fumaça e rastreamento com Corantes Biodegradáveis para validação de conectividade e detecção de ligações clandestinas.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/facial.svg" alt=""></div>
+        <span class="eco-num">/ 02</span>
+        <h3>Vídeo Inspeção Robotizada (CCTV)</h3>
+        <p>Diagnóstico estrutural por Métodos Não Destrutivos (MND), identificando fissuras, raízes ou obstruções internas.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/market-share.svg" alt=""></div>
+        <span class="eco-num">/ 03</span>
+        <h3>Prognóstico Estratégico</h3>
+        <p>Modelagem de cenários futuros e simulações hidráulicas para planejar a expansão da rede e garantir a sustentabilidade do sistema sob normas da ABNT.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════════════ -->
+<div class="section-rule dark">
+  <span class="accent">06 / Próximo passo</span>
+  <span class="bar"></span>
+  <span>Resposta em até 1 dia útil</span>
+</div>
+
+<section class="bg-job-black py-20 lg:py-24 relative">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 items-end">
+    <div class="col-span-12 lg:col-span-8">
+      <p class="text-[11px] font-mono uppercase tracking-[0.22em] mb-6" style="color:#199738;">06 · Vamos conversar</p>
+      <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
+        Solicite um<br>
+        diagnóstico Ecojob<br>
+        <span class="italic font-light" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;color:#199738;">para sua operação.</span>
+      </h2>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col gap-3">
+      <a href="contato.html" class="group inline-flex items-center justify-between bg-job-green2 hover:bg-job-green text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>Solicitar proposta</span>
+        <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+      </a>
+      <a href="tel:+551126351673" class="group inline-flex items-center justify-between border border-white/60 text-white hover:bg-white hover:text-job-green px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>+55 (11) 2635-1673</span>
+        <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Faixa verde -->
+<div aria-hidden="true" style="height:6px;background:#00662f;"></div>
+
+<!-- FOOTER -->
+<footer class="bg-job-black py-16 relative">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;height:auto;">
+        <p class="text-gray-300 text-sm font-sans leading-snug" style="letter-spacing:-0.005em;">
+          Engenharia que move<br><span class="text-job-green2" style="font-weight:700;">o futuro.</span>
+        </p>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a></li>
+          <li><a href="ecojob.html" class="text-job-green2">Ecojob</a></li>
+          <li><a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">RCK 3000</a></li>
+          <li><a href="carreiras.html" class="hover:text-job-green2 transition-colors">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Serviços</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
+          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
+          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Manutenção de Prédios Públicos e Privados</a></li>
+          <li><a href="servicos.html#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li><a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a></li>
+          <li><a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a></li>
+          <li class="leading-relaxed">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP<br>06460-040</li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+        <span>© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Política de Privacidade</a>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Header scroll */
+  const header = document.getElementById('site-header');
+  const headerLogo = document.getElementById('header-logo');
+  const headerNav = document.getElementById('header-nav');
+  const mobileIcon = document.getElementById('mobile-toggle-icon');
+  function updateHeader() {
+    if (window.scrollY > 60) {
+      header.style.background = 'rgba(255,255,255,0.78)';
+      header.style.backdropFilter = 'saturate(160%) blur(14px)';
+      header.style.webkitBackdropFilter = 'saturate(160%) blur(14px)';
+      header.style.boxShadow = '0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)';
+    } else {
+      header.style.background = '#ffffff';
+      header.style.backdropFilter = 'none';
+      header.style.webkitBackdropFilter = 'none';
+      header.style.boxShadow = 'none';
+    }
+  }
+  window.addEventListener('scroll', updateHeader); updateHeader();
+
+  /* Mobile drawer */
+  (function() {
+    var btn = document.getElementById('mobile-toggle');
+    var close = document.getElementById('mobile-close');
+    var drawer = document.getElementById('mobile-drawer');
+    if (!btn || !drawer) return;
+    function open() { drawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function shut() { drawer.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+
+  /* Footer year */
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+
+  /* Reveal */
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(function(el){ el.classList.add('is-visible'); }); return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ obs.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

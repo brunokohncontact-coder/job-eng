@@ -1,0 +1,20 @@
+﻿# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Claude Code local
+.claude/
+**/.claude/
+
+# Node
+node_modules/
+package-lock.json
+
+# Build artifacts
+dist/
+.tmp/
+
+# Backups
+*backup*.html

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensagem recebida — JOB Engenharia</title>
+  <meta name="description" content="Obrigado pelo contato. Sua mensagem foi recebida pela equipe da JOB Engenharia." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+
+    @keyframes drawTick {
+      from { stroke-dashoffset: 36; }
+      to { stroke-dashoffset: 0; }
+    }
+    .tick-svg path {
+      stroke-dasharray: 36;
+      stroke-dashoffset: 36;
+      animation: drawTick 0.9s cubic-bezier(0.2,0.8,0.2,1) 0.3s forwards;
+    }
+
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) { .nav-desktop { display: none !important; } .menu-mobile-btn { display: inline-flex; } }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+    .mobile-close:hover { border-color: #199738; }
+
+    @media (max-width: 900px) { .max-w-grid { padding-left: 20px; padding-right: 20px; } }
+    @media (max-width: 640px) { .max-w-grid { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a>
+      <a href="tecnologias/rck-3000.html" class="hover:text-job-green2 transition-colors">Tecnologias</a>
+      <a href="contato.html" class="bg-job-black hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="tecnologias/rck-3000.html">Tecnologias</a>
+    <a href="carreiras.html">Carreiras</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;color:#fff;">Contato</a>
+  </nav>
+</div>
+
+<!-- CONFIRMAÇÃO -->
+<main class="flex items-center" style="min-height:calc(100vh - 80px - 120px);">
+  <div class="max-w-grid mx-auto px-8 w-full grid grid-cols-12 gap-6 lg:gap-10 py-16 lg:py-24">
+
+    <!-- Coluna texto (8 cols) -->
+    <div class="col-span-12 lg:col-span-8">
+      <p class="text-[11px] font-mono uppercase tracking-[0.22em] text-job-green inline-flex items-center gap-3 mb-6">
+        <span style="display:inline-block;width:28px;height:1px;background:#00662f;"></span>
+        Status · 200 OK
+      </p>
+      <h1 class="text-job-black font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
+        Mensagem<br>
+        <span class="text-job-green">recebida.</span><br>
+        <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">Obrigado.</span>
+      </h1>
+
+      <p class="text-gray-600 font-body mt-10 mb-12" style="font-size:16px;line-height:1.6;max-width:54ch;">
+        Sua solicitação foi recebida pela nossa equipe técnica. Entraremos em contato
+        em até <strong class="text-job-black font-sans">1 dia útil</strong> pelo telefone ou e-mail informado.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md">
+        <a href="index.html" class="group inline-flex items-center justify-between bg-job-black hover:bg-job-green text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+          <span>Voltar à home</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+        </a>
+        <a href="servicos.html" class="group inline-flex items-center justify-between border border-job-black text-job-black hover:bg-job-black hover:text-white px-5 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+          <span>Conhecer serviços</span>
+          <span class="font-mono ml-4 transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Coluna lateral (4 cols) -->
+    <div class="col-span-12 lg:col-span-4 lg:pt-2 flex flex-col justify-end">
+      <!-- Tick mark Swiss -->
+      <div class="mb-10 lg:mb-12">
+        <svg class="tick-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#199738" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 12 l6 6 l12 -12"></path>
+        </svg>
+      </div>
+
+      <dl class="border-t border-gray-300 pt-4 grid grid-cols-2 gap-y-3 text-sm mb-10">
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Resposta</dt>
+        <dd class="font-sans text-job-black">≤ 1 dia útil</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Atendimento</dt>
+        <dd class="font-sans text-job-black">Seg–Sex · 9–18h</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Protocolo</dt>
+        <dd class="font-mono text-job-black tabular-nums" id="proto">—</dd>
+      </dl>
+
+      <div class="border-t border-gray-300 pt-6">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-3">Atendimento imediato</p>
+        <a href="tel:+551126351673" class="block text-job-black font-sans hover:text-job-green transition-colors" style="font-size:20px;letter-spacing:-0.005em;">
+          +55 (11) 2635-1673
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER COMPACTO -->
+<footer class="bg-job-black py-10 mt-auto">
+  <div class="max-w-grid mx-auto px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+      <div class="flex items-center gap-4">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" style="width:90px;height:auto;">
+        <p class="text-gray-600 text-xs font-body">© <span id="footer-year">2026</span> JOB Engenharia.</p>
+      </div>
+      <div class="flex gap-3 text-gray-600 text-xs font-body">
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Privacidade</a>
+        <span class="text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos</a>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var btn=document.getElementById('mobile-toggle'); var close=document.getElementById('mobile-close'); var drawer=document.getElementById('mobile-drawer');
+    if (!btn||!drawer) return;
+    function open(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+    function shut(){ drawer.classList.remove('open'); document.body.style.overflow=''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+  /* Pseudo-protocolo */
+  (function(){
+    var p = document.getElementById('proto');
+    if (!p) return;
+    var d = new Date();
+    var pad = function(n){ return String(n).padStart(2,'0'); };
+    p.textContent = '#' + d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + '-' + pad(d.getHours()) + pad(d.getMinutes());
+  })();
+</script>
+
+</body>
+</html>
