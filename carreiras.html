@@ -98,8 +98,9 @@
     @media (max-width: 900px) { .nav-desktop { display: none !important; } .menu-mobile-btn { display: inline-flex; } }
     .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
     .mobile-drawer.open { transform: translateX(0); }
-    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
     .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer a[href$="contato.html"], .nav-desktop a[href$="contato.html"] { text-transform: uppercase; }
     .mobile-drawer .group-label { color: #199738; font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 18px; margin-bottom: 4px; }
     .mobile-drawer .sublink { font-size: 13px; color: #c0c0c0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
@@ -120,7 +121,7 @@
         <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
     </button>
-    <nav class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans uppercase tracking-wide">
+    <nav class="nav-desktop flex items-center gap-8 text-job-black text-sm font-sans tracking-wide">
       <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
       <div class="nav-item relative">
         <a href="servicos.html" class="hover:text-job-green2 transition-colors flex items-center gap-1 cursor-pointer">
@@ -371,7 +372,7 @@
         <p class="text-gray-400 text-xs font-body leading-relaxed">Infraestrutura, sustentabilidade e tecnologia a serviço das cidades brasileiras.</p>
       </div>
       <div>
-        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Navegação</p>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Navegação</p>
         <ul class="space-y-2 text-gray-400 text-sm font-body">
           <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
           <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
@@ -382,7 +383,7 @@
         </ul>
       </div>
       <div>
-        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Serviços</p>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Serviços</p>
         <ul class="space-y-2 text-gray-400 text-sm font-body">
           <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
           <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
@@ -391,7 +392,7 @@
         </ul>
       </div>
       <div>
-        <p class="text-white text-xs font-sans uppercase tracking-widest mb-5">Contato</p>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Contato</p>
         <ul class="space-y-3 text-gray-400 text-sm font-body">
           <li><a href="tel:+551126351673" class="hover:text-job-green2 transition-colors">+55 (11) 2635-1673</a></li>
           <li><a href="mailto:contato@job.eng.br" class="hover:text-job-green2 transition-colors">contato@job.eng.br</a></li>
