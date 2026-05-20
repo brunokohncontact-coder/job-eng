@@ -9,5 +9,5 @@ Stack: HTML estático + Tailwind (via CDN) + GSAP/ScrollTrigger. Tema WordPress 
 - `sobre.html` — Sobre a Empresa
 - `servicos.html` — Serviços (4 áreas)
 - `ecojob.html` — Tecnologia Ambiental (Ecojob)
-- `tecnologias/rck-3000.html` — Equipamento Reciclador RCK 3000
+- `tecnologias/ej-01.html`..`ej-04.html` — Estudos EJ (análises quali/quantitativas)
 - `carreiras.html`, `contato.html`, `obrigado.html`, `politica-privacidade.html`, `termos.html`, `404.html`
