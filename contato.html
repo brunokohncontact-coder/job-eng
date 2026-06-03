@@ -53,7 +53,7 @@
     /* Contact info row (hairline) */
     .info-row {
       display: grid;
-      grid-template-columns: 64px 1fr auto;
+      grid-template-columns: 1fr auto;
       gap: 24px; align-items: center;
       padding: 22px 0;
       border-bottom: 1px solid rgba(29,29,27,0.10);
@@ -66,8 +66,8 @@
     .info-row .info-cta { font-family: monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #5b6b62; transition: color 0.2s, transform 0.2s; }
     .info-row a:hover .info-cta, a.info-row:hover .info-cta { color: #199738; transform: translateX(4px); }
     @media (max-width: 700px) {
-      .info-row { grid-template-columns: 48px 1fr; gap: 16px; padding: 18px 0; }
-      .info-row .info-cta { grid-column: 2 / -1; justify-self: start; padding-top: 6px; }
+      .info-row { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+      .info-row .info-cta { grid-column: 1 / -1; justify-self: start; padding-top: 6px; }
     }
 
     /* Form */
