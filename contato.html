@@ -315,30 +315,30 @@
     <form action="obrigado.html" method="POST" class="col-span-12 lg:col-span-7 bg-white p-8 sm:p-10 border-t-2 border-job-black">
       <div class="flex items-baseline justify-between mb-8 pb-4 border-b border-gray-200">
         <p class="font-sans text-job-black" style="font-size:14px;letter-spacing:0.02em;">Formulário de proposta</p>
-        <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">/ 06 campos</p>
+        
       </div>
 
       <div style="display:flex;flex-direction:column;gap:20px;">
         <div>
-          <label class="form-label" for="nome"><span><span class="num">01</span> Nome completo</span><span class="req">obrigatório</span></label>
+          <label class="form-label" for="nome"><span>Nome completo</span><span class="req">obrigatório</span></label>
           <input id="nome" name="nome" type="text" class="form-input" placeholder="Seu nome completo" required />
         </div>
         <div>
-          <label class="form-label" for="empresa"><span><span class="num">02</span> Município / Empresa</span><span class="req">obrigatório</span></label>
+          <label class="form-label" for="empresa"><span>Município / Empresa</span><span class="req">obrigatório</span></label>
           <input id="empresa" name="empresa" type="text" class="form-input" placeholder="Nome do município ou empresa" required />
         </div>
         <div class="contato-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
           <div>
-            <label class="form-label" for="telefone"><span><span class="num">03</span> Telefone</span><span class="req">obrigatório</span></label>
+            <label class="form-label" for="telefone"><span>Telefone</span><span class="req">obrigatório</span></label>
             <input id="telefone" name="telefone" type="tel" class="form-input" placeholder="(00) 00000-0000" required />
           </div>
           <div>
-            <label class="form-label" for="email"><span><span class="num">04</span> E-mail</span><span class="req">obrigatório</span></label>
+            <label class="form-label" for="email"><span>E-mail</span><span class="req">obrigatório</span></label>
             <input id="email" name="email" type="email" class="form-input" placeholder="seu@email.com.br" required />
           </div>
         </div>
         <div>
-          <label class="form-label" for="area"><span><span class="num">05</span> Área de interesse</span><span style="color:#9aa6a0;">opcional</span></label>
+          <label class="form-label" for="area"><span>Área de interesse</span><span style="color:#9aa6a0;">opcional</span></label>
           <select id="area" name="area" class="form-select">
             <option value="">Selecione uma área</option>
             <option value="infraestrutura">Infraestrutura Urbana</option>
@@ -349,7 +349,7 @@
           </select>
         </div>
         <div>
-          <label class="form-label" for="mensagem"><span><span class="num">06</span> Mensagem</span><span style="color:#9aa6a0;">opcional</span></label>
+          <label class="form-label" for="mensagem"><span>Mensagem</span><span style="color:#9aa6a0;">opcional</span></label>
           <textarea id="mensagem" name="mensagem" class="form-textarea" rows="4" placeholder="Descreva brevemente sua necessidade ou projeto"></textarea>
         </div>
 
