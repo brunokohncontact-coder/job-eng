@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serviços — JOB Engenharia</title>
-  <meta name="description" content="Quatro áreas de atuação integradas: Infraestrutura, Zeladoria Urbana, Manutenção Predial e Tecnologia Ambiental." />
+  <meta name="description" content="Quatro áreas de atuação integradas: Infraestrutura, Zeladoria e Manutenção de Ativos, Engenharia Predial e Tecnologia Ambiental." />
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="apple-touch-icon" href="img/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -132,6 +132,12 @@
     .svc-row.dark .svc-cta { color: #c8d3cc; border-color: rgba(255,255,255,0.20); }
     .svc-row.dark:hover .svc-cta { color: #fff; border-color: #fff; }
 
+    /* Linha compacta (sem descrição) + rótulo de subcategoria */
+    .svc-row.compact { grid-template-columns: 72px 1fr; }
+    .svc-subcat { display: flex; align-items: center; gap: 16px; margin: 4px 0 6px; }
+    .svc-subcat .lbl { font-family: monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #00662f; white-space: nowrap; }
+    .svc-subcat .rule { height: 1px; flex: 1; background: rgba(29,29,27,0.12); }
+
     @media (max-width: 900px) {
       .svc-row { grid-template-columns: 56px 1fr; gap: 14px 18px; padding: 22px 0; }
       .svc-row > .svc-list-cell { grid-column: 2 / -1; }
@@ -250,8 +256,8 @@
         </a>
         <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
           <a href="#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
-          <a href="#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
-          <a href="#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria e Manutenção de Ativos</a>
+          <a href="#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Engenharia Predial</a>
           <a href="#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
         </div>
       </div>
@@ -277,8 +283,8 @@
     <a href="#">Canal de Denúncia</a>
     <p class="group-label">Áreas</p>
     <a href="#infraestrutura" class="sublink">› Infraestrutura</a>
-    <a href="#zeladoria" class="sublink">› Zeladoria Urbana</a>
-    <a href="#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="#zeladoria" class="sublink">› Zeladoria e Manutenção de Ativos</a>
+    <a href="#predial" class="sublink">› Engenharia Predial</a>
     <a href="#ambiental" class="sublink">› Tecnologia Ambiental</a>
     <a href="ecojob.html">Ecojob</a>
     <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;">Contato</a>
@@ -301,18 +307,10 @@
 
       
       <h1 class="text-job-black font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
-        Áreas de serviço,<br>
-        uma <span class="text-job-green">engenharia</span>,<br>
+        Diversas frentes,<br>
+        uma <span class="text-job-green">engenharia</span><br>
         <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">que entrega soluções.</span>
       </h1>
-    </div>
-
-    <!-- Meta lateral (4 cols) -->
-    <div class="col-span-12 lg:col-span-4 flex flex-col justify-end pt-6 lg:pt-0">
-      <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:38ch;">
-        Soluções integradas em infraestrutura, zeladoria, manutenção predial
-        e tecnologia ambiental — com equipes próprias e métodos auditáveis.
-      </p>
     </div>
   </div>
 </section>
@@ -325,10 +323,10 @@
         Infraestrutura
       </a>
       <a href="#zeladoria" data-tab="zeladoria" class="tab-btn">
-        Zeladoria Urbana
+        Zeladoria e Manutenção de Ativos
       </a>
       <a href="#predial" data-tab="predial" class="tab-btn">
-        Manutenção de Prédios
+        Engenharia Predial
       </a>
       <a href="#ambiental" data-tab="ambiental" class="tab-btn">
         Tecnologia Ambiental
@@ -349,74 +347,63 @@
       <div class="col-span-12 lg:col-span-7">
         
         <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Infraestrutura<br>
-          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">urbana e rodoviária.</span>
+          Infraestrutura de mobilidade,<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">recursos hídricos e saneamento.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
-          Entregamos soluções completas em infraestrutura, desde a implantação até
-          a recuperação e manutenção de ativos, garantindo durabilidade, segurança
-          e eficiência ao longo de todo o ciclo de vida das obras.
+          Atuamos no desenvolvimento e aprimoramento de sistemas e ativos de
+          infraestrutura, contribuindo para a mobilidade, a gestão dos recursos
+          hídricos e a universalização do saneamento por meio de soluções
+          sustentáveis e de alto desempenho.
         </p>
       </div>
     </div>
 
     <div class="reveal">
-      <div class="svc-row">
+      <!-- Subcategoria · Mobilidade -->
+      <div class="svc-subcat"><span class="lbl">Mobilidade</span><span class="rule"></span></div>
+
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/road.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Rodovias</h3>
           <p class="svc-meta">Mobilidade · Segurança</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Soluções em rodovias voltadas à mobilidade, segurança e eficiência operacional.</p>
       </div>
 
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/road-2.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Vias vicinais</h3>
           <p class="svc-meta">Estradas rurais · Acesso municipal</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Atuamos em vias vicinais com soluções que promovem mobilidade, segurança e qualidade.</p>
       </div>
 
-      <div class="svc-row">
-        <span class="svc-num">
-          <span class="svc-tile"><img src="icones/tunnel.svg" alt=""></span>
-          
-        </span>
-        <div>
-          <h3 class="svc-title">Túneis</h3>
-          <p class="svc-meta">Obras · Intervenções</p>
-        </div>
-        <p class="svc-list svc-list-cell font-body">Executamos obras e intervenções em túneis, com soluções técnicas que asseguram desempenho e confiabilidade operacional.</p>
-      </div>
-
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/bridge.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Pontes e viadutos</h3>
-          <p class="svc-meta">Construção · Recuperação estrutural</p>
+          <p class="svc-meta">Construção · Recuperação e reforço estrutural · Revitalização</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Realizamos desde a construção até a recuperação estrutural, aumentando a vida útil e garantindo a integridade das estruturas.</p>
       </div>
+
+      <!-- Subcategoria · Pavimentação -->
+      <div class="svc-subcat" style="margin-top:20px;"><span class="lbl">Pavimentação</span><span class="rule"></span></div>
 
       <!-- Linha em destaque (RAP) — preenche a coluna inteira -->
       <div class="grid grid-cols-12 gap-0 mt-2 mb-2 border-y-2 border-job-green">
         <div class="col-span-12 lg:col-span-7 bg-job-black text-white p-8 lg:p-10">
           
           <h3 class="font-sans mb-4" style="font-size:clamp(28px,3vw,40px);line-height:0.98;letter-spacing:-0.02em;">
-            Pavimentação<br>com Usina Móvel <span style="color:#199738;">RAP</span>
+Usina Móvel <span style="color:#199738;">RAP</span>
           </h3>
           <p class="text-gray-400 font-body mb-6" style="font-size:14px;line-height:1.55;max-width:48ch;">
             Nosso grande diferencial é a utilização de usina móvel de RAP
@@ -444,28 +431,30 @@
         </div>
       </div>
 
-      <div class="svc-row">
+      <!-- Subcategoria · Saneamento -->
+      <div class="svc-subcat" style="margin-top:20px;"><span class="lbl">Saneamento</span><span class="rule"></span></div>
+
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/water-system.svg" alt=""></span>
-          
         </span>
         <div>
-          <h3 class="svc-title">Saneamento</h3>
-          <p class="svc-meta">Redes de água · Esgoto</p>
+          <p class="svc-meta" style="margin-top:0;">Redes de água · Esgoto</p>
+          <p class="svc-list font-body" style="margin-top:8px;max-width:62ch;">Desenvolvemos soluções de saneamento voltadas à implantação e aprimoramento de redes de água e esgoto, combinando engenharia, tecnologia e expertise operacional para fortalecer a infraestrutura e ampliar a eficiência dos sistemas.</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Oferecemos soluções completas em saneamento, atuando na implantação, conservação e manutenção preventiva e corretiva de redes de água e esgoto, com utilização de tecnologias e equipamentos especializados, como hidrojateamento, contribuindo diretamente para a eficiência urbana e a saúde pública.</p>
       </div>
 
-      <div class="svc-row">
+      <!-- Subcategoria · Drenagem -->
+      <div class="svc-subcat" style="margin-top:20px;"><span class="lbl">Drenagem</span><span class="rule"></span></div>
+
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/hydroelectric.svg" alt=""></span>
-          
         </span>
         <div>
-          <h3 class="svc-title">Drenagem</h3>
-          <p class="svc-meta">Águas pluviais · Prevenção de alagamentos</p>
+          <p class="svc-meta" style="margin-top:0;">Águas pluviais · Prevenção de alagamentos</p>
+          <p class="svc-list font-body" style="margin-top:8px;max-width:62ch;">Atuamos na implantação e modernização de sistemas de drenagem, promovendo o adequado escoamento das águas pluviais e o desempenho da infraestrutura urbana.</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Desenvolvemos soluções eficientes em drenagem urbana para o escoamento de águas pluviais, prevenindo alagamentos, preservando a infraestrutura e promovendo maior segurança urbana.</p>
       </div>
     </div>
 
@@ -484,74 +473,63 @@
       <div class="col-span-12 lg:col-span-7">
         
         <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Zeladoria<br>
-          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">para a cidade limpa.</span>
+          Zeladoria e<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">manutenção de ativos.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
-          Cuidar da cidade é cuidar das pessoas. Nossos serviços de zeladoria urbana
-          garantem ambientes mais limpos, organizados e seguros, promovendo qualidade
-          de vida e valorização dos espaços públicos.
+          Atuamos na conservação e manutenção contínua dos ambientes atendidos,
+          promovendo qualidade, funcionalidade e bem-estar no dia a dia.
         </p>
       </div>
     </div>
 
     <div class="reveal">
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/clean-city.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Varrição e limpeza urbana</h3>
           <p class="svc-meta">Alto padrão de eficiência</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Realizamos serviços de varrição e limpeza urbana com excelência operacional, promovendo conservação, cuidado contínuo e valorização dos espaços urbanos.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
-          <span class="svc-tile"><img src="icones/trash-compactor.svg" alt=""></span>
-          
+          <span class="svc-tile"><img src="icones/sewer.svg" alt=""></span>
         </span>
         <div>
-          <h3 class="svc-title">Coleta e tratamento de resíduos</h3>
-          <p class="svc-meta">Melhores práticas ambientais</p>
+          <h3 class="svc-title">Manutenção preventiva e corretiva em redes de esgoto</h3>
+          <p class="svc-meta">Prevenção de entupimentos e extravasamentos · Tecnologia de ponta</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Atuamos na coleta e tratamento de resíduos, sempre alinhados às melhores práticas ambientais.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/desobstrucao.svg" alt=""></span>
-          
         </span>
         <div>
-          <h3 class="svc-title">Desobstrução de galerias e córregos</h3>
-          <p class="svc-meta">Prevenção de alagamentos</p>
+          <h3 class="svc-title">Manutenção preventiva e corretiva em galerias de águas pluviais</h3>
+          <p class="svc-meta">Escoamento correto das águas da chuva · Prevenção de alagamentos</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Atuamos na desobstrução de galerias e córregos com foco na eficiência do escoamento pluvial, prevenção de alagamentos e conservação dos sistemas urbanos.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/road-roller.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Manutenção de vias públicas</h3>
           <p class="svc-meta">Mobilidade · Segurança</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Também realizamos a manutenção de vias públicas, contribuindo para a mobilidade e segurança.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/green-space.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Áreas verdes</h3>
           <p class="svc-meta">Conservação · Preservação ambiental</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Realizamos a conservação de áreas verdes por meio de serviços especializados de manutenção e cuidado contínuo, contribuindo para a preservação ambiental e o bem-estar da população.</p>
       </div>
     </div>
 
@@ -569,64 +547,47 @@
     <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-16">
       <div class="col-span-12 lg:col-span-7">
         
-        <h2 class="text-job-black font-sans" style="font-size:clamp(1.8rem,3.6vw,3rem);line-height:1;letter-spacing:-0.02em;">
-          Manutenção de<br>
-          Prédios <span class="text-job-green">Públicos</span><br>
-          e <span class="text-job-green">Privados.</span>
+        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Engenharia<br>
+          <span class="text-job-green">predial.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:46ch;">
-          Mais do que manter, nós valorizamos patrimônios. Oferecemos soluções
-          completas para conservação, modernização e melhoria contínua de edificações.
+          Atuamos na execução de serviços de engenharia predial que promovem a
+          adequação, modernização e valorização das edificações, combinando
+          qualidade técnica, segurança e eficiência operacional.
         </p>
       </div>
     </div>
 
     <div class="reveal">
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/maintenance.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Reformas e ampliações</h3>
           <p class="svc-meta">Adaptação · Eficiência · Qualidade</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Realizamos reformas e ampliações, adaptando espaços com eficiência e qualidade.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/maintenance-2.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Manutenção predial geral</h3>
           <p class="svc-meta">Preventiva · Corretiva</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Atuamos de forma preventiva e corretiva, assegurando o pleno funcionamento das instalações e prolongando a vida útil das estruturas.</p>
       </div>
-      <div class="svc-row">
+      <div class="svc-row compact">
         <span class="svc-num">
           <span class="svc-tile"><img src="icones/setting.svg" alt=""></span>
-          
         </span>
         <div>
           <h3 class="svc-title">Modernização de sistemas elétricos e hidráulicos</h3>
           <p class="svc-meta">Segurança · Economia · Normas técnicas</p>
         </div>
-        <p class="svc-list svc-list-cell font-body">Executamos a modernização de sistemas elétricos e hidráulicos, garantindo segurança, economia e conformidade com normas técnicas.</p>
-      </div>
-      <div class="svc-row">
-        <span class="svc-num">
-          <span class="svc-tile"><img src="icones/facial.svg" alt=""></span>
-          
-        </span>
-        <div>
-          <h3 class="svc-title">Automação predial</h3>
-          <p class="svc-meta">Inteligência · Controle · Eficiência</p>
-        </div>
-        <p class="svc-list svc-list-cell font-body">Com automação predial, levamos mais inteligência e controle às operações, aumentando a eficiência e reduzindo custos.</p>
       </div>
     </div>
 
@@ -670,7 +631,7 @@
     <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.18);">
       <a href="ecojob.html#cursos-dagua" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
         
-        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Monitoramento de córregos, rios e canais</h3>
+        <h3 class="text-white font-sans mb-2" style="font-size:17px;line-height:1.15;letter-spacing:-0.01em;">Monitoramento de córregos, rios, canais e balneabilidade</h3>
         <p class="font-body text-[12px]" style="color:#d8f5e3;line-height:1.45;">CONAMA 357/05 · Sondas multiparamétricas</p>
       </a>
       <a href="ecojob.html#drenagem" class="block p-6 lg:p-7 transition-colors" style="background:#00662f;">
@@ -767,8 +728,8 @@
         <p class="text-white text-xs font-sans tracking-widest mb-5">Serviços</p>
         <ul class="space-y-2 text-gray-400 text-sm font-body">
           <li><a href="#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
-          <li><a href="#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
-          <li><a href="#predial" class="hover:text-job-green2 transition-colors">Manutenção de Prédios Públicos e Privados</a></li>
+          <li><a href="#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria e Manutenção de Ativos</a></li>
+          <li><a href="#predial" class="hover:text-job-green2 transition-colors">Engenharia Predial</a></li>
           <li><a href="#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
         </ul>
       </div>

@@ -411,6 +411,19 @@
     @media (max-width: 480px) {
       .hero-cta a { width: 100%; text-align: center; }
     }
+
+    /* ── Mosaico · Áreas de atuação ── */
+    .mosaic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    @media (min-width: 768px) { .mosaic-grid { grid-template-columns: repeat(3, 1fr); } }
+    .mosaic-tile { position: relative; display: block; overflow: hidden; background: #0e0e0d; aspect-ratio: 4 / 3; }
+    .mosaic-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1); }
+    .mosaic-tile:hover img { transform: scale(1.05); }
+    .mosaic-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,0.74) 100%); pointer-events: none; }
+    .mosaic-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px; }
+    .mosaic-cap b { font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif; font-weight: 500; color: #fff; font-size: 16px; letter-spacing: -0.005em; line-height: 1.12; }
+    .mosaic-cap i { font-family: monospace; font-style: normal; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #a8f0c4; }
+    .mosaic-arrow { position: absolute; top: 14px; right: 16px; z-index: 2; color: #fff; opacity: 0; transform: translateX(-4px); transition: opacity 0.25s, transform 0.25s; font-family: monospace; font-size: 16px; }
+    .mosaic-tile:hover .mosaic-arrow { opacity: 1; transform: translateX(0); }
   </style>
 </head>
 <body class="font-sans text-job-black">
@@ -450,8 +463,8 @@
         </a>
         <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-56 shadow-xl py-2 z-50 text-white">
           <a href="servicos.html#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
-          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria Urbana</a>
-          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Manutenção de Prédios</a>
+          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria e Manutenção de Ativos</a>
+          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Engenharia Predial</a>
           <a href="servicos.html#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
         </div>
       </div>
@@ -484,8 +497,8 @@
     <a href="#">Canal de Denúncia</a>
     <p class="group-label">Áreas</p>
     <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
-    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria Urbana</a>
-    <a href="servicos.html#predial" class="sublink">› Manutenção de Prédios</a>
+    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria e Manutenção de Ativos</a>
+    <a href="servicos.html#predial" class="sublink">› Engenharia Predial</a>
     <a href="servicos.html#ambiental" class="sublink">› Tecnologia Ambiental</a>
     <a href="ecojob.html">Ecojob</a>
     <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;">Contato</a>
@@ -514,8 +527,8 @@
       <!-- Bottom: subtítulo + CTAs num grid -->
       <div id="hero-sub-block" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-200">
         <p id="hero-sub" class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:42ch;">
-          Soluções inteligentes em infraestrutura urbana, zeladoria, manutenção predial
-          e tecnologia ambiental, conectando eficiência, inovação e sustentabilidade.
+          Soluções de engenharia que transformam desafios operacionais
+          em resultados duradouros.
         </p>
         <div id="hero-ctas" class="hero-cta flex flex-col gap-3">
           <a href="servicos.html"
@@ -593,7 +606,7 @@
       <div class="col-span-12 lg:col-span-7">
         
         <h2 class="section-title text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.75rem);line-height:1;letter-spacing:-0.02em;">
-          Áreas de <span class="text-job-green">serviço</span>,<br>
+          Diversas <span class="text-job-green">frentes</span>,<br>
           uma engenharia<br>
           <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">que entrega soluções.</span>
         </h2>
@@ -623,7 +636,7 @@
         </div>
         <ul class="svc-list svc-list-cell font-body">
           <li>Obras e recuperação estrutural</li>
-          <li>Rodovias, túneis e viadutos</li>
+          <li>Rodovias, vias vicinais e pontes</li>
           <li>Pavimentação — Usina Móvel RAP</li>
           <li>Saneamento e drenagem</li>
         </ul>
@@ -635,13 +648,13 @@
           <span class="svc-tile"><img src="icones/clean-city.svg" alt=""></span>
           </span>
         <div>
-          <h3 class="svc-title">Zeladoria Urbana</h3>
-          <p class="svc-meta">Limpeza · Resíduos · Áreas verdes</p>
+          <h3 class="svc-title">Zeladoria e Manutenção de Ativos</h3>
+          <p class="svc-meta">Limpeza · Redes · Áreas verdes</p>
         </div>
         <ul class="svc-list svc-list-cell font-body">
           <li>Varrição e limpeza urbana</li>
-          <li>Coleta e tratamento de resíduos</li>
-          <li>Desobstrução de galerias e córregos</li>
+          <li>Manutenção de redes de esgoto</li>
+          <li>Manutenção de galerias de águas pluviais</li>
           <li>Manutenção de vias públicas</li>
           <li>Conservação de áreas verdes</li>
         </ul>
@@ -653,13 +666,12 @@
           <span class="svc-tile"><img src="icones/maintenance.svg" alt=""></span>
           </span>
         <div>
-          <h3 class="svc-title">Manutenção de Prédios Públicos e Privados</h3>
-          <p class="svc-meta">Reforma · Sistemas · Automação</p>
+          <h3 class="svc-title">Engenharia Predial</h3>
+          <p class="svc-meta">Reforma · Sistemas · Manutenção</p>
         </div>
         <ul class="svc-list svc-list-cell font-body">
           <li>Reformas e ampliações</li>
           <li>Sistemas elétricos e hidráulicos</li>
-          <li>Automação predial</li>
           <li>Manutenção geral programada</li>
         </ul>
         <span class="svc-cta">Ver área →</span>
@@ -674,7 +686,7 @@
           <p class="svc-meta">Monitoramento · ETA / ETE · Diagnóstico</p>
         </div>
         <ul class="svc-list svc-list-cell font-body">
-          <li>Monitoramento de córregos, rios e canais</li>
+          <li>Monitoramento de córregos, rios, canais e balneabilidade</li>
           <li>Monitoramento de sistemas de drenagem</li>
           <li>Sistemas de esgotamento sanitário</li>
           <li>Operação assistida de ETAs e ETEs</li>
@@ -683,6 +695,63 @@
       </a>
 
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ÁREAS DE ATUAÇÃO — mosaico de fotos
+═══════════════════════════════════════════════════ -->
+<section id="atuacao" class="bg-job-black py-20 lg:py-28">
+  <div class="max-w-grid mx-auto px-8">
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.75rem);line-height:1;letter-spacing:-0.02em;">
+          Áreas de<br>
+          <span class="italic font-light" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;color:#7fd99e;">atuação.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-12 flex items-end">
+        <p class="font-body" style="color:#c8d3cc;font-size:15px;line-height:1.6;max-width:46ch;">
+          Da recuperação de pontes ao saneamento, da drenagem à tecnologia
+          ambiental — engenharia aplicada em campo, em diferentes frentes.
+        </p>
+      </div>
+    </div>
+
+    <div class="mosaic-grid">
+      <a href="servicos.html#infraestrutura" class="mosaic-tile">
+        <img src="img/areas/infra-pontes.jpg" alt="Recuperação estrutural de pontes e viadutos" loading="lazy">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Pontes e viadutos</b><i>Mobilidade · Recuperação</i></span>
+      </a>
+      <a href="servicos.html#infraestrutura" class="mosaic-tile">
+        <img src="img/areas/pavimentacao.jpg" alt="Pavimentação asfáltica de vias urbanas" loading="lazy">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Pavimentação</b><i>Usina Móvel RAP</i></span>
+      </a>
+      <a href="servicos.html#infraestrutura" class="mosaic-tile">
+        <img src="img/areas/saneamento.jpg" alt="Obras de saneamento — redes de água e esgoto" loading="lazy">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Saneamento</b><i>Redes de água e esgoto</i></span>
+      </a>
+      <a href="servicos.html#infraestrutura" class="mosaic-tile">
+        <img src="img/areas/drenagem.jpg" alt="Drenagem urbana e recursos hídricos" loading="lazy">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Drenagem</b><i>Águas pluviais</i></span>
+      </a>
+      <a href="servicos.html#zeladoria" class="mosaic-tile">
+        <img src="img/areas/zeladoria.jpg" alt="Zeladoria e manutenção de redes urbanas" loading="lazy">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Zeladoria e manutenção</b><i>Redes e ativos urbanos</i></span>
+      </a>
+      <a href="ecojob.html" class="mosaic-tile">
+        <img src="img/areas/ambiental.jpg" alt="Tecnologia ambiental — plataforma Ecojob" loading="lazy" style="object-position:left center">
+        <span class="mosaic-arrow">→</span>
+        <span class="mosaic-cap"><b>Tecnologia ambiental</b><i>Plataforma Ecojob</i></span>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -833,7 +902,7 @@
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a href="ecojob.html#cursos-dagua" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
-              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Monitoramento de córregos, rios e canais</p>
+              <p class="text-white font-sans mt-2" style="font-size:15px;line-height:1.2;">Monitoramento de córregos, rios, canais e balneabilidade</p>
               <p class="font-body text-[12px] mt-2" style="color:#d8f5e3;">CONAMA 357/05</p>
             </a>
             <a href="ecojob.html#drenagem" class="block p-5 transition-colors hover:bg-white/10" style="border:1px solid rgba(255,255,255,0.18);">
@@ -990,7 +1059,7 @@
         </h2>
         <p class="font-body mb-10" style="color:#c8e8d3;font-size:15px;line-height:1.65;max-width:380px;">
           Nossa equipe está pronta para apresentar a solução ideal
-          para o seu município ou empreendimento.
+          para o seu negócio.
         </p>
 
         <!-- Dados de contato -->
@@ -1011,15 +1080,6 @@
             <div>
               <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">E-mail comercial</div>
               <a href="mailto:contato@jobeng.com.br" class="text-white font-body hover:underline transition-colors" style="font-size:14px;">contato@jobeng.com.br</a>
-            </div>
-          </div>
-          <div class="contato-item">
-            <div class="contato-icon">
-              <img src="icones/placeholder.svg" alt="Endereço">
-            </div>
-            <div>
-              <div style="color:#a8f0c4;font-size:10px;font-family:monospace;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">Localização</div>
-              <span class="text-white font-body" style="font-size:14px;">Av. Marcos Penteado de Ulhoa Rodrigues, 1119 — Sala 812<br>Tamboré, Santana de Parnaíba — SP · 06460-040</span>
             </div>
           </div>
           <div class="contato-item">
@@ -1067,8 +1127,8 @@
             <select id="home-area" name="area" class="form-select">
               <option value="">Selecione uma área</option>
               <option value="infraestrutura">Infraestrutura Urbana</option>
-              <option value="zeladoria">Zeladoria Urbana</option>
-              <option value="predial">Manutenção Predial</option>
+              <option value="zeladoria">Zeladoria e Manutenção de Ativos</option>
+              <option value="predial">Engenharia Predial</option>
               <option value="ambiental">Serviços Ambientais</option>
             </select>
           </div>
@@ -1134,8 +1194,8 @@
         <p class="text-white text-xs font-sans tracking-widest mb-5">Serviços</p>
         <ul class="space-y-2 text-gray-400 text-sm font-body">
           <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
-          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria Urbana</a></li>
-          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Manutenção de Prédios Públicos e Privados</a></li>
+          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria e Manutenção de Ativos</a></li>
+          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Engenharia Predial</a></li>
           <li><a href="servicos.html#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
         </ul>
       </div>
