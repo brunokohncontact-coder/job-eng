@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecojob — Tecnologia Ambiental | JOB Engenharia</title>
-  <meta name="description" content="Ecojob: engenharia de alta performance para gestão de infraestrutura urbana e saneamento. Diagnóstico, monitoramento e operação em ciclo completo." />
+  <title>Ecojob — Tecnologia, inteligência e operação para sistemas ambientais | JOB Engenharia</title>
+  <meta name="description" content="A Ecojob desenvolve soluções integradas e tecnológicas para sistemas ambientais, saneamento e recursos hídricos, transformando dados em inteligência operacional." />
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="apple-touch-icon" href="img/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -150,6 +150,35 @@
       padding-left: 18px; border-left: 2px solid #00662f;
     }
 
+    /* Parameter chips */
+    .param-chip {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #d8f5e3;
+      border: 1px solid rgba(255,255,255,0.25); padding: 7px 13px;
+    }
+    .cap-chip {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.45); padding: 8px 14px;
+      display: inline-block;
+    }
+    /* Card norm badge (works on light & dark cards) */
+    .eco-norma {
+      align-self: flex-start; font-family: monospace; font-size: 10px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #199738;
+      border: 1px solid #199738; padding: 3px 8px; margin-top: -4px;
+    }
+    /* Benefit list */
+    .benefit-card { display: flex; flex-direction: column; gap: 14px; }
+    .benefit-card h3 {
+      font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px; line-height: 1.15; color: #1d1d1b; letter-spacing: -0.005em;
+    }
+    .benefit-card p {
+      font-family: 'Franklin Gothic Book', Arial, sans-serif;
+      color: #4a5550; font-size: 14px; line-height: 1.55;
+    }
+
     /* ── Mobile menu (idêntico) ── */
     .nav-item:hover .dropdown { display: block; }
     .dropdown { display: none; }
@@ -236,7 +265,7 @@
       </div>
       <a href="ecojob.html" class="text-job-green2 border-b border-job-green2 pb-0.5">Ecojob</a>
       <a href="carreiras.html" class="hover:text-job-green2 transition-colors normal-case">Trabalhe Conosco</a>
-      <a href="#" class="hover:text-job-green2 transition-colors normal-case">Canal de Denúncia</a>
+      <a href="canal-denuncia.html" class="hover:text-job-green2 transition-colors normal-case">Canal de Denúncia</a>
       <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
     </nav>
   </div>
@@ -253,7 +282,7 @@
     <a href="sobre.html">Sobre a Empresa</a>
     <a href="servicos.html">Serviços</a>
     <a href="carreiras.html">Trabalhe Conosco</a>
-    <a href="#">Canal de Denúncia</a>
+    <a href="canal-denuncia.html">Canal de Denúncia</a>
     <p class="group-label">Áreas</p>
     <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
     <a href="servicos.html#zeladoria" class="sublink">› Zeladoria e Manutenção de Ativos</a>
@@ -282,40 +311,81 @@
         <div class="inline-flex items-center mb-10">
           <img src="img/ecojob_logo_positivo-03.svg" alt="Ecojob" style="width:280px;height:auto;display:block;">
         </div>
-        
-        <h1 class="text-white font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.025em;font-weight:500;">
-          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Engenharia ambiental</span><br>
-          <span style="font-weight:800;letter-spacing:-0.03em;">de ciclo completo.</span>
+
+        <h1 class="text-white font-sans" style="font-size:clamp(2.1rem,4.8vw,4rem);line-height:1.0;letter-spacing:-0.025em;font-weight:500;">
+          <span style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:400;">Tecnologia, inteligência</span><br>
+          <span style="font-weight:800;letter-spacing:-0.03em;">e operação para<br>sistemas ambientais.</span>
         </h1>
       </div>
       <div class="col-span-12 lg:col-span-5">
         <p class="font-body" style="color:#fff;font-size:16px;line-height:1.65;max-width:46ch;">
-          A <strong style="font-weight:700;">Ecojob</strong> é especializada em engenharia de alta performance
-          para a gestão de infraestrutura urbana e saneamento. Nosso diferencial é
-          a entrega de uma solução de ciclo completo: unimos o diagnóstico técnico,
-          o monitoramento tecnológico de última geração e a zeladoria operacional
-          para garantir máxima eficiência, resiliência urbana e conformidade legal.
+          A <strong style="font-weight:700;">Ecojob</strong> desenvolve soluções integradas
+          e tecnológicas para sistemas ambientais, saneamento e recursos hídricos,
+          transformando dados em inteligência operacional.
         </p>
       </div>
     </div>
 
-    <!-- Stats / ancoras -->
+    <!-- Stats / âncoras -->
     <div class="mt-14 lg:mt-20 grid grid-cols-2 md:grid-cols-5 gap-px" style="background:rgba(255,255,255,0.18);">
       <a href="#diagnostica" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
         <p class="text-white text-sm font-sans">Engenharia diagnóstica</p>
       </a>
-      <a href="#ecossistema" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
-        <p class="text-white text-sm font-sans">Ecossistema tecnológico</p>
+      <a href="#monitoramento" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-white text-sm font-sans">Monitoramento inteligente</p>
       </a>
-      <a href="#dominios" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
-        <p class="text-white text-sm font-sans">Domínios de atuação</p>
+      <a href="#modelagem" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-white text-sm font-sans">Modelagem hidrológica</p>
       </a>
-      <a href="#gestao" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
-        <p class="text-white text-sm font-sans">Gestão e Planejamento</p>
+      <a href="#operacao" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-white text-sm font-sans">Operação e gestão</p>
       </a>
-      <a href="#prognostico" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
-        <p class="text-white text-sm font-sans">Diagnóstico e Prognóstico</p>
+      <a href="#plataforma" class="block p-5 text-center transition-colors hover:bg-[#004d22]" style="background:#00662f;">
+        <p class="text-white text-sm font-sans">Plataforma COI 4.0</p>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABERTURA — atuação integrada
+═══════════════════════════════════════════════════ -->
+<section class="bg-white py-16 lg:py-20">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 items-start">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="text-job-black font-sans" style="font-size:clamp(1.2rem,2.1vw,1.55rem);line-height:1.38;letter-spacing:-0.01em;max-width:40ch;">
+          Atuamos de forma integrada no monitoramento ambiental, modelagem hidráulica
+          e hidrológica, supervisão operacional e gestão de infraestruturas críticas,
+          combinando engenharia, tecnologia e inteligência de dados para apoiar a
+          tomada de decisão e otimizar o desempenho dos sistemas.
+        </p>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-2 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.65;max-width:46ch;">
+          Nossas soluções contribuem para operações mais eficientes, seguras e
+          sustentáveis, atendendo aos desafios atuais e futuros da infraestrutura
+          ambiental.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FAIXA DE IMAGEM — monitoramento ambiental
+═══════════════════════════════════════════════════ -->
+<section class="relative bg-job-black">
+  <div class="relative w-full overflow-hidden" style="height:clamp(300px,46vh,560px);">
+    <img src="img/ecojob/monitoramento-agua.jpg" alt="Coleta e análise da qualidade da água em campo — monitoramento ambiental Ecojob" class="w-full h-full object-cover" loading="lazy" style="object-position:center;">
+    <div class="absolute inset-0" aria-hidden="true" style="background:linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.58) 100%);"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-grid mx-auto px-8 w-full pb-8">
+        <span class="font-mono text-[10px] uppercase tracking-[0.22em]" style="color:#a8f0c4;">Monitoramento ambiental</span>
+        <p class="text-white font-sans mt-2" style="font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.2;letter-spacing:-0.01em;max-width:28ch;">
+          Coleta e análise da qualidade da água em campo.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -323,312 +393,313 @@
 <!-- ═══════════════════════════════════════════════════
      01 · ENGENHARIA DIAGNÓSTICA
 ═══════════════════════════════════════════════════ -->
-
-
-<section id="diagnostica" class="bg-white py-20 lg:py-28">
+<section id="diagnostica" class="bg-[#fafaf7] py-16 lg:py-24">
   <div class="max-w-grid mx-auto px-8">
     <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
       <div class="col-span-12 lg:col-span-7">
-        
-        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+        <span class="swiss-index mb-5">Serviços · 01</span>
+        <h2 class="text-job-black font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
           Engenharia<br>
           <span class="text-job-green">diagnóstica.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
-          A tecnologia é validada por um trabalho rigoroso de engenharia diagnóstica,
-          essencial para a identificação de irregularidades e a saúde do sistema.
+          Realizamos diagnósticos técnicos detalhados para identificar anomalias,
+          avaliar o desempenho das infraestruturas e subsidiar a definição de ações
+          corretivas e preventivas.
         </p>
       </div>
     </div>
 
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(29,29,27,0.10);">
+    <div class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px" style="background:rgba(29,29,27,0.10);">
       <article class="eco-card">
         <div class="eco-tile"><img src="icones/magnifying-glass.svg" alt=""></div>
         <h3>Varredura e Rastreamento Operacional</h3>
-        <p>Realizamos inspeções técnicas detalhadas para mapear a funcionalidade da rede, identificando gargalos estruturais e pontos de atenção que o monitoramento remoto sinaliza.</p>
+        <p>Inspeções e rastreamentos operacionais para avaliação das redes, identificação de gargalos, interferências, lançamentos irregulares e não conformidades.</p>
       </article>
       <article class="eco-card">
-        <div class="eco-tile"><img src="icones/pipe.svg" alt=""></div>
-        <h3>Ensaios de Fumaça e Corante</h3>
-        <p>Metodologias precisas para a detecção de ligações clandestinas, descartes ilegais e interconexões indevidas (redes cruzadas). O Teste de Fumaça revela falhas de estanqueidade e conexões irregulares, enquanto o Rastreamento com Corantes confirma o nexo hidráulico e o destino final de efluentes.</p>
+        <div class="eco-tile"><img src="icones/sewer.svg" alt=""></div>
+        <h3>Testes de Fumaça e Corante</h3>
+        <p>Metodologias especializadas para identificação de ligações clandestinas, descartes irregulares, interconexões indevidas entre redes e falhas de vedação, permitindo rastrear o percurso e o destino dos fluxos.</p>
       </article>
       <article class="eco-card">
         <div class="eco-tile"><img src="icones/drone.svg" alt=""></div>
-        <h3>Mapeamento Complementar com Drones</h3>
-        <p>Utilizamos drones para vistorias técnicas em locais de difícil acesso, identificação de patologias em canais e suporte à fiscalização, garantindo uma visão 360º de toda a infraestrutura monitorada.</p>
+        <h3>Mapeamento complementar com drones</h3>
+        <p>Inspeções aéreas e monitoramento de áreas e estruturas de difícil acesso, com registro de anomalias e geração de informações georreferenciadas para apoio aos diagnósticos.</p>
+      </article>
+      <article class="eco-card">
+        <div class="eco-tile"><img src="icones/facial.svg" alt=""></div>
+        <h3>Inspeção por CFTV</h3>
+        <p>Inspeções internas por circuito fechado de televisão (CFTV), utilizando métodos não destrutivos para avaliação das condições operacionais, estruturais e hidráulicas das redes.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     02 · ECOSSISTEMA TECNOLÓGICO
+     02 · MONITORAMENTO INTELIGENTE DE SISTEMAS
 ═══════════════════════════════════════════════════ -->
-
-
-<section id="ecossistema" class="bg-job-black py-20 lg:py-28">
+<section id="monitoramento" class="bg-job-black py-16 lg:py-24">
   <div class="max-w-grid mx-auto px-8">
-    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10 lg:mb-12">
       <div class="col-span-12 lg:col-span-7">
-        
-        <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Soluções inteligentes<br>
-          para <span style="color:#199738;">gestão</span> e monitoramento.
+        <span class="swiss-index mb-5" style="color:#199738;">Serviços · 02</span>
+        <h2 class="text-white font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Monitoramento inteligente<br>
+          <span style="color:#199738;">de sistemas.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="font-body" style="color:#c8d3cc;font-size:15px;line-height:1.6;max-width:46ch;">
-          Nossas decisões de engenharia são fundamentadas por um ecossistema
-          tecnológico robusto, estruturado em três pilares principais.
+          Por meio de sensoriamento avançado, telemetria e análise de dados, realizamos
+          o monitoramento contínuo e em tempo real de sistemas ambientais e de
+          saneamento, apoiando a gestão e a tomada de decisão baseada em dados.
         </p>
       </div>
     </div>
 
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(255,255,255,0.10);">
+    <!-- Parâmetros monitorados -->
+    <div class="mb-10 lg:mb-12">
+      <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-4" style="color:#8a9a90;">Parâmetros monitorados</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="param-chip">Nível</span>
+        <span class="param-chip">Vazão</span>
+        <span class="param-chip">pH</span>
+        <span class="param-chip">Condutividade</span>
+        <span class="param-chip">Temperatura</span>
+        <span class="param-chip">Carga poluidora</span>
+        <span class="param-chip">DBO</span>
+        <span class="param-chip">OD</span>
+        <span class="param-chip">Turbidez</span>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background:rgba(255,255,255,0.10);">
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/sewer.svg" alt=""></div>
+        <h3>Efluentes e esgotamento sanitário</h3>
+        <p>Monitoramento contínuo e em tempo real de efluentes e do sistema de esgotamento sanitário, acompanhando vazão, carga poluidora e demais indicadores para apoiar a operação e a conformidade ambiental.</p>
+      </article>
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/water-system.svg" alt=""></div>
+        <h3>Córregos, rios, canais e balneabilidade</h3>
+        <p>Monitoramento da qualidade da água em córregos, rios e canais, com acompanhamento de parâmetros físico-químicos e avaliação da balneabilidade para a proteção dos corpos hídricos.</p>
+      </article>
+      <article class="eco-card dark">
+        <div class="eco-tile"><img src="icones/pipe.svg" alt=""></div>
+        <h3>Sistemas de drenagem</h3>
+        <p>Monitoramento de sistemas de drenagem com sensoriamento de nível e telemetria, identificando variações anômalas de nível e vazão para apoiar a prevenção de alagamentos.</p>
+      </article>
       <article class="eco-card dark">
         <div class="eco-tile"><img src="icones/chart.svg" alt=""></div>
-        <h3>Sensoriamento Avançado e Especializado</h3>
-        <p>Implementamos sensores de alta precisão (nível, qualidade e vazão) para operar em ambientes desafiadores. Além do monitoramento da rede, integramos estações meteorológicas que fornecem dados para correlacionar o clima ao comportamento dos ativos.</p>
+        <h3>Medição de dados meteorológicos</h3>
+        <p>Estações meteorológicas inteligentes integradas a sistemas IoT e comunicação via satélite para monitoramento contínuo de precipitação, temperatura, umidade, pressão atmosférica e ventos, apoiando a avaliação de riscos e o planejamento operacional.</p>
       </article>
       <article class="eco-card dark">
-        <div class="eco-tile"><img src="icones/bars.svg" alt=""></div>
-        <h3>Conectividade e Comunicação Multicanal</h3>
-        <p>Garantimos a transmissão de dados em tempo real via LoRaWAN, NB-IoT e 5G. Para assegurar a soberania da informação em pontos críticos ou remotos, utilizamos comunicação via satélite, eliminando zonas cegas de monitoramento.</p>
-      </article>
-      <article class="eco-card dark">
-        <div class="eco-tile"><img src="icones/business-report.svg" alt=""></div>
-        <h3>Plataforma de Inteligência (Dashboard)</h3>
-        <p>Nossa interface processa os dados coletados, transformando-os em indicadores de performance (KPIs) e relatórios estratégicos. A plataforma permite uma gestão preditiva, facilitando a tomada de decisão rápida para fiscais e gestores.</p>
+        <div class="eco-tile"><img src="icones/market-share.svg" alt=""></div>
+        <h3>Análise geoespacial e mapas de calor (Kernel)</h3>
+        <p>Estudo integrado de dados históricos, georreferenciados, topográficos e meteorológicos para a geração de mapas de calor (Kernel), identificando pontos críticos de recorrência, áreas suscetíveis a acúmulo e regiões prioritárias para atuação.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     03 · DOMÍNIOS DE ATUAÇÃO
+     03 · MODELAGEM HIDRÁULICA E HIDROLÓGICA
 ═══════════════════════════════════════════════════ -->
-
-
-<section id="dominios" class="bg-[#fafaf7] py-20 lg:py-28">
+<section id="modelagem" class="bg-white py-16 lg:py-24">
   <div class="max-w-grid mx-auto px-8">
-    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12">
-      <div class="col-span-12 lg:col-span-7">
-        
-        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Domínios de<br>
-          <span class="text-job-green">atuação técnica.</span>
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+      <div class="col-span-12 lg:col-span-6">
+        <span class="swiss-index mb-5">Serviços · 03</span>
+        <h2 class="text-job-black font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Modelagem hidráulica<br>
+          <span class="text-job-green">e hidrológica.</span>
         </h2>
-      </div>
-      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
-        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
-          Quatro áreas operacionais cobertas com tecnologia, metodologia e
-          conformidade legal — do diagnóstico ao prognóstico.
+        <p class="text-gray-600 font-body mt-6" style="font-size:15px;line-height:1.6;max-width:52ch;">
+          Desenvolvemos modelos hidráulicos e hidrológicos para compreender o
+          comportamento de redes e sistemas ambientais, avaliando sua resposta a
+          diferentes condições de operação e eventos críticos. As simulações permitem
+          analisar cenários, identificar vulnerabilidades e apoiar o planejamento de
+          intervenções, ampliações e investimentos.
         </p>
       </div>
-    </div>
-
-    <!-- 3.1 Córregos, rios e canais -->
-    <div id="cursos-dagua" class="domain-block">
-      <div class="grid grid-cols-12 gap-6 lg:gap-10">
-        <div class="col-span-12 lg:col-span-4">
-          
-          <h3 class="mt-3">Monitoramento de córregos, rios, canais e balneabilidade</h3>
-          <span class="dom-norma">CONAMA 357/05</span>
-          <p class="dom-intro mt-5">Foco na preservação de ecossistemas e segurança jurídica ambiental.</p>
-        </div>
-        <div class="col-span-12 lg:col-span-8">
-          <dl class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6">
-            <div>
-              <dt>Sondas Multiparamétricas</dt>
-              <dd>Medição em tempo real de parâmetros qualitativos para identificar a "assinatura" da água e detectar descartes irregulares.</dd>
-            </div>
-            <div>
-              <dt>Rastreamento de Origem</dt>
-              <dd>Algoritmos de engenharia para localizar pontos exatos de contaminação em bacias complexas.</dd>
-            </div>
-            <div>
-              <dt>Gestão de Alertas</dt>
-              <dd>Monitoramento de níveis para prevenção de problemas ambientais e suporte a planos de contingência.</dd>
-            </div>
-            <div>
-              <dt>Balneabilidade (mar)</dt>
-              <dd>Avaliação da qualidade das águas costeiras e da balneabilidade, apoiando a gestão de praias e a conformidade ambiental em regiões litorâneas.</dd>
-            </div>
-          </dl>
-        </div>
+      <div class="col-span-12 lg:col-span-6 lg:pl-8">
+        <dl class="border-t border-gray-300">
+          <div class="border-b border-gray-300 py-5">
+            <dt class="text-job-black font-sans" style="font-size:16px;letter-spacing:-0.005em;margin-bottom:6px;">Análise de cenários</dt>
+            <dd class="text-gray-600 font-body" style="font-size:14px;line-height:1.55;">Simulação do comportamento das redes sob diferentes condições de operação e eventos críticos.</dd>
+          </div>
+          <div class="border-b border-gray-300 py-5">
+            <dt class="text-job-black font-sans" style="font-size:16px;letter-spacing:-0.005em;margin-bottom:6px;">Identificação de vulnerabilidades</dt>
+            <dd class="text-gray-600 font-body" style="font-size:14px;line-height:1.55;">Mapeamento de gargalos e pontos frágeis que comprometem o desempenho dos sistemas.</dd>
+          </div>
+          <div class="py-5">
+            <dt class="text-job-black font-sans" style="font-size:16px;letter-spacing:-0.005em;margin-bottom:6px;">Planejamento de investimentos</dt>
+            <dd class="text-gray-600 font-body" style="font-size:14px;line-height:1.55;">Suporte técnico ao planejamento de intervenções, ampliações e priorização de obras.</dd>
+          </div>
+        </dl>
       </div>
     </div>
-
-    <!-- 3.2 Sistemas de drenagem -->
-    <div id="drenagem" class="domain-block">
-      <div class="grid grid-cols-12 gap-6 lg:gap-10">
-        <div class="col-span-12 lg:col-span-4">
-          
-          <h3 class="mt-3">Monitoramento de sistemas de drenagem</h3>
-          <p class="dom-intro mt-5">Engenharia de alta performance focada na resiliência urbana, na manutenção da capacidade hidráulica e no combate proativo a pontos de alagamento.</p>
-        </div>
-        <div class="col-span-12 lg:col-span-8">
-          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-            <div>
-              <dt>Sensores de Nível IoT</dt>
-              <dd>Monitoramento contínuo e em tempo real da capacidade de vazão em galerias e canais. Através de telemetria avançada, o sistema identifica subidas anômalas de nível, permitindo a mobilização de equipes antes mesmo do início de eventos críticos.</dd>
-            </div>
-            <div>
-              <dt>Engenharia Investigativa</dt>
-              <dd>Aplicação de metodologias de campo para sanar o uso indevido da rede pluvial: Varredura Operacional e Técnica, Testes de Fumaça e Corante, Televisionamento (CCTV Robotizado) para inspeção visual interna de alta definição.</dd>
-            </div>
-            <div class="md:col-span-2">
-              <dt>Gestão Preditiva e Fiscalizatória</dt>
-              <dd>Uso de inteligência de dados para identificar gargalos antes da saturação do sistema. A integração dos testes de campo com o monitoramento IoT gera a materialidade necessária para ações fiscalizatórias e garante que a rede de drenagem seja utilizada exclusivamente para sua finalidade de projeto.</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3.3 Sistemas de esgotamento sanitário -->
-    <div id="esgoto" class="domain-block">
-      <div class="grid grid-cols-12 gap-6 lg:gap-10">
-        <div class="col-span-12 lg:col-span-4">
-          
-          <h3 class="mt-3">Sistemas de esgotamento sanitário</h3>
-          <span class="dom-norma">CONAMA 430/11</span>
-          <p class="dom-intro mt-5">Engenharia aplicada à Separação Absoluta, eficiência operacional e proteção rigorosa da saúde pública e do meio ambiente.</p>
-        </div>
-        <div class="col-span-12 lg:col-span-8">
-          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-            <div>
-              <dt>Operação 4.0 e Automação de Limpeza</dt>
-              <dd>Implementação de inteligência de dados para a gestão de ativos. O sistema identifica automaticamente a perda de capacidade de transporte e aciona protocolos de limpeza mecanizada preventiva, garantindo a desobstrução de coletores e elevatórias antes que ocorram extravasamentos ou refluxos.</dd>
-            </div>
-            <div>
-              <dt>Monitoramento de Elevatórias</dt>
-              <dd>Controle contínuo e em tempo real dos níveis em Estações Elevatórias de Esgoto (EEE). Esta tecnologia permite a atuação preditiva para evitar transbordamentos que contaminam as redes pluviais e comprometem diretamente a balneabilidade em regiões costeiras.</dd>
-            </div>
-            <div>
-              <dt>Gestão de Infiltração e Águas Parasitárias</dt>
-              <dd>Diagnóstico especializado para identificar a entrada indevida de águas pluviais ou do lençol freático na rede coletora. O combate a essas águas parasitárias reduz a sobrecarga do sistema e evita o custo desnecessário de bombear e tratar água limpa.</dd>
-            </div>
-            <div>
-              <dt>Eficiência Energética e Operacional</dt>
-              <dd>Monitoramento de performance dos conjuntos motobombas. Através da análise de dados de nível e vazão, otimizamos o ciclo de operação das elevatórias, reduzindo o consumo de energia e evitando falhas críticas por esforço excessivo do equipamento.</dd>
-            </div>
-            <div>
-              <dt>Detecção de I&I (Influxo e Infiltração)</dt>
-              <dd>Utilização de metodologias investigativas (testes de fumaça, corantes e sensores) para localizar conexões cruzadas e pontos de ruptura na estanqueidade da rede.</dd>
-            </div>
-            <div>
-              <dt>Varredura Operacional e Integridade</dt>
-              <dd>Mapeamento funcional e avaliação técnica de coletores e interceptores. Garantimos que o sistema opere conforme os coeficientes de projeto, evitando a contaminação do solo e assegurando que o efluente chegue à estação de tratamento com total segurança.</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3.4 Operação assistida de ETAs e ETEs -->
-    <div id="etas-etes" class="domain-block" style="border-bottom:1px solid rgba(29,29,27,0.18);">
-      <div class="grid grid-cols-12 gap-6 lg:gap-10">
-        <div class="col-span-12 lg:col-span-4">
-          
-          <h3 class="mt-3">Operação assistida de ETAs e ETEs</h3>
-          <p class="dom-intro mt-5">Elevamos o desempenho de estações de tratamento através de gestão especializada.</p>
-        </div>
-        <div class="col-span-12 lg:col-span-8">
-          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-            <div>
-              <dt>Operação e Conservação</dt>
-              <dd>Gestão direta da rotina operacional, zeladoria das instalações e manutenção preventiva dos ativos para garantir a vida útil dos equipamentos.</dd>
-            </div>
-            <div>
-              <dt>Otimização de Processos</dt>
-              <dd>Ajuste dinâmico da operação conforme a carga real de entrada, assegurando eficiência energética e conformidade com a Resolução CONAMA 430/11.</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     04 · GESTÃO E PLANEJAMENTO
+     04 · OPERAÇÃO, SUPERVISÃO E GESTÃO DE SISTEMAS
 ═══════════════════════════════════════════════════ -->
-
-
-<section id="gestao" class="bg-white py-20 lg:py-28">
+<section id="operacao" class="bg-[#fafaf7] py-16 lg:py-24">
   <div class="max-w-grid mx-auto px-8">
     <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
       <div class="col-span-12 lg:col-span-7">
-        
-        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Gestão e<br>
-          <span class="text-job-green">Planejamento.</span>
+        <span class="swiss-index mb-5">Serviços · 04</span>
+        <h2 class="text-job-black font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Operação, supervisão<br>
+          e <span class="text-job-green">gestão de sistemas.</span>
         </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
         <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
-          Soluções em engenharia consultiva para planejamento, gestão e adequação às diretrizes do Novo Marco do Saneamento (Lei nº 14.026/2020).
+          Atuamos na operação assistida, supervisão técnica e gestão de sistemas de
+          saneamento e recursos hídricos, promovendo maior confiabilidade, eficiência
+          e controle por meio do acompanhamento contínuo dos processos e indicadores
+          de gestão.
         </p>
       </div>
     </div>
 
     <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-px" style="background:rgba(29,29,27,0.10);">
       <article class="eco-card">
-        <div class="eco-tile"><img src="icones/business-report.svg" alt=""></div>
-        <h3>Centro de Inteligência da Drenagem (CID)</h3>
-        <p>Plataforma unificada para suporte à tomada de decisão e gestão estratégica de ativos municipais.</p>
+        <div class="eco-tile"><img src="icones/water-system.svg" alt=""></div>
+        <h3>Estações de Tratamento de Água (ETAs) e de Esgoto (ETEs)</h3>
+        <p>Acompanhamento operacional das unidades, controle de processos, gestão de indicadores de desempenho, elaboração de relatórios técnicos e apoio às atividades de manutenção, zeladoria e conservação das instalações, contribuindo para a eficiência e a confiabilidade dos sistemas.</p>
       </article>
       <article class="eco-card">
-        <div class="eco-tile"><img src="icones/contract.svg" alt=""></div>
-        <h3>Justiça Fiscal e Ambiental</h3>
-        <p>Materialidade técnica baseada em dados reais para identificação de grandes infratores, auxiliando órgãos municipais na fiscalização e arrecadação.</p>
+        <div class="eco-tile"><img src="icones/hydroelectric.svg" alt=""></div>
+        <h3>Estações Elevatórias de Água, Esgoto e Drenagem</h3>
+        <p>Supervisão operacional de estações elevatórias, acompanhando o desempenho dos equipamentos, conjuntos motobomba e sistemas auxiliares — com controle operacional, gestão de indicadores, avaliação do consumo energético e suporte à manutenção, visando aumentar a disponibilidade, a confiabilidade e a vida útil dos ativos.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     05 · DIAGNÓSTICO E PROGNÓSTICO
+     PLATAFORMA DE GESTÃO INTELIGENTE ECOJOB — COI 4.0
 ═══════════════════════════════════════════════════ -->
-
-
-<section id="prognostico" class="bg-[#fafaf7] py-20 lg:py-28">
-  <div class="max-w-grid mx-auto px-8">
-    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
-      <div class="col-span-12 lg:col-span-7">
-        
-        <h2 class="text-job-black font-sans" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
-          Diagnóstico de sistemas<br>
-          e <span class="text-job-green">prognóstico.</span>
+<section id="plataforma" class="bg-job-green py-16 lg:py-24 relative">
+  <div class="max-w-grid mx-auto px-8 relative">
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+      <div class="col-span-12 lg:col-span-8">
+        <span class="font-mono text-[11px] uppercase tracking-[0.22em]" style="color:#a8f0c4;">Plataforma · COI 4.0</span>
+        <h2 class="text-white font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:1;letter-spacing:-0.02em;">
+          Plataforma de Gestão<br>
+          Inteligente Ecojob.
         </h2>
       </div>
-      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
-        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
-          A "radiografia" técnica necessária para investimentos precisos e seguros.
+      <div class="col-span-12 lg:col-span-4 flex items-end">
+        <p class="font-sans text-white" style="font-size:18px;line-height:1.3;letter-spacing:-0.01em;">
+          O futuro da infraestrutura<br>é <span style="color:#bdf5d2;">digital.</span>
         </p>
       </div>
     </div>
 
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-px" style="background:rgba(29,29,27,0.10);">
-      <article class="eco-card">
-        <div class="eco-tile"><img src="icones/magnifying-glass.svg" alt=""></div>
-        <h3>Ensaios de Campo Especializados</h3>
-        <p>Realização de Testes de Fumaça e rastreamento com Corantes Biodegradáveis para validação de conectividade e detecção de ligações clandestinas.</p>
+    <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="font-body" style="color:#eafff2;font-size:16px;line-height:1.7;max-width:60ch;">
+          Mais do que monitorar, a Tecnologia Ecojob conecta dados, sistemas e operações
+          em um único ambiente digital. Nossa plataforma <strong style="font-weight:700;">COI 4.0</strong>
+          integra sensores, telemetria, comunicação via satélite, modelagem computacional,
+          análise geoespacial e inteligência artificial para transformar grandes volumes
+          de dados em conhecimento aplicável.
+        </p>
+        <p class="font-body mt-5" style="color:#d8f5e3;font-size:15px;line-height:1.7;max-width:60ch;">
+          Com uma visão integrada e em tempo real dos sistemas, a tecnologia permite
+          identificar padrões, antecipar situações críticas, automatizar processos e
+          ampliar a capacidade de gestão e controle das operações.
+        </p>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pl-6">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] mb-4" style="color:#a8f0c4;">Tecnologias integradas</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="cap-chip">Sensores</span>
+          <span class="cap-chip">Telemetria</span>
+          <span class="cap-chip">Comunicação via satélite</span>
+          <span class="cap-chip">Modelagem computacional</span>
+          <span class="cap-chip">Análise geoespacial</span>
+          <span class="cap-chip">Inteligência artificial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     BENEFÍCIOS DA SOLUÇÃO ECOJOB
+═══════════════════════════════════════════════════ -->
+<section id="beneficios" class="bg-white py-16 lg:py-24">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
+      <div class="col-span-12 lg:col-span-7">
+        <span class="swiss-index mb-5">Resultados</span>
+        <h2 class="text-job-black font-sans mt-4" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+          Benefícios da<br>
+          <span class="text-job-green">solução Ecojob.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-10 flex items-end">
+        <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:46ch;">
+          A integração entre monitoramento inteligente, modelagem, análise de dados e
+          supervisão operacional gera ganhos concretos para a gestão de sistemas
+          ambientais e de saneamento.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px mb-px" style="background:rgba(29,29,27,0.10);">
+      <article class="eco-card benefit-card">
+        <div class="eco-tile"><img src="icones/setting.svg" alt=""></div>
+        <h3>Maior eficiência operacional</h3>
+        <p>Redução da sobrecarga dos sistemas, otimização dos processos de tratamento e melhor utilização dos recursos disponíveis.</p>
       </article>
-      <article class="eco-card">
-        <div class="eco-tile"><img src="icones/facial.svg" alt=""></div>
-        <h3>Vídeo Inspeção Robotizada (CCTV)</h3>
-        <p>Diagnóstico estrutural por Métodos Não Destrutivos (MND), identificando fissuras, raízes ou obstruções internas.</p>
-      </article>
-      <article class="eco-card">
+      <article class="eco-card benefit-card">
         <div class="eco-tile"><img src="icones/market-share.svg" alt=""></div>
-        <h3>Prognóstico Estratégico</h3>
-        <p>Modelagem de cenários futuros e simulações hidráulicas para planejar a expansão da rede e garantir a sustentabilidade do sistema sob normas da ABNT.</p>
+        <h3>Redução de custos</h3>
+        <p>Direcionamento mais preciso das equipes de campo, diminuição de intervenções emergenciais e otimização das atividades de operação e manutenção.</p>
       </article>
+      <article class="eco-card benefit-card">
+        <div class="eco-tile"><img src="icones/magnifying-glass.svg" alt=""></div>
+        <h3>Atuação preventiva</h3>
+        <p>Identificação antecipada de anomalias, obstruções, contribuições irregulares e riscos de extravasamento, permitindo ações antes que os problemas ocorram.</p>
+      </article>
+      <article class="eco-card benefit-card">
+        <div class="eco-tile"><img src="icones/green-space.svg" alt=""></div>
+        <h3>Proteção ambiental</h3>
+        <p>Redução do lançamento de cargas poluidoras em corpos hídricos, melhoria da qualidade da água e mitigação de impactos ao meio ambiente.</p>
+      </article>
+      <article class="eco-card benefit-card">
+        <div class="eco-tile"><img src="icones/business-report.svg" alt=""></div>
+        <h3>Planejamento baseado em dados</h3>
+        <p>Análise de tendências, identificação de áreas críticas e priorização de investimentos e intervenções com maior assertividade.</p>
+      </article>
+      <article class="eco-card benefit-card">
+        <div class="eco-tile"><img src="icones/contract.svg" alt=""></div>
+        <h3>Maior segurança e confiabilidade</h3>
+        <p>Monitoramento contínuo, geração de alertas e suporte à tomada de decisão para uma gestão mais eficiente e resiliente.</p>
+      </article>
+    </div>
+
+    <!-- Destaque: inteligência preditiva -->
+    <div class="reveal bg-job-black p-8 sm:p-10 flex flex-col md:flex-row md:items-center gap-6 lg:gap-10">
+      <div class="flex items-center gap-5 md:w-1/3">
+        <div class="eco-tile" style="flex:none;"><img src="icones/chart.svg" alt=""></div>
+        <h3 class="text-white font-sans" style="font-size:22px;line-height:1.1;letter-spacing:-0.01em;">Inteligência preditiva</h3>
+      </div>
+      <p class="font-body md:w-2/3" style="color:#c8d3cc;font-size:15px;line-height:1.6;">
+        Redes de distribuição, estações de tratamento e elevatórias passam a contar com
+        um <strong style="color:#fff;font-weight:700;">gêmeo digital</strong>, que reproduz seu
+        comportamento operacional e permite simular cenários, antecipar falhas e apoiar
+        decisões de forma mais rápida e segura.
+      </p>
     </div>
   </div>
 </section>
@@ -636,11 +707,9 @@
 <!-- ═══════════════════════════════════════════════════
      CTA FINAL
 ═══════════════════════════════════════════════════ -->
-
-<section class="bg-job-black py-20 lg:py-24 relative">
+<section class="bg-job-black py-16 lg:py-24 relative">
   <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 items-end">
     <div class="col-span-12 lg:col-span-8">
-      
       <h2 class="text-white font-sans" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:0.98;letter-spacing:-0.02em;">
         Solicite um<br>
         diagnóstico Ecojob<br>

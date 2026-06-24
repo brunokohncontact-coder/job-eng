@@ -416,14 +416,28 @@
     .mosaic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
     @media (min-width: 768px) { .mosaic-grid { grid-template-columns: repeat(3, 1fr); } }
     .mosaic-tile { position: relative; display: block; overflow: hidden; background: #0e0e0d; aspect-ratio: 4 / 3; }
-    .mosaic-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1); }
-    .mosaic-tile:hover img { transform: scale(1.05); }
+    .mosaic-tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1), filter 0.6s ease; }
+    .mosaic-tile:hover img { transform: scale(1.05); filter: grayscale(0%); }
     .mosaic-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,0.74) 100%); pointer-events: none; }
     .mosaic-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px; }
     .mosaic-cap b { font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif; font-weight: 500; color: #fff; font-size: 16px; letter-spacing: -0.005em; line-height: 1.12; }
     .mosaic-cap i { font-family: monospace; font-style: normal; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #a8f0c4; }
     .mosaic-arrow { position: absolute; top: 14px; right: 16px; z-index: 2; color: #fff; opacity: 0; transform: translateX(-4px); transition: opacity 0.25s, transform 0.25s; font-family: monospace; font-size: 16px; }
     .mosaic-tile:hover .mosaic-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ── Mosaico · Hero (P&B) ── */
+    /* Telefone: 2 col · tablet (empilhado, largo): 3 col · desktop: 2 col × 3 linhas que PREENCHEM a altura da hero (cabe tudo na tela) */
+    .hero-mosaic { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; background: #1d1d1b; width: 100%; min-height: 0; }
+    @media (min-width: 640px) { .hero-mosaic { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .hero-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); height: 100%; } }
+    .hero-tile { position: relative; overflow: hidden; display: block; background: #0e0e0d; aspect-ratio: 3 / 4; min-height: 0; }
+    @media (min-width: 1024px) { .hero-tile { aspect-ratio: auto; } }
+    .hero-tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.04); transition: transform 0.8s cubic-bezier(0.2,0.8,0.2,1), filter 0.8s ease; }
+    .hero-tile:hover img { transform: scale(1.06); filter: grayscale(0%) contrast(1); }
+    .hero-tile::after { content: ""; position: absolute; inset: 0; background: rgba(0,40,18,0.10); pointer-events: none; transition: opacity 0.6s ease; }
+    .hero-tile:hover::after { opacity: 0; }
+    /* Desktop: altura DEFINIDA da grid da hero (= tela − header) → a hero cabe 100% na primeira tela e o mosaico preenche a coluna */
+    @media (min-width: 1024px) { #hero-grid { height: calc(100dvh - 80px); grid-template-rows: minmax(0, 1fr); } }
   </style>
 </head>
 <body class="font-sans text-job-black">
@@ -473,7 +487,7 @@
 
       <a href="carreiras.html" class="hover:text-job-green2 transition-colors normal-case">Trabalhe Conosco</a>
 
-      <a href="#" class="hover:text-job-green2 transition-colors normal-case">Canal de Denúncia</a>
+      <a href="canal-denuncia.html" class="hover:text-job-green2 transition-colors normal-case">Canal de Denúncia</a>
 
       <a href="contato.html" class="bg-job-green2 hover:bg-job-green text-white px-5 py-2 transition-colors">Contato</a>
     </nav>
@@ -494,7 +508,7 @@
     <a href="sobre.html">Sobre a Empresa</a>
     <a href="servicos.html">Serviços</a>
     <a href="carreiras.html">Trabalhe Conosco</a>
-    <a href="#">Canal de Denúncia</a>
+    <a href="canal-denuncia.html">Canal de Denúncia</a>
     <p class="group-label">Áreas</p>
     <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
     <a href="servicos.html#zeladoria" class="sublink">› Zeladoria e Manutenção de Ativos</a>
@@ -509,7 +523,7 @@
      HERO SECTION — split poster (Swiss System)
 ═══════════════════════════════════════════════════ -->
 <section id="hero" class="relative bg-white" style="min-height:calc(100dvh - 80px);">
-  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10" style="min-height:calc(100dvh - 80px);">
+  <div id="hero-grid" class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10" style="min-height:calc(100dvh - 80px);">
 
     <!-- Coluna texto (7 cols) -->
     <div class="col-span-12 lg:col-span-7 flex flex-col justify-between py-8 lg:py-12 relative">
@@ -545,14 +559,29 @@
       </div>
     </div>
 
-    <!-- Coluna imagem (5 cols) — image plate Swiss -->
+    <!-- Coluna imagem (5 cols) — mosaico P&B (Swiss) -->
     <div class="col-span-12 lg:col-span-5 relative">
-      <div class="img-plate img-duotone w-full h-full relative" style="min-height:380px;">
-        <div id="hero-slide-1" style="position:absolute;top:-20%;bottom:-20%;left:0;right:0;background-image:url('img/home-banner-1.webp');background-size:cover;background-position:center;z-index:0;"></div>
-        <!-- Tonal scrim para legibilidade da legenda -->
-        <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(0,40,18,0) 50%, rgba(0,40,18,0.55) 100%);z-index:3;"></div>
-
-
+      <div class="img-plate w-full relative lg:h-full">
+        <div id="hero-mosaic" class="hero-mosaic">
+          <a class="hero-tile" href="servicos.html#infraestrutura" aria-label="Recuperação estrutural — soldagem">
+            <img src="img/hero/h1-soldagem.jpg" alt="Soldagem em recuperação estrutural" loading="eager">
+          </a>
+          <a class="hero-tile" href="servicos.html#infraestrutura" aria-label="Recuperação estrutural de pontes">
+            <img src="img/hero/h2-pilar-noite.jpg" alt="Recuperação de pilar de ponte em obra noturna" loading="eager">
+          </a>
+          <a class="hero-tile" href="servicos.html#saneamento" aria-label="Saneamento — obra em espaço confinado">
+            <img src="img/hero/h3-poco.jpg" alt="Engenheiro descendo em poço de inspeção" loading="eager">
+          </a>
+          <a class="hero-tile" href="servicos.html#infraestrutura" aria-label="Limpeza e tratamento de estrutura de ponte">
+            <img src="img/hero/h4-hidrojato.jpg" alt="Hidrojateamento de estrutura de ponte" loading="eager">
+          </a>
+          <a class="hero-tile" href="servicos.html#infraestrutura" aria-label="Equipe em recuperação de passarela">
+            <img src="img/hero/h5-equipe.jpg" alt="Equipe JOB em recuperação de passarela" loading="eager">
+          </a>
+          <a class="hero-tile" href="servicos.html#infraestrutura" aria-label="Desbaste de concreto em pilar">
+            <img src="img/hero/h6-desbaste.jpg" alt="Desbaste de concreto em pilar de ponte" loading="eager">
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -598,7 +627,7 @@
 ═══════════════════════════════════════════════════ -->
 
 
-<section id="servicos" class="bg-white py-20 lg:py-28 relative">
+<section id="servicos" class="bg-white py-16 lg:py-20 relative">
   <div class="max-w-grid mx-auto px-8">
 
     <!-- Cabeçalho da seção -->
@@ -613,8 +642,8 @@
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pt-12 flex flex-col justify-end">
         <p class="text-gray-600 font-body mb-6" style="font-size:15px;line-height:1.55;max-width:48ch;">
-          Atuação integrada em quatro frentes operacionais, com equipes próprias,
-          equipamentos exclusivos e metodologias de engenharia auditáveis.
+          Combinamos expertise técnica, equipamentos especializados e processos de
+          engenharia auditáveis para garantir qualidade, eficiência e resultados consistentes.
         </p>
         <a href="servicos.html" class="self-start inline-flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-job-black border-b border-job-black pb-1 hover:text-job-green hover:border-job-green transition-colors">
           Índice completo de serviços
@@ -701,7 +730,7 @@
 <!-- ═══════════════════════════════════════════════════
      ÁREAS DE ATUAÇÃO — mosaico de fotos
 ═══════════════════════════════════════════════════ -->
-<section id="atuacao" class="bg-job-black py-20 lg:py-28">
+<section id="atuacao" class="bg-job-black py-16 lg:py-20">
   <div class="max-w-grid mx-auto px-8">
 
     <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-12 lg:mb-16">
@@ -760,7 +789,7 @@
 ═══════════════════════════════════════════════════ -->
 
 
-<section id="sobre" class="bg-[#fafaf7] py-20 lg:py-28 relative">
+<section id="sobre" class="bg-[#fafaf7] py-16 lg:py-20 relative">
   <div class="max-w-grid mx-auto px-8">
     <div class="grid grid-cols-12 gap-6 lg:gap-12 items-start">
 
@@ -791,19 +820,14 @@
       <div id="sobre-texto" class="col-span-12 lg:col-span-7 lg:pl-8">
         
         <h2 class="section-title text-job-black font-sans mb-10" style="font-size:clamp(2rem,4.4vw,3.75rem);line-height:1;letter-spacing:-0.02em;">
-          Histórico, técnica<br>
+          História, técnica<br>
           e <span class="text-job-green">compromisso</span><br>
-          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">com a cidade.</span>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">com o futuro.</span>
         </h2>
 
-        <!-- Texto em duas colunas com lead -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 mb-10">
-          <p class="text-job-black font-sans text-lg leading-snug" style="max-width:34ch;">
-            Desde 1981, a JOB Engenharia constrói soluções robustas para a infraestrutura
-            urbana brasileira — com responsabilidade técnica, inovação e compromisso
-            com as comunidades que servimos.
-          </p>
-          <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.6;max-width:42ch;">
+        <!-- Texto introdutório -->
+        <div class="mb-10">
+          <p class="text-job-black font-sans text-lg leading-snug" style="max-width:52ch;">
             Nossa missão é entregar obras e serviços de alta qualidade, com tecnologia
             própria e metodologias exclusivas desenvolvidas ao longo de décadas
             de operação direta em campo.
@@ -837,7 +861,7 @@
 ═══════════════════════════════════════════════════ -->
 
 
-<section id="tecnologias" class="bg-job-green py-20 lg:py-28 relative">
+<section id="tecnologias" class="bg-job-green py-16 lg:py-20 relative">
   <div class="max-w-grid mx-auto px-8 relative" style="z-index:2;">
 
     <!-- Cabeçalho -->
@@ -1046,7 +1070,7 @@
 
 
 
-<section id="contato" class="bg-job-green py-20 relative">
+<section id="contato" class="bg-job-green py-16 relative">
   <div class="max-w-grid mx-auto px-8 relative">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
 
@@ -1313,23 +1337,12 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ── 1. Hero: parallax na imagem de fundo ── */
-  gsap.to('#hero-slide-1', {
-    yPercent: 28,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-
-  /* ── 2. Hero: entrada em cascata dos textos (on load) ── */
+  /* ── 1. Hero: entrada em cascata dos textos + mosaico (on load) ── */
   gsap.timeline({ delay: 0.2 })
     .from('#hero-h1',      { y: 44, opacity: 0, duration: 0.9, ease: 'power3.out' })
     .from('#hero-sub',     { y: 28, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-    .from('#hero-ctas',    { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+    .from('#hero-ctas',    { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+    .from('#hero-mosaic .hero-tile', { opacity: 0, scale: 1.04, duration: 0.7, stagger: 0.08, ease: 'power2.out' }, '-=0.8');
 
   /* ── 3. Section rules: hairline cresce da esquerda ── */
   gsap.utils.toArray('.section-rule .bar').forEach(function (bar) {

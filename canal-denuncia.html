@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canal de Denúncia — JOB Engenharia</title>
+  <meta name="description" content="Canal de Denúncia da JOB Engenharia. Registre, de forma confidencial e anônima, situações que violem nosso código de ética e conduta." />
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 'job-black':'#1d1d1b','job-green':'#00662f','job-green2':'#199738' },
+          fontFamily: {
+            sans: ['"Franklin Gothic Medium"','"Arial Narrow"','Arial','sans-serif'],
+            body: ['"Franklin Gothic Book"','Arial','sans-serif'],
+          },
+          maxWidth: { grid: '1200px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+    body { background: #fafaf7; overflow-x: hidden; overflow-x: clip; }
+
+    .swiss-index {
+      font-family: monospace; font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #00662f;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .swiss-index::before {
+      content: ""; display: inline-block; width: 28px; height: 1px; background: #00662f;
+    }
+
+    /* Garantias / pilares de confiança */
+    .pledge-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px; align-items: start;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(29,29,27,0.10);
+    }
+    .pledge-row:first-of-type { border-top: 1px solid rgba(29,29,27,0.18); }
+    .pledge-row .pledge-num { font-family: monospace; font-size: 11px; letter-spacing: 0.22em; color: #00662f; padding-top: 3px; }
+    .pledge-row .pledge-title { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: 16px; color: #1d1d1b; letter-spacing: -0.005em; margin-bottom: 4px; }
+    .pledge-row .pledge-desc { font-family: 'Franklin Gothic Book', Arial, sans-serif; font-size: 13px; color: #4a5550; line-height: 1.5; }
+
+    /* Form */
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0 14px; border: 1px solid #d6dcd8; background: #fff;
+      font-family: 'Franklin Gothic Book', Arial, sans-serif; font-size: 14px; color: #1d1d1b;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none; -webkit-appearance: none; border-radius: 0;
+    }
+    .form-input, .form-select { height: 46px; }
+    .form-select { padding: 0 36px 0 14px; cursor: pointer;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23199738' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center;
+    }
+    .form-textarea { padding: 12px 14px; resize: vertical; }
+    .form-input::placeholder, .form-textarea::placeholder { color: #aab5ae; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #1d1d1b; box-shadow: 0 0 0 3px rgba(29,29,27,0.06);
+    }
+    .form-label {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #5b6b62; margin-bottom: 8px;
+    }
+    .form-label .req { color: #199738; }
+    .form-label .num { color: #00662f; }
+    .form-file { font-family: 'Franklin Gothic Book', Arial, sans-serif; font-size: 13px; color: #4a5550; }
+    .form-file::file-selector-button {
+      margin-right: 14px; border: 1px solid #d6dcd8; background: #f4f5f2; color: #1d1d1b;
+      font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 10px 14px; cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    }
+    .form-file::file-selector-button:hover { background: #1d1d1b; color: #fff; border-color: #1d1d1b; }
+
+    /* Identificação — opções de rádio */
+    .id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 520px) { .id-grid { grid-template-columns: 1fr; } }
+    .id-option {
+      display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+      border: 1px solid #d6dcd8; background: #fff; padding: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .id-option:hover { border-color: #199738; }
+    .id-option input { margin-top: 2px; accent-color: #199738; }
+    .id-option .id-opt-title { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: 14px; color: #1d1d1b; }
+    .id-option .id-opt-desc { font-family: 'Franklin Gothic Book', sans-serif; font-size: 12px; color: #5b6b62; line-height: 1.4; margin-top: 2px; }
+    .id-option input:checked ~ div .id-opt-title { color: #00662f; }
+    /* Campos condicionais (revelados conforme a escolha) */
+    .cond { display: none; }
+    .cond.show { display: block; }
+
+    /* Seções do formulário */
+    .fsec { border-top: 1px solid #e3e7e4; margin-top: 30px; padding-top: 26px; }
+    .fsec:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+    .fsec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+    .fsec-num { font-family: monospace; font-size: 11px; letter-spacing: 0.22em; color: #00662f; }
+    .fsec-title { font-family: '"Franklin Gothic Medium"', sans-serif; font-size: 15px; color: #1d1d1b; letter-spacing: 0.01em; }
+    .fsec-stack { display: flex; flex-direction: column; gap: 20px; }
+    .form-hint { font-family: 'Franklin Gothic Book', Arial, sans-serif; font-size: 12px; line-height: 1.5; color: #7a857e; }
+
+    .btn-enviar {
+      width: 100%;
+      display: inline-flex; align-items: center; justify-content: space-between;
+      background: #1d1d1b; color: #fff; border: none;
+      padding: 16px 20px;
+      font-family: '"Franklin Gothic Medium"', sans-serif;
+      font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s; margin-top: 8px;
+    }
+    .btn-enviar:hover { background: #00662f; }
+    .btn-enviar .arrow { font-family: monospace; transition: transform 0.2s; }
+    .btn-enviar:hover .arrow { transform: translateX(4px); }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #4a5550; line-height: 1.5; font-family: 'Franklin Gothic Book', sans-serif; }
+    .checkbox-row input { margin-top: 3px; accent-color: #199738; }
+
+    /* Mobile menu */
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown { display: none; }
+    .menu-mobile-btn { display: none; }
+    @media (max-width: 900px) {
+      .nav-desktop { display: none !important; }
+      .menu-mobile-btn { display: inline-flex; }
+    }
+    .mobile-drawer { position: fixed; inset: 0; z-index: 60; background: rgba(29,29,27,0.97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; padding: 96px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow-y: auto; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a { color: #fff; font-family: '"Franklin Gothic Medium"', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: block; transition: color 0.2s, padding-left 0.2s; }
+    .mobile-drawer a:hover { color: #199738; padding-left: 8px; }
+    .mobile-drawer a[href$="contato.html"], .nav-desktop a[href$="contato.html"] { text-transform: uppercase; }
+    .mobile-drawer .group-label { color: #199738; font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 18px; margin-bottom: 4px; }
+    .mobile-drawer .sublink { font-size: 13px; color: #c0c0c0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+    .mobile-close:hover { border-color: #199738; }
+
+    @media (max-width: 900px) {
+      .max-w-grid { padding-left: 20px; padding-right: 20px; }
+      section.py-24 { padding-top: 64px; padding-bottom: 64px; }
+      footer.py-16 { padding-top: 48px; padding-bottom: 48px; }
+    }
+    @media (max-width: 640px) {
+      .max-w-grid { padding-left: 16px; padding-right: 16px; }
+      .denuncia-form-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body class="font-sans text-job-black">
+
+<!-- HEADER -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300" style="height:80px;background:#ffffff;">
+  <div class="relative max-w-grid mx-auto px-8 h-full flex items-center justify-between">
+    <a href="index.html"><img src="img/logo-job-eng.svg" alt="JOB Engenharia" style="height:52px;width:auto;"></a>
+    <button id="mobile-toggle" class="menu-mobile-btn items-center justify-center" aria-label="Abrir menu" style="width:44px;height:44px;background:transparent;border:none;cursor:pointer;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1d1d1b;">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="nav-desktop flex items-center gap-6 text-job-black text-sm font-sans tracking-wide">
+      <a href="sobre.html" class="hover:text-job-green2 transition-colors normal-case">Sobre a Empresa</a>
+      <div class="nav-item relative">
+        <a href="servicos.html" class="hover:text-job-green2 transition-colors flex items-center gap-1 cursor-pointer">
+          Serviços
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4.5L14.5 8"/></svg>
+        </a>
+        <div class="dropdown absolute top-full left-0 bg-job-black border-t-2 border-job-green2 w-52 shadow-xl py-2 z-50 text-white">
+          <a href="servicos.html#infraestrutura" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Infraestrutura</a>
+          <a href="servicos.html#zeladoria" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Zeladoria e Manutenção de Ativos</a>
+          <a href="servicos.html#predial" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Engenharia Predial</a>
+          <a href="servicos.html#ambiental" class="block px-4 py-2 text-xs hover:bg-job-green hover:text-white transition-colors">Tecnologia Ambiental</a>
+        </div>
+      </div>
+      <a href="ecojob.html" class="hover:text-job-green2 transition-colors">Ecojob</a>
+      <a href="carreiras.html" class="hover:text-job-green2 transition-colors normal-case">Trabalhe Conosco</a>
+      <a href="canal-denuncia.html" class="text-job-green2 transition-colors normal-case">Canal de Denúncia</a>
+      <a href="contato.html" class="bg-job-green2 text-white px-5 py-2 border-b border-job-green2">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navegação">
+  <button id="mobile-close" class="mobile-close" aria-label="Fechar menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <nav>
+    <a href="sobre.html">Sobre a Empresa</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="carreiras.html">Trabalhe Conosco</a>
+    <a href="canal-denuncia.html">Canal de Denúncia</a>
+    <p class="group-label">Áreas</p>
+    <a href="servicos.html#infraestrutura" class="sublink">› Infraestrutura</a>
+    <a href="servicos.html#zeladoria" class="sublink">› Zeladoria e Manutenção de Ativos</a>
+    <a href="servicos.html#predial" class="sublink">› Engenharia Predial</a>
+    <a href="servicos.html#ambiental" class="sublink">› Tecnologia Ambiental</a>
+    <a href="ecojob.html">Ecojob</a>
+    <a href="contato.html" style="margin-top:24px;background:#199738;text-align:center;border:none;color:#fff;">Contato</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-10 py-14 lg:py-20">
+    <div class="col-span-12 lg:col-span-8">
+      <nav class="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-10">
+        <a href="index.html" class="hover:text-job-green2 transition-colors">Home</a>
+        <span class="text-gray-300">/</span>
+        <span class="text-job-green">Canal de Denúncia</span>
+      </nav>
+
+      <h1 class="text-job-black font-sans" style="font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:0.96;letter-spacing:-0.02em;">
+        Canal de<br>
+        <span class="text-job-green">denúncia</span><br>
+        <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">e ética.</span>
+      </h1>
+      <a href="#formulario" class="group inline-flex items-center gap-3 mt-10 bg-job-green2 hover:bg-job-green text-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] font-sans transition-colors">
+        <span>Registrar uma denúncia</span>
+        <span class="font-mono transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+    <div class="col-span-12 lg:col-span-4 flex flex-col justify-end pt-6 lg:pt-0">
+      <p class="text-gray-600 font-body" style="font-size:15px;line-height:1.55;max-width:38ch;">
+        Um espaço seguro para relatar, de forma confidencial e anônima, condutas
+        que violem nosso código de ética, valores ou a legislação.
+      </p>
+      <dl class="border-t border-gray-300 mt-8 pt-4 grid grid-cols-2 gap-y-3 text-sm">
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Sigilo</dt>
+        <dd class="font-sans text-job-black">100% confidencial</dd>
+        <dt class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">Identificação</dt>
+        <dd class="font-sans text-job-black">Anônima (opcional)</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- Foto — conduta ética (tom contido, P&B) -->
+<section class="bg-white">
+  <div class="max-w-grid mx-auto px-8 pb-2 lg:pb-6">
+    <figure style="margin:0;position:relative;overflow:hidden;background:#1d1d1b;">
+      <img src="img/canal-integridade.webp" alt="Conduta ética e relações de boa-fé na JOB Engenharia" loading="lazy" decoding="async" class="w-full object-cover" style="height:clamp(180px,26vw,320px);display:block;filter:grayscale(100%);opacity:0.95;">
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     01 · COMO FUNCIONA — garantias
+═══════════════════════════════════════════════════ -->
+
+
+<section class="bg-white py-16 lg:py-20">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-12 gap-6 lg:gap-10 mb-10">
+      <div class="col-span-12 lg:col-span-5">
+        <span class="swiss-index mb-5">Como funciona</span>
+        <h2 class="text-job-black font-sans mt-4" style="font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.02;letter-spacing:-0.02em;">
+          Sua manifestação é<br>
+          <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">levada a sério.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-7 lg:pt-2">
+        <div>
+          <div class="pledge-row">
+            <span class="pledge-num">01</span>
+            <div>
+              <p class="pledge-title">Confidencialidade garantida</p>
+              <p class="pledge-desc">Todas as informações são tratadas com sigilo e analisadas por um comitê responsável, conforme nossa Política de Privacidade e a LGPD.</p>
+            </div>
+          </div>
+          <div class="pledge-row">
+            <span class="pledge-num">02</span>
+            <div>
+              <p class="pledge-title">Anonimato, se você preferir</p>
+              <p class="pledge-desc">Você decide se quer se identificar. O relato anônimo é aceito e apurado da mesma forma — a identificação apenas facilita o retorno e o esclarecimento de dúvidas.</p>
+            </div>
+          </div>
+          <div class="pledge-row">
+            <span class="pledge-num">03</span>
+            <div>
+              <p class="pledge-title">Não retaliação</p>
+              <p class="pledge-desc">É proibida qualquer forma de retaliação contra quem relata de boa-fé. Use este canal de maneira responsável e verdadeira.</p>
+            </div>
+          </div>
+          <div class="pledge-row">
+            <span class="pledge-num">04</span>
+            <div>
+              <p class="pledge-title">O que pode ser relatado</p>
+              <p class="pledge-desc">Assédio, discriminação, fraude, corrupção, conflito de interesses, desvios de conduta, questões ambientais, de saúde e segurança, entre outras violações.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     02 · FORMULÁRIO — split editorial
+═══════════════════════════════════════════════════ -->
+
+
+<section id="formulario" class="bg-[#fafaf7] py-20 lg:py-24">
+  <div class="max-w-grid mx-auto px-8 grid grid-cols-12 gap-6 lg:gap-12 items-start">
+
+    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-28 self-start">
+
+      <h2 class="text-job-black font-sans mb-6" style="font-size:clamp(2rem,4vw,3.4rem);line-height:1;letter-spacing:-0.02em;">
+        Registrar<br>
+        uma <span class="italic font-light text-gray-400" style="font-family:'Franklin Gothic Book',Arial,sans-serif;font-weight:300;">denúncia.</span>
+      </h2>
+      <p class="text-gray-600 font-body mb-4" style="font-size:15px;line-height:1.6;max-width:40ch;">
+        Descreva o ocorrido com o máximo de detalhes possível: o que aconteceu,
+        quem esteve envolvido, quando e onde. Quanto mais informações, melhor a apuração.
+      </p>
+      <p class="text-gray-600 font-body mb-10" style="font-size:15px;line-height:1.6;max-width:40ch;">
+        Em caso de dúvida sobre o canal, fale com a gente pelos
+        <a href="contato.html" class="text-job-green2 hover:underline">canais de contato</a>.
+      </p>
+
+      <div class="border-t border-gray-300 pt-6">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-3">Importante</p>
+        <p class="text-gray-600 font-body" style="font-size:13px;line-height:1.6;max-width:42ch;">
+          Este canal destina-se a relatos de conduta. Para emergências, risco
+          iminente à vida ou crimes em andamento, acione imediatamente as autoridades
+          competentes (190 / 193).
+        </p>
+      </div>
+    </div>
+
+    <form action="obrigado.html" method="POST" class="col-span-12 lg:col-span-7 bg-white p-8 sm:p-10 border-t-2 border-job-black">
+      <div class="mb-8 pb-4 border-b border-gray-200">
+        <p class="font-sans text-job-black" style="font-size:14px;letter-spacing:0.02em;">Formulário de denúncia</p>
+        <p class="form-hint" style="margin-top:8px;">Campos marcados com <span class="req">*</span> são obrigatórios.</p>
+      </div>
+
+      <!-- 01 · IDENTIFICAÇÃO -->
+      <div class="fsec">
+        <div class="fsec-head"><span class="fsec-num">01</span><span class="fsec-title">Identificação</span></div>
+        <label class="form-label"><span>Deseja se identificar?&nbsp;<span class="req">*</span></span></label>
+        <div class="id-grid">
+          <label class="id-option">
+            <input type="radio" name="identificacao" value="anonima" checked />
+            <div>
+              <span class="id-opt-title">Não, prefiro o anonimato</span>
+              <span class="id-opt-desc">Seu relato será apurado sem identificação.</span>
+            </div>
+          </label>
+          <label class="id-option">
+            <input type="radio" name="identificacao" value="identificada" />
+            <div>
+              <span class="id-opt-title">Sim, quero me identificar</span>
+              <span class="id-opt-desc">Seus dados são mantidos em sigilo.</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Anônimo: contato opcional para acompanhamento -->
+        <div id="anon-fields" class="cond show" style="margin-top:16px;">
+          <p class="form-hint" style="margin-bottom:12px;">Se quiser acompanhar a apuração sem revelar quem é você, deixe um contato abaixo. Ele serve apenas para retorno e não identifica você perante a empresa.</p>
+          <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div>
+              <label class="form-label" for="anon-email"><span>E-mail para acompanhamento</span></label>
+              <input id="anon-email" name="anon_email" type="email" class="form-input" placeholder="Para receber atualizações" />
+            </div>
+            <div>
+              <label class="form-label" for="anon-tel"><span>Celular para acompanhamento</span></label>
+              <input id="anon-tel" name="anon_telefone" type="tel" class="form-input" placeholder="(00) 00000-0000" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Identificado: dados pessoais -->
+        <div id="identity-fields" class="cond" style="margin-top:16px;">
+          <div class="fsec-stack">
+            <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div>
+                <label class="form-label" for="nome"><span>Nome completo</span></label>
+                <input id="nome" name="nome" type="text" class="form-input" placeholder="Seu nome" />
+              </div>
+              <div>
+                <label class="form-label" for="cpf"><span>CPF</span></label>
+                <input id="cpf" name="cpf" type="text" class="form-input" placeholder="000.000.000-00" />
+              </div>
+            </div>
+            <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div>
+                <label class="form-label" for="email"><span>E-mail</span></label>
+                <input id="email" name="email" type="email" class="form-input" placeholder="seu@email.com" />
+              </div>
+              <div>
+                <label class="form-label" for="nascimento"><span>Data de nascimento</span></label>
+                <input id="nascimento" name="nascimento" type="text" class="form-input" placeholder="dd/mm/aaaa" />
+              </div>
+            </div>
+            <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div>
+                <label class="form-label" for="telefone"><span>Telefone</span></label>
+                <input id="telefone" name="telefone" type="tel" class="form-input" placeholder="(00) 0000-0000" />
+              </div>
+              <div>
+                <label class="form-label" for="celular"><span>Celular</span></label>
+                <input id="celular" name="celular" type="tel" class="form-input" placeholder="(00) 00000-0000" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · SOBRE O RELATO -->
+      <div class="fsec">
+        <div class="fsec-head"><span class="fsec-num">02</span><span class="fsec-title">Sobre o relato</span></div>
+        <div class="fsec-stack">
+          <div>
+            <label class="form-label" for="relacao"><span>Sua relação com a JOB&nbsp;<span class="req">*</span></span></label>
+            <select id="relacao" name="relacao" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="colaborador">Sou colaborador(a)</option>
+              <option value="ex-colaborador">Sou ex-colaborador(a)</option>
+              <option value="fornecedor">Sou fornecedor</option>
+              <option value="parceiro">Sou parceiro</option>
+              <option value="prestador">Sou prestador de serviço</option>
+              <option value="cliente">Sou cliente</option>
+              <option value="terceiro">Terceiro / Comunidade</option>
+              <option value="outros">Outros</option>
+            </select>
+            <div id="relacao-outro" class="cond" style="margin-top:12px;">
+              <input name="relacao_outro" type="text" class="form-input" placeholder="Especifique sua relação com a JOB" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label" for="tipo"><span>Tipo de denúncia&nbsp;<span class="req">*</span></span></label>
+            <select id="tipo" name="tipo" class="form-select" required>
+              <option value="">Selecione o tipo de ocorrência</option>
+              <option value="assedio-moral">Assédio moral</option>
+              <option value="assedio-sexual">Assédio sexual</option>
+              <option value="agressao">Agressão física</option>
+              <option value="discriminacao">Discriminação ou preconceito</option>
+              <option value="comportamento">Comportamento inadequado</option>
+              <option value="descumprimento">Descumprimento de políticas, normas e procedimentos</option>
+              <option value="conflito-interesses">Conflito de interesses</option>
+              <option value="fraude-corrupcao">Fraude ou corrupção</option>
+              <option value="uso-indevido">Uso indevido de recursos ou patrimônio</option>
+              <option value="furto">Furto, roubo ou desvio de bens</option>
+              <option value="leis-trabalhistas">Violação de leis trabalhistas</option>
+              <option value="meio-ambiente">Questões ambientais</option>
+              <option value="seguranca-trabalho">Saúde e segurança no trabalho</option>
+              <option value="outros">Outros</option>
+            </select>
+            <div id="tipo-outro" class="cond" style="margin-top:12px;">
+              <input name="tipo_outro" type="text" class="form-input" placeholder="Especifique o tipo de denúncia" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · ONDE E QUANDO -->
+      <div class="fsec">
+        <div class="fsec-head"><span class="fsec-num">03</span><span class="fsec-title">Onde e quando</span></div>
+        <div class="fsec-stack">
+          <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div>
+              <label class="form-label" for="local"><span>Local / unidade</span></label>
+              <input id="local" name="local" type="text" class="form-input" placeholder="Obra, unidade ou cidade" />
+            </div>
+            <div>
+              <label class="form-label" for="setor"><span>Área / setor</span></label>
+              <input id="setor" name="setor" type="text" class="form-input" placeholder="Setor ou departamento" />
+            </div>
+          </div>
+          <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div>
+              <label class="form-label" for="data"><span>Data ou período aproximado</span></label>
+              <input id="data" name="data" type="text" class="form-input" placeholder="Ex.: maio/2026 ou recorrente" />
+            </div>
+            <div>
+              <label class="form-label" for="conhecimento"><span>Como tomou conhecimento&nbsp;<span class="req">*</span></span></label>
+              <select id="conhecimento" name="conhecimento" class="form-select" required>
+                <option value="">Selecione</option>
+                <option value="comigo">Aconteceu comigo</option>
+                <option value="presenciei">Eu presenciei</option>
+                <option value="colega">Um colega me contou</option>
+                <option value="denunciado">O denunciado me contou</option>
+                <option value="documento">Encontrei um documento ou registro</option>
+                <option value="ouvi">Ouvi falar</option>
+                <option value="outro">Outro</option>
+              </select>
+              <div id="conhecimento-outro" class="cond" style="margin-top:12px;">
+                <input name="conhecimento_outro" type="text" class="form-input" placeholder="Especifique como tomou conhecimento" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · ENVOLVIMENTO DE LIDERANÇAS -->
+      <div class="fsec">
+        <div class="fsec-head"><span class="fsec-num">04</span><span class="fsec-title">Envolvimento de lideranças</span></div>
+        <div class="fsec-stack">
+          <div>
+            <label class="form-label" for="ciente"><span>Algum gestor (diretor, gerente, coordenador, supervisor ou encarregado) tem conhecimento do fato?&nbsp;<span class="req">*</span></span></label>
+            <select id="ciente" name="ciente" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="nao">Não</option>
+              <option value="sim">Sim</option>
+              <option value="nao-sei">Não sei</option>
+            </select>
+            <div id="ciente-nomes" class="cond" style="margin-top:12px;">
+              <input name="ciente_nomes" type="text" class="form-input" placeholder="Quem? Nomes e/ou cargos" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label" for="envolvido"><span>Algum gestor está diretamente envolvido no ocorrido?&nbsp;<span class="req">*</span></span></label>
+            <select id="envolvido" name="envolvido" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="nao">Não</option>
+              <option value="sim">Sim</option>
+              <option value="nao-sei">Não sei</option>
+            </select>
+            <div id="envolvido-nomes" class="cond" style="margin-top:12px;">
+              <input name="envolvido_nomes" type="text" class="form-input" placeholder="Quem? Nomes e/ou cargos" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label" for="encobrimento"><span>Houve tentativa de ocultar ou encobrir o ocorrido?&nbsp;<span class="req">*</span></span></label>
+            <select id="encobrimento" name="encobrimento" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="nao">Não</option>
+              <option value="sim">Sim</option>
+              <option value="nao-sei">Não sei</option>
+            </select>
+            <div id="encobrimento-nomes" class="cond" style="margin-top:12px;">
+              <input name="encobrimento_nomes" type="text" class="form-input" placeholder="Quem? Nomes e/ou cargos" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · DETALHES DO OCORRIDO -->
+      <div class="fsec">
+        <div class="fsec-head"><span class="fsec-num">05</span><span class="fsec-title">Detalhes do ocorrido</span></div>
+        <div class="fsec-stack">
+          <div>
+            <label class="form-label" for="descricao"><span>Descrição detalhada&nbsp;<span class="req">*</span></span></label>
+            <textarea id="descricao" name="descricao" class="form-textarea" rows="6" placeholder="Descreva o que aconteceu: o quê, quem esteve envolvido, como ocorreu, há quanto tempo e se ainda está acontecendo." required></textarea>
+          </div>
+          <div>
+            <label class="form-label" for="testemunhas"><span>Testemunhas</span></label>
+            <input id="testemunhas" name="testemunhas" type="text" class="form-input" placeholder="Pessoas que presenciaram — nomes e/ou cargos" />
+          </div>
+          <div>
+            <label class="form-label" for="evidencias"><span>Evidências — onde podem ser encontradas</span></label>
+            <textarea id="evidencias" name="evidencias" class="form-textarea" rows="3" placeholder="Descreva quais provas existem e onde estão (documentos, e-mails, fotos, mensagens). Não remova nem altere nenhuma evidência."></textarea>
+          </div>
+          <div>
+            <label class="form-label" for="anexos"><span>Anexos</span></label>
+            <input id="anexos" name="anexos" type="file" class="form-input form-file" multiple style="height:auto;padding:10px 14px;" />
+          </div>
+          <div class="denuncia-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div>
+              <label class="form-label" for="valor"><span>Valor financeiro envolvido</span></label>
+              <input id="valor" name="valor" type="text" class="form-input" placeholder="Se houver, valor aproximado" />
+            </div>
+            <div>
+              <label class="form-label" for="solucao"><span>Sugestão de solução</span></label>
+              <input id="solucao" name="solucao" type="text" class="form-input" placeholder="Providência que você espera" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · ACEITE E ENVIO -->
+      <div class="fsec">
+        <label class="checkbox-row">
+          <input type="checkbox" required>
+          <span>Declaro que as informações são verdadeiras e prestadas de boa-fé, e li e concordo com a <a href="politica-privacidade.html" class="text-job-green2 hover:underline">Política de Privacidade</a> e o tratamento dos meus dados para apuração desta denúncia.</span>
+        </label>
+
+        <button type="submit" class="btn-enviar" style="margin-top:20px;">
+          <span>Enviar denúncia</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-job-black py-16 relative">
+  <div class="max-w-grid mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img src="img/logo-job-eng-branco.svg" alt="JOB Engenharia" class="mb-4" style="width:120px;">
+        <p class="text-gray-400 text-xs font-body leading-relaxed">Infraestrutura, sustentabilidade e tecnologia a serviço do desenvolvimento.</p>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Navegação</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="index.html" class="hover:text-job-green2 transition-colors">Home</a></li>
+          <li><a href="sobre.html" class="hover:text-job-green2 transition-colors">Sobre a Empresa</a></li>
+          <li><a href="servicos.html" class="hover:text-job-green2 transition-colors">Serviços</a></li>
+          <li><a href="ecojob.html" class="hover:text-job-green2 transition-colors">Ecojob</a></li>
+          <li><a href="carreiras.html" class="hover:text-job-green2 transition-colors">Carreiras</a></li>
+          <li><a href="contato.html" class="hover:text-job-green2 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Serviços</p>
+        <ul class="space-y-2 text-gray-400 text-sm font-body">
+          <li><a href="servicos.html#infraestrutura" class="hover:text-job-green2 transition-colors">Infraestrutura</a></li>
+          <li><a href="servicos.html#zeladoria" class="hover:text-job-green2 transition-colors">Zeladoria e Manutenção de Ativos</a></li>
+          <li><a href="servicos.html#predial" class="hover:text-job-green2 transition-colors">Engenharia Predial</a></li>
+          <li><a href="servicos.html#ambiental" class="hover:text-job-green2 transition-colors">Tecnologia Ambiental</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white text-xs font-sans tracking-widest mb-5">Contato</p>
+        <ul class="space-y-3 text-gray-400 text-sm font-body">
+          <li><a href="tel:+5511965746379" class="hover:text-job-green2 transition-colors">(11) 96574-6379</a></li>
+          <li><a href="mailto:contato@jobeng.com.br" class="hover:text-job-green2 transition-colors">contato@jobeng.com.br</a></li>
+          <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-gray-600 text-xs font-body">
+        <span>© <span id="footer-year">2026</span> JOB Engenharia. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="politica-privacidade.html" class="hover:text-job-green2 transition-colors">Política de Privacidade</a>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="termos.html" class="hover:text-job-green2 transition-colors">Termos de Uso</a>
+      </div>
+      <div class="flex gap-3">
+        <a href="https://www.linkedin.com/company/ecojob/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jobengenhariabr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/p/Job-Engenharia-Br-61554832118557/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex items-center justify-center w-9 h-9 border border-gray-700 text-gray-500 hover:text-white hover:border-job-green2 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var header = document.getElementById('site-header');
+    function update() {
+      if (window.scrollY > 60) {
+        header.style.background='rgba(255,255,255,0.78)';
+        header.style.backdropFilter='saturate(160%) blur(14px)';
+        header.style.webkitBackdropFilter='saturate(160%) blur(14px)';
+        header.style.boxShadow='0 1px 0 rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)';
+      } else {
+        header.style.background='#ffffff';
+        header.style.backdropFilter='none';
+        header.style.webkitBackdropFilter='none';
+        header.style.boxShadow='none';
+      }
+    }
+    window.addEventListener('scroll', update); update();
+  })();
+  (function() {
+    var btn=document.getElementById('mobile-toggle'); var close=document.getElementById('mobile-close'); var drawer=document.getElementById('mobile-drawer');
+    if (!btn||!drawer) return;
+    function open(){ drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+    function shut(){ drawer.classList.remove('open'); document.body.style.overflow=''; }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+  })();
+  (function(){var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();})();
+  (function(){
+    function reveal(id, show){
+      var t=document.getElementById(id);
+      if(!t) return;
+      if(show) t.classList.add('show'); else t.classList.remove('show');
+    }
+    // Identificação (rádio): alterna dados pessoais x contato anônimo
+    var radios=document.querySelectorAll('input[name="identificacao"]');
+    function syncId(){
+      var v=document.querySelector('input[name="identificacao"]:checked');
+      var ident = v && v.value==='identificada';
+      reveal('identity-fields', ident);
+      reveal('anon-fields', !ident);
+    }
+    radios.forEach(function(r){ r.addEventListener('change', syncId); });
+    syncId();
+    // Selects com campo condicional ("Outros" / "Sim")
+    function bindSelect(selectId, targetId, value){
+      var s=document.getElementById(selectId);
+      if(!s) return;
+      function sync(){ reveal(targetId, s.value===value); }
+      s.addEventListener('change', sync); sync();
+    }
+    bindSelect('relacao','relacao-outro','outros');
+    bindSelect('tipo','tipo-outro','outros');
+    bindSelect('conhecimento','conhecimento-outro','outro');
+    bindSelect('ciente','ciente-nomes','sim');
+    bindSelect('envolvido','envolvido-nomes','sim');
+    bindSelect('encobrimento','encobrimento-nomes','sim');
+  })();
+</script>
+
+</body>
+</html>
