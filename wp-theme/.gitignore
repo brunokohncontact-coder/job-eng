@@ -1,2 +1,2 @@
 node_modules/
-assets/css/app.css
+# assets/css/app.css é versionado: deploy na Umbler não roda build (Tailwind)
