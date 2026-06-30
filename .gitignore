@@ -18,3 +18,7 @@ dist/
 
 # Backups
 *backup*.html
+
+# Produção (referência local — fora do repo público)
+producao/
+wp-config*.php
