@@ -332,9 +332,22 @@
           competentes (190 / 193).
         </p>
       </div>
+
+      <div class="border-t border-gray-300 pt-6 mt-6">
+        <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-3">Canal direto</p>
+        <p class="text-gray-600 font-body mb-2" style="font-size:13px;line-height:1.6;max-width:42ch;">
+          Prefere e-mail? Você pode registrar sua denúncia diretamente em
+          <a href="mailto:daphne@jobeng.com.br" class="text-job-green2 hover:underline">daphne@jobeng.com.br</a>.
+        </p>
+        <p class="text-gray-500 font-body" style="font-size:12px;line-height:1.6;max-width:42ch;">
+          Telefone do canal de denúncia: <span class="font-mono">em breve</span>.
+        </p>
+      </div>
     </div>
 
     <form action="obrigado.html" method="POST" class="col-span-12 lg:col-span-7 bg-white p-8 sm:p-10 border-t-2 border-job-black">
+      <!-- As denúncias devem ser encaminhadas para daphne@jobeng.com.br (configurar no backend/serviço de envio do formulário). -->
+      <input type="hidden" name="_destinatario" value="daphne@jobeng.com.br">
       <div class="mb-8 pb-4 border-b border-gray-200">
         <p class="font-sans text-job-black" style="font-size:14px;letter-spacing:0.02em;">Formulário de denúncia</p>
         <p class="form-hint" style="margin-top:8px;">Campos marcados com <span class="req">*</span> são obrigatórios.</p>
@@ -623,7 +636,7 @@
       <div>
         <p class="text-white text-xs font-sans tracking-widest mb-5">Contato</p>
         <ul class="space-y-3 text-gray-400 text-sm font-body">
-          <li><a href="tel:+5511965746379" class="hover:text-job-green2 transition-colors">(11) 96574-6379</a></li>
+          <li><a href="tel:+551122079212" class="hover:text-job-green2 transition-colors">(11) 2207-9212</a></li>
           <li><a href="mailto:contato@jobeng.com.br" class="hover:text-job-green2 transition-colors">contato@jobeng.com.br</a></li>
           <li class="text-xs text-gray-500 pt-1">Seg. a sex. · 9h às 18h</li>
         </ul>
