@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+  <!-- Diagonal arms -->
+  <rect x="29" y="8" width="6" height="48" rx="1" transform="rotate(45 32 32)"/>
+  <rect x="29" y="8" width="6" height="48" rx="1" transform="rotate(-45 32 32)"/>
+  <!-- Central body -->
+  <rect x="22" y="22" width="20" height="20" rx="3"/>
+  <!-- Camera lens -->
+  <circle cx="32" cy="32" r="4" fill="#fff" fill-opacity="0.25"/>
+  <!-- Propellers (rotors) -->
+  <circle cx="10" cy="10" r="7"/>
+  <circle cx="54" cy="10" r="7"/>
+  <circle cx="10" cy="54" r="7"/>
+  <circle cx="54" cy="54" r="7"/>
+  <!-- Rotor blades hint -->
+  <line x1="3" y1="10" x2="17" y2="10" stroke="#fff" stroke-opacity="0.3" stroke-width="1.2"/>
+  <line x1="47" y1="10" x2="61" y2="10" stroke="#fff" stroke-opacity="0.3" stroke-width="1.2"/>
+  <line x1="3" y1="54" x2="17" y2="54" stroke="#fff" stroke-opacity="0.3" stroke-width="1.2"/>
+  <line x1="47" y1="54" x2="61" y2="54" stroke="#fff" stroke-opacity="0.3" stroke-width="1.2"/>
+</svg>
