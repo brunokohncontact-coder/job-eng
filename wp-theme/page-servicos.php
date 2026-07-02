@@ -282,7 +282,7 @@
     </div>
 
     <figure style="margin:0 0 14px;position:relative;overflow:hidden;background:#1d1d1b;">
-      <img src="<?= ju() ?>/img/areas/infra-pontes.jpg" alt="Recuperação estrutural de pontes e obras de infraestrutura" loading="lazy" decoding="async" class="w-full object-cover" style="height:clamp(180px,26vw,300px);display:block;">
+      <img src="<?= ju() ?>/img/areas/infra-pontes-real.png" alt="Recuperação estrutural de pontes e obras de infraestrutura" loading="lazy" decoding="async" class="w-full object-cover" style="height:clamp(180px,26vw,300px);display:block;">
     </figure>
 
     <div class="reveal">
@@ -403,7 +403,7 @@
     </div>
 
     <figure style="margin:0 0 14px;position:relative;overflow:hidden;background:#1d1d1b;">
-      <img src="<?= ju() ?>/img/areas/zeladoria.jpg" alt="Zeladoria urbana e manutenção de ativos públicos" loading="lazy" decoding="async" class="w-full object-cover" style="height:clamp(180px,26vw,300px);display:block;">
+      <img src="<?= ju() ?>/img/caminhao.png" alt="Zeladoria urbana e manutenção de ativos públicos" loading="lazy" decoding="async" class="w-full object-cover" style="height:clamp(180px,26vw,300px);display:block;">
     </figure>
 
     <div class="reveal">

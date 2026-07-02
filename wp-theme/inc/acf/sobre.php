@@ -214,7 +214,7 @@ acf_add_local_field_group( [
             'label'         => 'Linha do tempo 5 — título',
             'name'          => 'sobre_tl5_titulo',
             'type'          => 'text',
-            'default_value' => 'Quatro áreas integradas',
+            'default_value' => 'Atuação integrada',
         ],
         [
             'key'           => 'field_sobre_tl5_desc',
@@ -222,7 +222,7 @@ acf_add_local_field_group( [
             'name'          => 'sobre_tl5_desc',
             'type'          => 'textarea',
             'rows'          => 3,
-            'default_value' => 'Atuação integrada: Com mais de quatro décadas de experiência, a JOB Engenharia reúne engenharia, tecnologia e gestão em uma atuação integrada, preparada para atender aos desafios atuais e futuros de seus clientes.',
+            'default_value' => 'Com mais de quatro décadas de experiência, a JOB Engenharia reúne engenharia, tecnologia e gestão em uma atuação integrada, preparada para atender aos desafios atuais e futuros de seus clientes.',
         ],
 
         /* ───────── PRINCÍPIOS ───────── */

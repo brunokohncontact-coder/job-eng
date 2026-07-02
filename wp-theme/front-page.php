@@ -37,11 +37,12 @@ if ( ! function_exists( 'job_lines' ) ) {
   .section-rule .bar { height: 1px; background: rgba(29,29,27,0.18); width: 100%; }
 
   /* ── Stats rail ── */
-  .stat-cell { display: flex; flex-direction: column; gap: 6px; padding: 28px 24px; border-right: 1px solid rgba(29,29,27,0.10); }
+  .stat-cell { display: flex; flex-direction: column; gap: 8px; padding: 28px 16px; min-width: 0; border-right: 1px solid rgba(29,29,27,0.10); }
   .stat-cell:last-child { border-right: none; }
-  .stat-cell .num { font-family: '"Franklin Gothic Medium"', 'Arial Narrow', Arial, sans-serif; font-size: clamp(36px, 4vw, 56px); line-height: 1; color: #1d1d1b; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat-cell .num { font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; font-size: clamp(26px, 2.8vw, 40px); line-height: 1; color: #1d1d1b; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .stat-cell .num em { color: #00662f; font-style: normal; }
   .stat-cell .num sup { font-size: 0.5em; vertical-align: super; color: #199738; font-weight: normal; margin-left: 2px; letter-spacing: 0; }
+  .stat-cell .num > span { font-size: 0.34em; letter-spacing: 0.02em; margin-left: 5px; }
   .stat-cell .label { font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5b6b62; }
   @media (max-width: 900px) { .stat-cell { padding: 20px 16px; border-right: none; border-bottom: 1px solid rgba(29,29,27,0.10); } .stat-cell:last-child { border-bottom: none; } }
 
@@ -167,12 +168,12 @@ if ( ! function_exists( 'job_lines' ) ) {
     <div class="col-span-12 lg:col-span-5 relative">
       <div class="img-plate w-full relative lg:h-full">
         <div id="hero-mosaic" class="hero-mosaic">
-          <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Recuperação estrutural — soldagem"><img src="<?= ju() ?>/img/hero/h1-soldagem.jpg" alt="Soldagem em recuperação estrutural" loading="eager"></a>
+          <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Pavimentação e recuperação de vias"><img src="<?= ju() ?>/img/previa/hero-pavimentacao.jpg" alt="Reperfilamento e pavimentação asfáltica de via urbana" loading="eager"></a>
           <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Recuperação estrutural de pontes"><img src="<?= ju() ?>/img/hero/h2-pilar-noite.jpg" alt="Recuperação de pilar de ponte em obra noturna" loading="eager"></a>
           <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#saneamento" aria-label="Saneamento — obra em espaço confinado"><img src="<?= ju() ?>/img/hero/h3-poco.jpg" alt="Engenheiro descendo em poço de inspeção" loading="eager"></a>
           <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Limpeza e tratamento de estrutura de ponte"><img src="<?= ju() ?>/img/hero/h4-hidrojato.jpg" alt="Hidrojateamento de estrutura de ponte" loading="eager"></a>
           <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Equipe em recuperação de passarela"><img src="<?= ju() ?>/img/hero/h5-equipe.jpg" alt="Equipe JOB em recuperação de passarela" loading="eager"></a>
-          <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#infraestrutura" aria-label="Desbaste de concreto em pilar"><img src="<?= ju() ?>/img/hero/h6-desbaste.jpg" alt="Desbaste de concreto em pilar de ponte" loading="eager"></a>
+          <a class="hero-tile" href="<?= home_url( '/servicos/' ) ?>#saneamento" aria-label="Manutenção de redes urbanas"><img src="<?= ju() ?>/img/previa/hero-saneamento.jpg" alt="Substituição de tampa em rede de saneamento urbano" loading="eager"></a>
         </div>
       </div>
     </div>
@@ -298,12 +299,12 @@ if ( ! function_exists( 'job_lines' ) ) {
     </div>
 
     <div class="mosaic-grid">
-      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/infra-pontes.jpg" alt="Recuperação estrutural de pontes e viadutos" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos1_titulo', 'Pontes e viadutos' ) ) ?></b><i><?= esc_html( jf( 'home_mos1_legenda', 'Mobilidade · Recuperação' ) ) ?></i></span></a>
-      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/pavimentacao.jpg" alt="Pavimentação asfáltica de vias urbanas" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos2_titulo', 'Pavimentação' ) ) ?></b><i><?= esc_html( jf( 'home_mos2_legenda', 'Usina Móvel RAP' ) ) ?></i></span></a>
-      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/saneamento.jpg" alt="Obras de saneamento — redes de água e esgoto" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos3_titulo', 'Saneamento' ) ) ?></b><i><?= esc_html( jf( 'home_mos3_legenda', 'Redes de água e esgoto' ) ) ?></i></span></a>
-      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/drenagem.jpg" alt="Drenagem urbana e recursos hídricos" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos4_titulo', 'Drenagem' ) ) ?></b><i><?= esc_html( jf( 'home_mos4_legenda', 'Águas pluviais' ) ) ?></i></span></a>
-      <a href="<?= home_url( '/servicos/' ) ?>#zeladoria" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/zeladoria.jpg" alt="Zeladoria e manutenção de redes urbanas" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos5_titulo', 'Zeladoria e manutenção' ) ) ?></b><i><?= esc_html( jf( 'home_mos5_legenda', 'Redes e ativos urbanos' ) ) ?></i></span></a>
-      <a href="<?= home_url( '/ecojob/' ) ?>" class="mosaic-tile"><img src="<?= ju() ?>/img/areas/ambiental.jpg" alt="Tecnologia ambiental — plataforma Ecojob" loading="lazy" style="object-position:left center"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos6_titulo', 'Tecnologia ambiental' ) ) ?></b><i><?= esc_html( jf( 'home_mos6_legenda', 'Plataforma Ecojob' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/previa/previa-pontes.jpg" alt="Recuperação estrutural de pontes e viadutos" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos1_titulo', 'Pontes e viadutos' ) ) ?></b><i><?= esc_html( jf( 'home_mos1_legenda', 'Mobilidade · Recuperação' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/previa/previa-pavimentacao.jpg" alt="Pavimentação asfáltica de vias urbanas" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos2_titulo', 'Pavimentação' ) ) ?></b><i><?= esc_html( jf( 'home_mos2_legenda', 'Usina Móvel RAP' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/previa/previa-saneamento.jpg" alt="Obras de saneamento — redes de água e esgoto" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos3_titulo', 'Saneamento' ) ) ?></b><i><?= esc_html( jf( 'home_mos3_legenda', 'Redes de água e esgoto' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/servicos/' ) ?>#infraestrutura" class="mosaic-tile"><img src="<?= ju() ?>/img/previa/previa-drenagem.jpg" alt="Drenagem urbana e recursos hídricos" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos4_titulo', 'Drenagem' ) ) ?></b><i><?= esc_html( jf( 'home_mos4_legenda', 'Águas pluviais' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/servicos/' ) ?>#zeladoria" class="mosaic-tile"><img src="<?= ju() ?>/img/caminhao.png" alt="Zeladoria e manutenção de redes urbanas" loading="lazy"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos5_titulo', 'Zeladoria e manutenção' ) ) ?></b><i><?= esc_html( jf( 'home_mos5_legenda', 'Redes e ativos urbanos' ) ) ?></i></span></a>
+      <a href="<?= home_url( '/ecojob/' ) ?>" class="mosaic-tile"><img src="<?= ju() ?>/img/previa/previa-ambiental.jpg" alt="Tecnologia ambiental — plataforma Ecojob" loading="lazy" style="object-position:left center"><span class="mosaic-arrow">→</span><span class="mosaic-cap"><b><?= esc_html( jf( 'home_mos6_titulo', 'Tecnologia ambiental' ) ) ?></b><i><?= esc_html( jf( 'home_mos6_legenda', 'Plataforma Ecojob' ) ) ?></i></span></a>
     </div>
   </div>
 </section>

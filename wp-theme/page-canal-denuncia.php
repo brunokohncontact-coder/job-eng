@@ -251,17 +251,6 @@
           <?= esc_html( jf( 'canal-denuncia_form_importante', 'Este canal destina-se a relatos de conduta. Para emergências, risco iminente à vida ou crimes em andamento, acione imediatamente as autoridades competentes (190 / 193).' ) ) ?>
         </p>
       </div>
-
-      <div class="border-t border-gray-300 pt-6 mt-6">
-        <p class="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500 mb-3"><?= esc_html( jf( 'canal-denuncia_canal_direto_rotulo', 'Canal direto' ) ) ?></p>
-        <p class="text-gray-600 font-body mb-2" style="font-size:13px;line-height:1.6;max-width:42ch;">
-          Prefere e-mail? Você pode registrar sua denúncia diretamente em
-          <a href="mailto:<?= esc_attr( jf( 'canal-denuncia_email', 'daphne@jobeng.com.br' ) ) ?>" class="text-job-green2 hover:underline"><?= esc_html( jf( 'canal-denuncia_email', 'daphne@jobeng.com.br' ) ) ?></a>.
-        </p>
-        <p class="text-gray-500 font-body" style="font-size:12px;line-height:1.6;max-width:42ch;">
-          Telefone do canal de denúncia: <span class="font-mono"><?= esc_html( jf( 'canal-denuncia_telefone', 'em breve' ) ) ?></span>.
-        </p>
-      </div>
     </div>
 
     <form action="<?= home_url('/obrigado/') ?>" method="POST" class="col-span-12 lg:col-span-7 bg-white p-8 sm:p-10 border-t-2 border-job-black">

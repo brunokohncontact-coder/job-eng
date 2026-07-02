@@ -67,18 +67,21 @@
   /* Stat cell */
   .stat-cell {
     display: flex; flex-direction: column; gap: 8px;
-    padding: 36px 28px;
+    padding: 32px 18px;
+    min-width: 0;
     border-right: 1px solid rgba(255,255,255,0.10);
   }
   .stat-cell:last-child { border-right: none; }
   .stat-cell .num {
-    font-family: '"Franklin Gothic Medium"', sans-serif;
-    font-size: clamp(44px, 5vw, 72px); line-height: 1;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: clamp(28px, 3vw, 44px); line-height: 1;
     letter-spacing: -0.02em; color: #fff;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
   .stat-cell .num em { color: #199738; font-style: normal; }
   .stat-cell .num sup { font-size: 0.5em; vertical-align: super; color: #199738; margin-left: 4px; letter-spacing: 0; }
+  .stat-cell .num > span { font-size: 0.34em; letter-spacing: 0.02em; margin-left: 5px !important; }
   .stat-cell .label { font-family: monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a9a90; }
   @media (max-width: 900px) {
     .stat-cell { padding: 24px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.10); }
@@ -209,8 +212,8 @@
       <div class="tl-row">
         <p class="tl-year"><?= esc_html( jf( 'sobre_tl5_ano', 'Hoje' ) ) ?></p>
         <div>
-          <h3 class="tl-title"><?= esc_html( jf( 'sobre_tl5_titulo', 'Quatro áreas integradas' ) ) ?></h3>
-          <p class="tl-desc"><?= esc_html( jf( 'sobre_tl5_desc', 'Atuação integrada: Com mais de quatro décadas de experiência, a JOB Engenharia reúne engenharia, tecnologia e gestão em uma atuação integrada, preparada para atender aos desafios atuais e futuros de seus clientes.' ) ) ?></p>
+          <h3 class="tl-title"><?= esc_html( jf( 'sobre_tl5_titulo', 'Atuação integrada' ) ) ?></h3>
+          <p class="tl-desc"><?= esc_html( jf( 'sobre_tl5_desc', 'Com mais de quatro décadas de experiência, a JOB Engenharia reúne engenharia, tecnologia e gestão em uma atuação integrada, preparada para atender aos desafios atuais e futuros de seus clientes.' ) ) ?></p>
         </div>
       </div>
     </div>
